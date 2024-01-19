@@ -10,22 +10,31 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	char			*source;
-	size_t	count;
+	unsigned char	*destination;
+	unsigned char	*source;
+	size_t			count;
 
-	source = (const char *)src;
-	count = 0;
-	while (count < len)
+	destination = (unsigned char *)dst;
+	source = (unsigned char *)src;
+	if (src < dst)
 	{
-		*source = *(char *)src;
-		*(char *)dst = *source;
-		dst++;
-		source++;
-		count++;
+		count = len - 1;
+		while (count > 0)
+		{
+			destination[count] = source[count];
+			count--;
+		}
 	}
-	return (dst - count);
+	else
+	{
+		count = 0;
+		while (count < len)
+		{
+			destination[count] = source[count];
+			count++;
+		}
+	}
+	return ((void *)dst);
 }
