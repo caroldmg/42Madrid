@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 10:02:56 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/01/19 11:29:01 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/01/27 17:36:23 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,15 @@
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*ptr;
-	int		i;
-	int		j;
+	size_t	total_len;
 
-	ptr = (char *)malloc((ft_strlen(s1) + ft_strlen(s2)) * sizeof(char));
+	total_len = ft_strlen(s1) + ft_strlen(s2) + 1;
+	ptr = (char *)malloc(total_len * sizeof(char));
 	if (ptr)
 	{
-		i = 0;
-		j = 0;
-		while (s1[i] != '\0')
-			ptr[j++] = s1[i++];
-		i = 0;
-		while (s2[i] != '\0')
-			ptr[j++] = s2[i++];
-		ptr[j] = '\0';
+		ft_strlcpy(ptr, s1, ft_strlen(s1) + 1);
+		ft_strlcat(ptr, s2, total_len);
+		ptr[total_len - 1] = '\0';
 		return (ptr);
 	}
 	else

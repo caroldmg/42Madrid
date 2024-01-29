@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:00:11 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/01/19 11:28:53 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/01/25 11:31:40 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,13 @@ char	*ft_strdup(const char *s1)
 	char	*ptr;
 	size_t	len;
 
-	len = ft_strlen(s1);
+	if (s1 == 0)
+		return (0);
+	len = ft_strlen(s1) + 1;
 	ptr = (char *)ft_calloc(len, sizeof(char));
-	ft_memcpy(ptr, s1, len);
+	if (ptr == 0)
+		return (0);
+	ft_strlcpy(ptr, s1, len);
 	return (ptr);
 }
 
@@ -28,7 +32,7 @@ char	*ft_strdup(const char *s1)
 #include <string.h>
 
 int	main(void) {
-	const char *original_str = "Hello, World!";
+	const char *original_str = "";
 
 	// Probando ft_strdup
 	char *custom_strdup_result = ft_strdup(original_str);
@@ -55,12 +59,12 @@ int	main(void) {
 
 /*
 gcc -c ft_memset.c -o ft_memset.o
-gcc -c ft_memcpy.c -o ft_memcpy.o
+gcc -c ft_strlcpy.c -o ft_strlcpy.o
 gcc -c ft_calloc.c -o ft_calloc.o
 gcc -c ft_strlen.c -o ft_strlen.o
 gcc -c ft_strdup.c -o ft_strdup.o
 
-gcc ft_memset.o ft_memcpy.o ft_calloc.o ft_strlen.o ft_strdup.o -o my_program
+gcc ft_memset.o ft_strlcpy.o ft_calloc.o ft_strlen.o ft_strdup.o -o my_program
 
 ./my_program
 */

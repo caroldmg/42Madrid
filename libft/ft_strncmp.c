@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 16:26:45 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/01/16 11:16:28 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/01/27 17:42:53 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	while (x < n && (s1[x] != '\0' || s2[x] != '\0'))
 	{
 		if (s1[x] != s2[x])
-			return (s1[x] - s2[x]);
+			return ((unsigned char)s1[x] - (unsigned char)s2[x]);
 		x++;
 	}
 	return (0);
@@ -32,9 +32,9 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 int main(void)
 {
     // Test strings
-    const char *str1 = "Hello, world!";
-    const char *str2 = "Hello, folks!";
-    unsigned long n = 10;  // Number of characters to compare
+    const char *str1 = "t0";
+    const char *str2 = "test\0";
+    unsigned long n = 6;  // Number of characters to compare
 
     // Test your ft_strncmp
     int result = ft_strncmp(str1, str2, n);

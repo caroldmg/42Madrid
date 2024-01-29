@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 11:17:25 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/01/16 11:15:57 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/01/24 12:40:02 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,24 @@
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
 	size_t	i;
+	size_t	j;
 	size_t	dst_len;
+	size_t	src_len;
 
 	i = 0;
+	j = ft_strlen(dst);
 	dst_len = ft_strlen(dst);
-	while (dst[dst_len] != '\0')
-		dst_len++;
-	while (dst_len < dstsize - 1 && src[i] != '\0')
+	src_len = ft_strlen(src);
+	if (dstsize < dst_len)
+		return (dstsize + ft_strlen(src));
+	while (j + 1 < dstsize && src[i] != '\0')
 	{
-		dst[dst_len] = src[i];
-		dst_len++;
+		dst[j] = src[i];
+		j++;
 		i++;
 	}
-	dst[dst_len] = '\0';
-	while (dst_len < dstsize)
-	{
-		dst[dst_len] = '\0';
-		dst_len++;
-	}
-	return (ft_strlen(dst) + ft_strlen(src));
+	dst[j] = '\0';
+	return (dst_len + src_len);
 }
 
 /*
@@ -42,7 +41,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 
 int	main(void) {
 	// Tamaño del búfer de destino
-	unsigned long bufsize = 20;
+	unsigned long bufsize = 8;
 
 	// Cadenas de prueba
 	char dest1[20] = "Hola, ";
@@ -69,10 +68,13 @@ int	main(void) {
 	return (0);
 }
 */
+
 /*
 	gcc -c ft_strlen.c -o ft_strlen.o
 	gcc -c ft_strlcat.c -o ft_strlcat.o
 
 	gcc ft_strlen.o ft_strlcat.o -o myprogram
 	./myprogram
+
+	gcc ft_strlen.o ft_strlcat.o -o myprogram && ./myprogram
 */
