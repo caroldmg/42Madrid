@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 19:05:27 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/01/26 11:14:11 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/01/30 19:08:29 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 
 	destination = (unsigned char *)dst;
 	source = (unsigned char *)src;
-	if (!dst)
+	if (!dst && !src)
 		return (0);
 	if (src < dst)
 	{

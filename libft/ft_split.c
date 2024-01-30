@@ -6,12 +6,13 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:18:33 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/01/29 11:38:50 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/01/30 17:58:39 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/*
 static char	*onlynull(void)
 {
 	char	*str;
@@ -22,51 +23,68 @@ static char	*onlynull(void)
 	str[0] = 0;
 	return (str);
 }
+*/
 
-static char *create_str(char *start, int len)
+static char *create_str(char const *start, int len)
 {
-	
-}
-
-
-static	size_t	count_strings(char const *s, char c)
-{
-	size_t	count;
-	int		i;
 	char	*str;
 
-	count = 0;
-	str = (char)s;
-	i = 0;
-	while (str[i] != '\0')
+	str = (char *)malloc((len) * sizeof(char));
+	if (!str)
+		return (0);
+	ft_strlcpy(str, start, len);
+	return (str);
+}
+
+
+static	int	count_strings(char const *s, char c)
+{
+	int		count;
+
+	if (*s == '\0')
+		count = 0;
+	else
+		count = 1;
+	while (s != '\0')
 	{
-		if (str[i] == c)
+		if (*s == c)
 		{
-			create_str(str[i + 1], i);
 			count++;
-			str++;
+		}
+		s++;
+	}
+	return (count);
+}
+static	char	**input_strings(char **arr, char const *s, int arr_len, char c)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	while (s[i] != '\0' && j > arr_len)
+	{
+		if (s[i] == c)
+		{
+			arr[j] = create_str((s - i), i);
+			if (arr[j] == 0)
+
 			i = 0;
+			j++;
 		}
 		i++;
+		s++;
 	}
+	return (arr);
 }
+
 char	**ft_split(char const *s, char c)
 {
-	char	**total_ptr;
+	char	**arr;
 	int		i;
 
-	total_ptr = (char **) malloc (2 * sizeof(char *));
-	total_ptr[1] = (char *) malloc(ft_strlen(ft_strchr(s,c)) * sizeof(char));
-	total_ptr[1] = ft_strchr(s, c);
-	i = 0;
-	while (s[i] != '\0' && s[i] != c)
-		i++;
-	total_ptr[0] = (char *)malloc(i * sizeof(char));
-	i = 0;
-	while (s[i] != '\0' && s[i] != c)
-	{
-		total_ptr[0][i] = s[i];
-		i++;
-	}
-	return (total_ptr);
+	i = count_strings(s, c);
+	arr = (char **)malloc(i * sizeof(char *));
+	arr = input_strings(arr, s, i, c);
+	return (arr);
 }
