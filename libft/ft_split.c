@@ -12,40 +12,22 @@
 
 #include "libft.h"
 
-/*
-static char	*onlynull(void)
+static size_t	strchrlen(char const *str, char c)
 {
-	char	*str;
+	size_t	i;
 
-	str = (char *)malloc(1 * sizeof(char));
-	if (!str)
-		return (0);
-	str[0] = 0;
-	return (str);
-}
-*/
-
-static char *create_str(char const *start, int len)
-{
-	char	*str;
-
-	str = (char *)malloc((len) * sizeof(char));
-	if (!str)
-		return (0);
-	ft_strlcpy(str, start, len);
-	return (str);
+	i = 0;
+	while(*str != '\0' && *str != c)
+		i++;
+	return (i);
 }
 
-
-static	int	count_strings(char const *s, char c)
+static	int	count_str(char const *s, char c)
 {
 	int		count;
 
-	if (*s == '\0')
-		count = 0;
-	else
-		count = 1;
-	while (s != '\0')
+	count = 0;
+	while (*s != '\0')
 	{
 		if (*s == c)
 		{
@@ -53,8 +35,21 @@ static	int	count_strings(char const *s, char c)
 		}
 		s++;
 	}
+	printf("count = %d \n", count);
 	return (count);
 }
+
+static int free_all(int i, char **arr)
+{
+	while(i > 0)
+	{
+		i--;
+		free(arr[i]);
+	}
+	printf("entro en free \n");
+	free(arr);
+}
+
 static	char	**input_strings(char **arr, char const *s, int arr_len, char c)
 {
 	int		i;
@@ -62,18 +57,20 @@ static	char	**input_strings(char **arr, char const *s, int arr_len, char c)
 
 	i = 0;
 	j = 0;
-	while (s[i] != '\0' && j > arr_len)
+	while (j < arr_len)
 	{
-		if (s[i] == c)
+		printf("entro en input_str %d \n", i);
+		while (s[i] && s[i] == c)
+			i++;
+		arr[j] = ft_substr(s, i, strchrlen(s + i, c));
+		if (!arr[j])
 		{
-			arr[j] = create_str((s - i), i);
-			if (arr[j] == 0)
-
-			i = 0;
-			j++;
+			free_all(j, arr);
+			return (0);
 		}
-		i++;
-		s++;
+		while (s[i] && s[i] != c)
+			i++;
+		j++;
 	}
 	return (arr);
 }
@@ -81,10 +78,37 @@ static	char	**input_strings(char **arr, char const *s, int arr_len, char c)
 char	**ft_split(char const *s, char c)
 {
 	char	**arr;
-	int		i;
+	int		count;
 
-	i = count_strings(s, c);
-	arr = (char **)malloc(i * sizeof(char *));
-	arr = input_strings(arr, s, i, c);
+	if (!s)
+		return (0);
+	count = count_str(s, c);
+	arr = (char **)malloc((count + 1) * sizeof(char *));
+	arr = input_strings(arr, s, count, c);
+	//eliminar
+	int i = 0;
+	while(arr[i] != NULL)
+	{
+	    printf("%s\n", arr[i]);
+	    i++;
+	}
 	return (arr);
+}
+
+#include <stdio.h>
+int	main(void)
+{
+		const char *str1 = "Hello,World,Split,Me";
+	ft_split(str1, ',');
+
+	const char *str2 = "Lorem ipsum dolor sit amet";
+	ft_split(str2, ' ');
+
+	const char *str3 = "apple,banana,cherry,orange";
+	ft_split(str3, ',');
+
+	const char *str4 = "123-456-789-0";
+	ft_split(str4, '-');
+
+	return (0);
 }
