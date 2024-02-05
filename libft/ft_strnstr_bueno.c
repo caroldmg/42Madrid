@@ -1,1 +1,1 @@
-static TONTO();
+TONTO
