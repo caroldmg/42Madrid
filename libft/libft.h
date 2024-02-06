@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 19:26:59 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/02/03 17:18:42 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/02/06 21:10:14 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,14 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
+
+//typedefs
+typedef struct   s_list
+{
+    void    *content;
+    struct s_list  *next;
+}   t_list;
+
 // prototipos de funciones o procedimientos
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
@@ -50,4 +58,8 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
+// BONUS
+t_list	*ft_lstnew(void *content);
+void    ft_lstadd_front(t_list **lst, t_list *new);
+
 #endif
