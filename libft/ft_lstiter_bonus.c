@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 19:10:53 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/02/11 18:05:28 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/02/11 18:28:58 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,3 @@ void	ft_lstiter(t_list *lst, void (*f)(void *))
 	}
 	f(lst->content);
 }
-
-

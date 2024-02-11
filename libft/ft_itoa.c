@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 16:22:36 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/02/11 18:24:21 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/02/11 18:28:28 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static char	*fill_str(long n, char *s, int len)
 	return (s);
 }
 
-char    *ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	char	*str;
 	int		count;
