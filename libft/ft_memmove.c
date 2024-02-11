@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 19:05:27 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/01/30 19:08:29 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/02/03 18:00:26 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,8 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	if (src < dst)
 	{
 		count = len;
-		while (count > 0)
-		{
-			count--;
+		while (count--)
 			destination[count] = source[count];
-		}
 	}
 	else
 	{

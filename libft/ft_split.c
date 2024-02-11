@@ -6,85 +6,99 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:18:33 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/01/30 17:58:39 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/02/11 16:38:07 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/*
-static char	*onlynull(void)
+static size_t	strchrlen(size_t start, char const *s, char c)
 {
-	char	*str;
+	size_t	i;
 
-	str = (char *)malloc(1 * sizeof(char));
-	if (!str)
-		return (0);
-	str[0] = 0;
-	return (str);
-}
-*/
-
-static char *create_str(char const *start, int len)
-{
-	char	*str;
-
-	str = (char *)malloc((len) * sizeof(char));
-	if (!str)
-		return (0);
-	ft_strlcpy(str, start, len);
-	return (str);
+	i = 0;
+	while (s[start + i] != c && s[start + i] != '\0')
+		i++;
+	return (i);
 }
 
-
-static	int	count_strings(char const *s, char c)
+static	size_t	count_str(char const *s, char c)
 {
-	int		count;
+	size_t		count;
 
-	if (*s == '\0')
-		count = 0;
-	else
-		count = 1;
-	while (s != '\0')
+	count = 0;
+	while (*s)
 	{
-		if (*s == c)
+		while (*s && *s == c)
+			s++;
+		if (*s && *s != c)
 		{
 			count++;
+			while (*s && *s != c)
+				s++;
 		}
-		s++;
 	}
-	return (count);
+	return (count + 1);
 }
-static	char	**input_strings(char **arr, char const *s, int arr_len, char c)
+
+static	int	input_strings(char **arr, char const *s, size_t count, char c)
 {
-	int		i;
-	int		j;
+	size_t	i;
+	size_t	j;
+	size_t	len;	
 
 	i = 0;
 	j = 0;
-	while (s[i] != '\0' && j > arr_len)
+	while (j < count - 1)
 	{
-		if (s[i] == c)
-		{
-			arr[j] = create_str((s - i), i);
-			if (arr[j] == 0)
-
-			i = 0;
-			j++;
-		}
-		i++;
-		s++;
+		while (s[i] == c)
+			i++;
+		len = strchrlen(i, s, c);
+		arr[j] = (char *)malloc((len + 1) * sizeof(char));
+		if (!arr[j])
+			return (0);
+		ft_strlcpy(arr[j], s + i, len + 1);
+		i = i + len;
+		j++;
 	}
-	return (arr);
+	arr[count - 1] = NULL;
+	return (1);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char	**arr;
-	int		i;
+	char		**arr;
+	size_t		count;
 
-	i = count_strings(s, c);
-	arr = (char **)malloc(i * sizeof(char *));
-	arr = input_strings(arr, s, i, c);
+	count = count_str(s, c);
+	arr = (char **)malloc(count * sizeof(char *));
+	if (!arr)
+		return (0);
+	if (!input_strings(arr, s, count, c))
+	{
+		while (count--)
+			free(arr[count]);
+		free(arr);
+		return (NULL);
+	}
 	return (arr);
 }
+/*
+#include <stdio.h>
+int	main(void)
+{
+		const char *str1 = "Hello,World,Split,Me";
+	ft_split(str1, ',');
+
+	const char *str2 = "Lorem ipsum dolor sit amet";
+	ft_split(str2, ' ');
+
+	const char *str3 = "apple,banana,cherry,orange";
+	ft_split(str3, ',');
+
+	const char *str4 = "123-456-789-0";
+	ft_split(str4, '-');
+
+	return (0);
+}
+*/

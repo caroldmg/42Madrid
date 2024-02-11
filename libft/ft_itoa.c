@@ -6,55 +6,62 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 16:22:36 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/01/30 19:10:00 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/02/03 17:58:25 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	count_cifras(int n, int i)
+static int	count_digits(long n)
 {
-	if (n > 10)
-		count_cifras(n / 10, i + 1);
+	int	i;
+
+	i = 0;
+	if (n < 1)
+	{
+		i++;
+		n *= -1;
+	}
+	while (n > 0)
+	{
+		n = n / 10;
+		i++;
+	}
 	return (i);
 }
 
-static char	*fill_str(int n, char *s, int len)
+static char	*fill_str(long n, char *s, int len)
 {
-	int		i;
-	char	nb;
-
-	i = 0;
-	nb = n;
+	s[len] = '\0';
+	len--;
 	if (n < 0)
 	{
-		s[i] = '-';
-		i++;
+		s[0] = '-';
+		n *= -1;
 	}
-	while (i < len - 1)
+	if (n == 0)
+		s[0] = '0';
+	while (n)
 	{
-		s[i] = (nb % 10) + '0';
-		nb = nb / 10;
-		i++;
+		s[len] = (n % 10) + '0';
+		n = n / 10;
+		len--;
 	}
-	s[len - 1] = '\0';
 	return (s);
 }
 
 char	*ft_itoa(int n)
 {
 	char	*str;
-	int		i;
+	int		count;
+	long	nbr;
 
-	if (n >= 0)
-		i = 2;
-	else
-		i = 3;
-	i = count_cifras(n, i);
-	str = malloc(count_cifras(n, i) * sizeof(char));
+	nbr = (long)n;
+	count = count_digits(nbr);
+	str = malloc((count + 1) * sizeof(char));
 	if (!str)
 		return (0);
-	fill_str(n, str, i);
+	fill_str(nbr, str, count);
 	return (str);
 }
 /*

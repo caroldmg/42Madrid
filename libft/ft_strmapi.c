@@ -1,42 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/14 16:41:39 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/02/03 18:02:43 by cde-migu         ###   ########.fr       */
+/*   Created: 2024/02/03 13:20:14 by cde-migu          #+#    #+#             */
+/*   Updated: 2024/02/03 13:40:16 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-#include <stdio.h>
-
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	size_t	i;
-	int		j;
-	char	*aux;
+	size_t	len;
+	int		count;
+	char	*new_str;
 
-	i = 0;
-	j = 0;
-	if (needle[0] == '\0')
-		return ((char *)haystack);
-	while (haystack[i] != '\0' && i < len)
+	if (!s || !f)
+		return (0);
+	count = 0;
+	len = ft_strlen(s);
+	new_str = malloc((len + 1) * sizeof(char));
+	if (!new_str)
+		return (0);
+	while (count < (int)len)
 	{
-		j = 0;
-		while (haystack[i + j] == needle[j] && (i + j) < len)
-		{
-			j ++;
-			if (needle[j] == '\0')
-			{
-				aux = (char *)&haystack[i];
-				return (aux);
-			}
-		}
-		i++;
+		new_str[count] = f(count, s[count]);
+		count++;
 	}
-	return (0);
+	new_str[len] = '\0';
+	return (new_str);
 }

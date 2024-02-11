@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:00:11 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/01/25 11:31:40 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/02/11 17:52:29 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ char	*ft_strdup(const char *s1)
 	char	*ptr;
 	size_t	len;
 
-	if (s1 == 0)
-		return (0);
 	len = ft_strlen(s1) + 1;
 	ptr = (char *)ft_calloc(len, sizeof(char));
 	if (ptr == 0)

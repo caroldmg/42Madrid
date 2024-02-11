@@ -28,25 +28,46 @@ SOURCE = ft_isalpha.c \
 		ft_strtrim.c \
 		ft_split.c \
 		ft_itoa.c \
+		ft_strmapi.c \
+		ft_striteri.c \
+		ft_putchar_fd.c \
+		ft_putstr_fd.c \
+		ft_putendl_fd.c \
+		ft_putnbr_fd.c \
 
+BONUS = ft_lstnew_bonus.c \
+		ft_lstadd_front_bonus.c \
+		ft_lstsize_bonus.c \
+		ft_lstlast_bonus.c \
+		ft_lstadd_back_bonus.c \
+		ft_lstdelone_bonus.c \
+		ft_lstclear_bonus.c \
+		ft_lstiter_bonus.c \
+
+OBJECTS = $(SOURCE:.c=.o)
+BOBJECTS = $(BONUS:.c=.o)
 NAME = libft.a
 
-$(NAME): $(SOURCE:.c=.o)
-	ar rcs $@ $^
+all: $(NAME)
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+$(NAME): $(OBJECTS)
+	ar rcs $(NAME) $(OBJECTS)
 
-.PHONY: clean fclean re all
+.PHONY: all bonus clean fclean re
+
+bonus: $(BOBJECTS)
+
+$(BOBJECTS):
+	${CC} ${CFLAGS} -c $(BONUS)
+	ar -rcs ${NAME} ${BOBJECTS}
 
 clean:
-	@rm -f $(SOURCE:.c=.o)
+	@rm -f $(OBJECTS) $(BOBJECTS)
 
 fclean: clean
 	@rm -f $(NAME)
 
 re: fclean all
 
-all: $(NAME)
 
 .DEFAULT_GOAL := all

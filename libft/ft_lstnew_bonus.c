@@ -1,42 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/14 16:41:39 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/02/03 18:02:43 by cde-migu         ###   ########.fr       */
+/*   Created: 2024/02/10 12:30:17 by cde-migu          #+#    #+#             */
+/*   Updated: 2024/02/11 13:13:01 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-#include <stdio.h>
-
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+t_list	*ft_lstnew(void *content)
 {
-	size_t	i;
-	int		j;
-	char	*aux;
+	t_list	*node;
 
-	i = 0;
-	j = 0;
-	if (needle[0] == '\0')
-		return ((char *)haystack);
-	while (haystack[i] != '\0' && i < len)
-	{
-		j = 0;
-		while (haystack[i + j] == needle[j] && (i + j) < len)
-		{
-			j ++;
-			if (needle[j] == '\0')
-			{
-				aux = (char *)&haystack[i];
-				return (aux);
-			}
-		}
-		i++;
-	}
-	return (0);
+	node = malloc(sizeof(t_list));
+	if (!node)
+		return (0);
+	node->content = content;
+	node->next = NULL;
+	return (node);
 }

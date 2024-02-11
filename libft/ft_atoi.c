@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 17:23:35 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/01/27 18:23:55 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/02/03 17:57:55 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,33 +47,3 @@ int	ft_atoi(const char *str)
 	}
 	return ((int)nbr * sign);
 }
-
-/*
-#include <stdio.h>
-#include <stdlib.h>
-int main(void)
-{
-    // Test cases
-    const char *test_strings[] = {"123", "-456", "+-54", "++47", "abc", "+987"};
-
-    // Test your function against the original atoi
-    for (unsigned long i = 0; i < sizeof(test_strings) / sizeof(test_strings[0]); i++)
-    {
-        int result_original = atoi(test_strings[i]);
-        int result_custom = ft_atoi(test_strings[i]);
-
-        printf("Original atoi result for \"%s\": %d\n", test_strings[i], result_original);
-        printf("Custom atoi result for \"%s\": %d\n", test_strings[i], result_custom);
-
-        // Compare results
-        if (result_original == result_custom)
-            printf("Results match!\n");
-        else
-            printf("Results do not match!\n");
-
-        printf("\n");
-    }
-
-    return 0;
-}
-*/

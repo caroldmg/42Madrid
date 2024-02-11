@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 10:48:09 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/01/27 18:48:14 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/01/30 21:21:48 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,15 @@ static char	*onlynull(void)
 	str = (char *)malloc(1 * sizeof(char));
 	if (!str)
 		return (0);
-	str[0] = 0;
+	str[0] = '\0';
 	return (str);
 }
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char			*str;
-	unsigned int	i;
-	unsigned int	j;
 	size_t			s_len;
 
-	i = start;
-	j = 0;
 	if (len == 0)
 		return (onlynull());
 	s_len = ft_strlen(s);
