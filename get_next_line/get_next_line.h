@@ -1,29 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/09 12:40:31 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/02/16 13:28:26 by cde-migu         ###   ########.fr       */
+/*   Created: 2024/02/23 11:01:03 by cde-migu          #+#    #+#             */
+/*   Updated: 2024/02/23 11:38:20 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
+# include <stdlib.h>
+# include <unistd.h>
 
-int	ft_isdigit(int c)
-{
-	return ((c >= '0' && c <= '9'));
-}
-
-/*
-#include <ctype.h>
-#include <stdio.h>
-int	main(void)
-{
-	printf("%d", isdigit(50));
-	printf("%d", ft_isdigit(50));
-	return (0);
-}
-*/
+char	*get_next_line(int fd);
+#endif

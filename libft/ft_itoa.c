@@ -6,63 +6,62 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 16:22:36 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/02/11 18:28:28 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/02/16 13:13:51 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	count_digits(long n)
+static size_t	ft_countdigits(long num)
 {
-	int	i;
+	size_t	count;
 
-	i = 0;
-	if (n < 1)
+	count = 0;
+	if (num <= 0)
 	{
-		i++;
-		n *= -1;
+		num = num * -1;
+		count++;
 	}
-	while (n > 0)
+	while (num > 0)
 	{
-		n = n / 10;
-		i++;
+		num = num / 10;
+		count++;
 	}
-	return (i);
+	return (count);
 }
 
-static char	*fill_str(long n, char *s, int len)
+static char	*ft_setstr(char *str, long num, size_t count)
 {
-	s[len] = '\0';
-	len--;
-	if (n < 0)
+	str[count--] = '\0';
+	if (num < 0)
 	{
-		s[0] = '-';
-		n *= -1;
+		num = num * -1;
+		str[0] = '-';
 	}
-	if (n == 0)
-		s[0] = '0';
-	while (n)
+	if (num == 0)
+		str[0] = '0';
+	while (num)
 	{
-		s[len] = (n % 10) + '0';
-		n = n / 10;
-		len--;
+		str[count] = num % 10 + '0';
+		num = num / 10;
+		count--;
 	}
-	return (s);
+	return (str);
 }
 
 char	*ft_itoa(int n)
 {
 	char	*str;
-	int		count;
-	long	nbr;
+	size_t	count;
 
-	nbr = (long)n;
-	count = count_digits(nbr);
-	str = malloc((count + 1) * sizeof(char));
-	if (!str)
-		return (0);
-	fill_str(nbr, str, count);
-	return (str);
+	count = ft_countdigits(n);
+	str = ft_calloc(count + 1, sizeof(char));
+	if (str)
+	{
+		ft_setstr(str, n, count);
+		return (str);
+	}
+	return (0);
 }
 /*
 #include <stdio.h>
