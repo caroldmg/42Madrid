@@ -67,6 +67,7 @@ clean:
 
 fclean: clean
 	@rm -f $(NAME)
+	@echo "\033[34m \033[43m Limipo"
 
 re: fclean all
 
