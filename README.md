@@ -1,4 +1,5 @@
-mi código es tu código, camarada.
+Mi código es tu código, camarada.
+
 Todas las líneas de este código son también de los compañeros con los que las comenté y de los sitios que investigué. Nada es puramente propio, nada es puramente original, todo es compartido.
 
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣠⣤⣴⣶⣶⣶⣿⣿⣿⣿⣿⣶⣶⣶⣦⣤⣄⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
