@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 12:37:09 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/03/04 12:13:52 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/03/04 17:40:21 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ size_t	ft_strlen(const char *s)
 }
 
 //igual es interesante cambiar el retorno para que devuelva la string creada?
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+char	*ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
 	size_t	c;
 
@@ -40,28 +40,37 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 		}
 		dst[c] = '\0';
 	}
-	return (ft_strlen(src));
+	return (dst);
 }
 
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+char	*ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
 	size_t	i;
 	size_t	j;
 	size_t	dst_len;
 	size_t	src_len;
 
-	i = 0;
-	j = ft_strlen(dst);
 	dst_len = ft_strlen(dst);
 	src_len = ft_strlen(src);
+	j = dst_len;
+	i = 0;
 	if (dstsize < dst_len)
 		return (dstsize + ft_strlen(src));
 	while (j + 1 < dstsize && src[i] != '\0')
-	{
-		dst[j] = src[i];
-		j++;
-		i++;
-	}
+		dst[j++] = src[i++];
 	dst[j] = '\0';
-	return (dst_len + src_len);
+	return (dst);
+}
+
+char *ft_findnchar(char *read_buf)
+{
+	if (!read_buf)
+		return (0);
+	while (*read_buf)
+	{
+		if (*read_buf == '\n')
+			return (read_buf);
+		read_buf++;
+	}
+	return (0);
 }
