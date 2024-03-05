@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 11:01:03 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/03/04 12:52:45 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/03/05 13:29:07 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@
 # include <limits.h>
 
 char	*get_next_line(int fd);
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
+char	*ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlen(const char *s);
+char	*ft_findnchar(char *read_buf);
+char	*ft_strjoin(char *buf, char *content);
 #endif

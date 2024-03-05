@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 12:37:09 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/03/04 17:40:21 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/03/05 16:30:58 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,26 +43,7 @@ char	*ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	return (dst);
 }
 
-char	*ft_strlcat(char *dst, const char *src, size_t dstsize)
-{
-	size_t	i;
-	size_t	j;
-	size_t	dst_len;
-	size_t	src_len;
-
-	dst_len = ft_strlen(dst);
-	src_len = ft_strlen(src);
-	j = dst_len;
-	i = 0;
-	if (dstsize < dst_len)
-		return (dstsize + ft_strlen(src));
-	while (j + 1 < dstsize && src[i] != '\0')
-		dst[j++] = src[i++];
-	dst[j] = '\0';
-	return (dst);
-}
-
-char *ft_findnchar(char *read_buf)
+char	*ft_findnchar(char *read_buf)
 {
 	if (!read_buf)
 		return (0);
@@ -73,4 +54,26 @@ char *ft_findnchar(char *read_buf)
 		read_buf++;
 	}
 	return (0);
+}
+
+char	*ft_strjoin(char *buf, char *content)
+{
+	size_t	buf_len;
+	size_t	cont_len;
+	char	*new;
+
+	buf_len = 0;
+	if (!buf && !content)
+		return (NULL);
+	if (buf)
+		buf_len = ft_strlen(buf);
+	cont_len = ft_strlen(content);
+	new = (char *)malloc((buf_len + cont_len + 1) * sizeof(char));
+	if (!new)
+		return (NULL);
+	ft_strlcpy(new, buf, buf_len + 1);
+	ft_strlcpy(new + buf_len, content, cont_len + 1);
+	new[buf_len + cont_len] = '\0';
+	free(buf);
+	return (new);
 }
