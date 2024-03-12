@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_v3.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/23 11:00:01 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/03/12 18:46:30 by cde-migu         ###   ########.fr       */
+/*   Created: 2024/03/04 11:53:40 by cde-migu          #+#    #+#             */
+/*   Updated: 2024/03/12 15:02:32 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ static char	*free_null(char *s1, char *s2)
 {
 	free(s1);
 	free(s2);
-	s1 = NULL;
 	s2 = NULL;
 	return (s2);
 }
@@ -76,7 +75,7 @@ static char	*create_substr(char *str)
 	return (new);
 }
 
-char	*get_next_line(int fd)
+char *get_next_line(int fd)
 {
 	static char	*buf;
 	char		*content;
@@ -88,15 +87,15 @@ char	*get_next_line(int fd)
 	content = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!content)
 		return (NULL);
-	while (!ft_findnchar(content))
+	while (read_bytes > 0)
 	{
 		read_bytes = read(fd, content, BUFFER_SIZE);
-		if (!read_bytes)
+		if (read_bytes == -1)
 		{
 			buf = free_null(content, buf);
 			return (NULL);
 		}
-		content[read_bytes] = '\0';
+		*(content + read_bytes) = '\0';
 		buf = ft_strjoin(buf, content);
 	}
 	free(content);
@@ -104,21 +103,4 @@ char	*get_next_line(int fd)
 	printf("static----> %s\n", buf);
 	buf = create_substr(buf);
 	return (content);
-}
-
-int main(void)
-{
-	int file_descriptor = open("TEXTO.txt", O_RDONLY);
-	char *line;
-	int lines = 1;
-	int count = 10;
-	while (count--)
-	{
-		line = get_next_line(file_descriptor);
-		printf("%i -> %s", lines++, line);
-		free(line);
-		line = NULL;
-	}
-	close(file_descriptor);
-	return (0);
 }

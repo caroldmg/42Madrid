@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 12:37:09 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/03/05 16:30:58 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/03/12 15:09:59 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,20 +38,32 @@ char	*ft_strlcpy(char *dst, const char *src, size_t dstsize)
 			dst[c] = src[c];
 			c++;
 		}
-		dst[c] = '\0';
 	}
+	dst[c] = '\0';
 	return (dst);
 }
 
-char	*ft_findnchar(char *read_buf)
+char	*ft_start_strcpy(char *dst, const char *src, size_t start)
 {
-	if (!read_buf)
-		return (0);
-	while (*read_buf)
+	size_t	c;
+
+	c = 0;
+	while (src[start] != '\0')
+		dst[c++] = src[start++];
+	dst[c] = '\0';
+	return (dst);
+}
+
+int	ft_findnchar(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
 	{
-		if (*read_buf == '\n')
-			return (read_buf);
-		read_buf++;
+		if (str[i] == '\n')
+			return (1);
+		i++;
 	}
 	return (0);
 }
