@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 12:37:09 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/03/12 15:09:59 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/03/18 20:17:20 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ size_t	ft_strlen(const char *s)
 	return (strlen);
 }
 
-//igual es interesante cambiar el retorno para que devuelva la string creada?
 char	*ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
 	size_t	c;
@@ -43,15 +42,20 @@ char	*ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	return (dst);
 }
 
-char	*ft_start_strcpy(char *dst, const char *src, size_t start)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	size_t	c;
+	size_t			count;
+	unsigned char	*ptr;
 
-	c = 0;
-	while (src[start] != '\0')
-		dst[c++] = src[start++];
-	dst[c] = '\0';
-	return (dst);
+	ptr = b;
+	count = 0;
+	while (count < len)
+	{
+		*ptr = (unsigned char)c;
+		count++;
+		ptr++;
+	}
+	return (b);
 }
 
 int	ft_findnchar(char *str)
@@ -77,15 +81,15 @@ char	*ft_strjoin(char *buf, char *content)
 	buf_len = 0;
 	if (!buf && !content)
 		return (NULL);
-	if (buf)
+	if (buf != NULL)
 		buf_len = ft_strlen(buf);
 	cont_len = ft_strlen(content);
 	new = (char *)malloc((buf_len + cont_len + 1) * sizeof(char));
 	if (!new)
-		return (NULL);
+		return (free(buf), NULL);
 	ft_strlcpy(new, buf, buf_len + 1);
 	ft_strlcpy(new + buf_len, content, cont_len + 1);
-	new[buf_len + cont_len] = '\0';
-	free(buf);
+	if (buf)
+		free(buf);
 	return (new);
 }

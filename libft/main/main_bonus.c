@@ -56,8 +56,8 @@ int	main(void)
 	ft_lstadd_back(&list, node3);
 	printf("Size: %d\n", ft_lstsize(list));
 	ft_lstiter(list, f);
-	//ft_lstdelone(node, &del);
-	printf("DESPUES DEL DELONE\n");
+	ft_lstclear(&node2, &del);
+	printf("DESPUES DEL clear\n");
 	ft_lstiter(list, f);
 	printf("LSTMAP:\n");
 	list2 = ft_lstmap(list,f3, del);
