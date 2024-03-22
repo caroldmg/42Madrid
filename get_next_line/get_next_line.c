@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 14:56:19 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/03/18 20:14:45 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/03/21 16:49:50 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,14 @@ static char	*create_substr(char *str)
 		return (NULL);
 	i = len_to_linebreak(str);
 	len = ft_strlen(str) - i;
-	new = (char *)malloc((len + 1) * sizeof(char));
+	new = (char *)malloc((len) * sizeof(char));
 	if (!new)
 	{
 		free(str);
 		str = NULL;
 		return (NULL);
 	}
-	ft_strlcpy(new, str + i + 1, len + 1);
+	ft_strlcpy(new, str + i + 1, len);
 	free(str);
 	str = NULL;
 	return (new);
@@ -64,56 +64,48 @@ char	*get_next_line(int fd)
 	static char	*buf;
 	char		*content;
 	char		*help;
-	ssize_t		read_bytes;
+	int			read_bytes;
 
 	read_bytes = 1;
-	if (read(fd, 0, 0) || BUFFER_SIZE == 0 || BUFFER_SIZE > INT_MAX)
+	if (BUFFER_SIZE <= 0 || BUFFER_SIZE > INT_MAX)
 		return (NULL);
 	content = NULL;
 	help = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!help)
 		return (NULL);
 	help[0] = '\0';
-	//ft_memset(help, 0, BUFFER_SIZE + 1);
 	while (!ft_findnchar(help) && read_bytes > 0)
 	{
 		read_bytes = read(fd, help, BUFFER_SIZE);
-		if (read_bytes == -1)
-		{
-			free(help);
-			free(buf);
-			return (NULL);
-		}
+		if (read_bytes < 0)
+			return (free_null(&help), free_null(&buf));
 		help[read_bytes] = '\0';
 		buf = ft_strjoin(buf, help);
 		if (!buf)
-			return (free(help), NULL);
+			return (free_null(&help));
 	}
-	free(help);
+	free_null(&help);
 	if (buf && buf[0] == '\0')
-	{
-		free(buf);
-		buf = NULL;
-		return (NULL);
-	}
+		return (free_null(&buf));
 	content = read_line(buf);
 	if (!content)
-		return (NULL);
+		return (free_null(&buf));
 	buf = create_substr(buf);
 	if (!buf)
-		return (free(content), NULL);
+		return (free_null(&content));
 	return (content);
 }
 
-/* int	main(void)
+/*   int	main(void)
 {
 	int		fd;
-	char	*content;
+	char	*content = "";
 	int		i;
 
 	i = 0;
 	fd = open("TEXTO.txt", O_RDONLY);
-	while (i < 50)
+	fd = 4;
+	while (content)
 	{
 		content = get_next_line(fd);
 		printf("%s", content);
@@ -121,6 +113,6 @@ char	*get_next_line(int fd)
 	}
 	free(content);
 	close(fd);
-	//system("leaks a.out");
+	system("leaks a.out");
 	return (0);
 } */

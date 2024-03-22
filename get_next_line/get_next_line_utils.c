@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 12:37:09 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/03/18 20:17:20 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/03/21 16:48:25 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,22 +42,6 @@ char	*ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	return (dst);
 }
 
-void	*ft_memset(void *b, int c, size_t len)
-{
-	size_t			count;
-	unsigned char	*ptr;
-
-	ptr = b;
-	count = 0;
-	while (count < len)
-	{
-		*ptr = (unsigned char)c;
-		count++;
-		ptr++;
-	}
-	return (b);
-}
-
 int	ft_findnchar(char *str)
 {
 	int	i;
@@ -79,17 +63,22 @@ char	*ft_strjoin(char *buf, char *content)
 	char	*new;
 
 	buf_len = 0;
-	if (!buf && !content)
-		return (NULL);
 	if (buf != NULL)
 		buf_len = ft_strlen(buf);
 	cont_len = ft_strlen(content);
 	new = (char *)malloc((buf_len + cont_len + 1) * sizeof(char));
 	if (!new)
-		return (free(buf), NULL);
+		return (free_null(&buf));
 	ft_strlcpy(new, buf, buf_len + 1);
 	ft_strlcpy(new + buf_len, content, cont_len + 1);
 	if (buf)
-		free(buf);
+		free_null(&buf);
 	return (new);
+}
+
+char	*free_null(char **s)
+{
+	free(*s);
+	*s = NULL;
+	return (NULL);
 }
