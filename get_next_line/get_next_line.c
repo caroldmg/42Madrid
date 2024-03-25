@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 14:56:19 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/03/25 18:47:20 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/03/25 19:13:54 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,14 @@ static char	*fill_line(char *str)
 	char	*new;
 	size_t	len;
 
-	len = len_to_linebreak(str);
-	new = (char *)malloc((len + 2) * sizeof(char));
+	if (ft_findnchar(str))
+		len = len_to_linebreak(str) + 2;
+	else
+		len = ft_strlen(str) + 1;
+	new = (char *)malloc((len) * sizeof(char));
 	if (!new)
-		return (free(str), NULL);
-	ft_strlcpy(new, str, len + 2);
+		return (free_null(&str));
+	ft_strlcpy(new, str, len);
 	return (new);
 }
 
@@ -106,23 +109,22 @@ char	*get_next_line(int fd)
 	return (content);
 }
 
-/* int	main(void)
+int	main(void)
 {
 	int		fd;
 	char	*content = "";
 	int		i;
-	
+
 	i = 0;
-	fd = open("1char_nl.txt", O_RDONLY);
+	fd = 0;//open("1char_nl.txt", O_RDONLY);
 	while (content)
 	{
 		content = get_next_line(fd);
 		printf("%s", content);
-		printf("---- \n");
 		i++;
 		free(content);
 	}
 	close(fd);
-	system("leaks a.out");
+	//system("leaks a.out");
 	return (0);
-} */
+}
