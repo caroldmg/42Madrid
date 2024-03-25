@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 12:37:09 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/03/21 16:48:25 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/03/25 18:27:59 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,13 @@ int	ft_findnchar(char *str)
 	return (0);
 }
 
+char	*free_null(char **s)
+{
+	free(*s);
+	*s = NULL;
+	return (NULL);
+}
+
 char	*ft_strjoin(char *buf, char *content)
 {
 	size_t	buf_len;
@@ -68,17 +75,13 @@ char	*ft_strjoin(char *buf, char *content)
 	cont_len = ft_strlen(content);
 	new = (char *)malloc((buf_len + cont_len + 1) * sizeof(char));
 	if (!new)
+	{
+		free_null(&content);
 		return (free_null(&buf));
+	}
 	ft_strlcpy(new, buf, buf_len + 1);
 	ft_strlcpy(new + buf_len, content, cont_len + 1);
 	if (buf)
 		free_null(&buf);
 	return (new);
-}
-
-char	*free_null(char **s)
-{
-	free(*s);
-	*s = NULL;
-	return (NULL);
 }
