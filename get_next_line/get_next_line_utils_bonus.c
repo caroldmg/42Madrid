@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/29 12:37:09 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/03/26 17:48:05 by cde-migu         ###   ########.fr       */
+/*   Created: 2024/03/25 20:07:14 by cde-migu          #+#    #+#             */
+/*   Updated: 2024/03/26 16:24:48 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 size_t	ft_strlen(const char *s)
 {
@@ -58,7 +58,7 @@ int	ft_findnchar(char *str)
 
 char	*free_null(char **s)
 {
-	if (*s != NULL)
+	if (s != NULL)
 	{
 		free(*s);
 		*s = NULL;

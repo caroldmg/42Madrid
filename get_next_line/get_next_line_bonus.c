@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/18 14:56:19 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/03/26 18:06:27 by cde-migu         ###   ########.fr       */
+/*   Created: 2024/03/25 20:06:27 by cde-migu          #+#    #+#             */
+/*   Updated: 2024/03/27 11:50:40 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static size_t	len_to_linebreak(char *str)
 {
@@ -59,8 +59,8 @@ static char	*create_substr(char **str)
 
 static char	*read_and_append(int fd, char **buf)
 {
-	char		*content;
-	ssize_t		read_bytes;
+	char	*content;
+	ssize_t	read_bytes;
 
 	read_bytes = 1;
 	content = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
@@ -83,53 +83,52 @@ static char	*read_and_append(int fd, char **buf)
 
 char	*get_next_line(int fd)
 {
-	static char	*buf;
+	static char	*buf[OPEN_MAX];
 	char		*content;
 	ssize_t		read_bytes;
 
 	read_bytes = 1;
-	if (BUFFER_SIZE <= 0 || BUFFER_SIZE > INT_MAX)
+	if (BUFFER_SIZE <= 0 || BUFFER_SIZE > INT_MAX || fd > OPEN_MAX)
 		return (NULL);
-	buf = read_and_append(fd, &buf);
-	if (!buf)
-		return (NULL);
-	if (buf && buf[0] == '\0')
-		return (free_null(&buf));
-	content = fill_line(&buf);
+	buf[fd] = read_and_append(fd, &buf[fd]);
+	if (!buf[fd])
+		return (free_null(&buf[fd]));
+	if (buf[fd] && buf[fd][0] == '\0')
+		return (free_null(&buf[fd]));
+	content = fill_line(&buf[fd]);
 	if (!content)
-		return (NULL);
-	buf = create_substr(&buf);
-	if (!buf)
+		return (free_null(&buf[fd]));
+	buf[fd] = create_substr(&buf[fd]);
+	if (!buf[fd])
 		return (free_null(&content));
 	return (content);
 }
-
-/* int	main(void)
+/* int	main(int argc, char **argv)
 {
 	int		fd;
-	char	*content = "";
-	int		i;
+	char	*line;
+	int		l;
 
-	i = 0;
-	fd = open("only-nl.txt", O_RDONLY);
-	while (content)
+	for (int i = 1; i < argc; i++)
 	{
-		content = get_next_line(fd);
-		printf("%s", content);
-		i++;
-		free(content);
+		fd = open(argv[i], O_RDONLY);
+		if (fd == -1)
+			return (0);
+		l = 1;
+		printf("Get_Next_Line de: %s \n", argv[i]);
+		while (1)
+		{
+			line = get_next_line(fd);
+			if (!line)
+			{
+				printf("\nFin del fichero\n");
+				break ;
+			}
+			printf("[%d]: %s", l, line);
+			l++;
+		}
+		close(fd);
 	}
-	close(fd);
-	fd = open("get_next_line.h", O_RDONLY);
-	content =  "";
-	while (content)
-	{
-		content = get_next_line(fd);
-		printf("%s", content);
-		i++;
-		free(content);
-	}
-	close(fd);
-	//system("leaks a.out");
 	return (0);
-} */
+}
+ */
