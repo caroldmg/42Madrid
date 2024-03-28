@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 19:26:59 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/02/11 18:25:39 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/03/28 12:48:20 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
+# include <stdio.h>
+
 
 // typedefs
 typedef struct s_list

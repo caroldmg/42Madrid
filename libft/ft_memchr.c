@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 18:34:03 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/01/26 11:13:32 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/02/13 11:04:14 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,3 +30,15 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	}
 	return (0);
 }
+/*
+int	main(void)
+{
+	 const char *str = "Hello, world!";
+    int c = 'w';
+    size_t n = strlen(str);
+
+    void *original_result = memchr(str, c, n);
+
+    void *custom_result = ft_memchr(str, c, n);
+}
+*/

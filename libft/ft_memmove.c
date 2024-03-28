@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 19:05:27 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/02/03 18:00:26 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/03/28 12:46:07 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,3 +40,16 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	}
 	return (dst);
 }
+/*
+int main(void)
+{
+    char str[] = "Hello, world!";
+    char dst[20];
+
+    printf("Resultado de memmove: %s\n", memmove(dst, str + 7, 7));
+
+    printf("Resultado de ft_memmove: %s\n", ft_memmove(dst, str + 7, 7));
+
+    return 0;
+}
+*/

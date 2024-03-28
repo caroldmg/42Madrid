@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 13:41:15 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/02/11 18:26:46 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/03/28 12:46:53 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,3 +26,20 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 		count++;
 	}
 }
+/*
+void	f(unsigned int i, char	*s)
+{
+	if(ft_isalpha((int)*s))
+		*s -= 32;
+}
+#include <stdio.h>
+int	main(void)
+{
+	char	str[] = "hola a todos\n";
+
+	printf("antes: %s", str);
+
+	ft_striteri(str, f);
+	printf("después: %s", str);
+}
+*/

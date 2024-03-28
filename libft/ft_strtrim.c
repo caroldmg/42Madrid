@@ -6,12 +6,11 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 11:31:32 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/03/28 12:18:37 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/03/28 12:50:22 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
 
 static char	*trim_before(char const *s1, char const *set)
 {
@@ -99,4 +98,3 @@ char	*ft_strtrim(char const *s1, char const *set)
 	else
 		return (0);
 }
-
