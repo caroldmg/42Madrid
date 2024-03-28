@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 12:20:05 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/01/14 18:21:09 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/03/27 12:46:31 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,7 @@
 
 int	ft_isalpha(int c)
 {
-	int	isalpha;
-
-	isalpha = 0;
-	if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122))
-		isalpha = 1;
-	return (isalpha);
+	return ((c >= 65 && c <= 90) || (c >= 97 && c <= 122));
 }
 
 /*

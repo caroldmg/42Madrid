@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 15:00:11 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/02/11 17:52:29 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/03/28 12:14:08 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,4 @@ int	main(void) {
 
 	return (0);
 }
-*/
-
-/*
-gcc -c ft_memset.c -o ft_memset.o
-gcc -c ft_strlcpy.c -o ft_strlcpy.o
-gcc -c ft_calloc.c -o ft_calloc.o
-gcc -c ft_strlen.c -o ft_strlen.o
-gcc -c ft_strdup.c -o ft_strdup.o
-
-gcc ft_memset.o ft_strlcpy.o ft_calloc.o ft_strlen.o ft_strdup.o -o my_program
-
-./my_program
 */

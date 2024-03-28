@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 17:38:38 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/02/16 11:26:07 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/03/27 12:45:37 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,7 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-	size_t			count;
-	unsigned char	*ptr;
-
-	ptr = (unsigned char *)s;
-	count = 0;
-	while (count < n)
-	{
-		*ptr = 0;
-		count++;
-		ptr++;
-	}
+	ft_memset(s, 0, n);
 }
 
 /*

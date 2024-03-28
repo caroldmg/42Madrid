@@ -6,107 +6,97 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 11:31:32 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/02/16 12:50:54 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/03/28 12:18:37 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/*
-static char	*trim_helper(char *s1, char *set, char *ptr)
+
+static char	*trim_before(char const *s1, char const *set)
 {
+	char	*str;
 	int		i;
 	int		j;
 	int		is_same;
 
-	i = 0;
+	str = (char *)s1;
 	j = 0;
-	is_same = 0;
-	while (set[j] != '\0')
+	is_same = 1;
+	if (!*s1)
+		return (0);
+	while (str[j] != '\0' && is_same)
 	{
-		while(s1[i] != '\0' && is_same == 0)
+		i = 0;
+		is_same = 0;
+		while (set[i] != '\0')
 		{
-			is_same = 1;
-			if (s1[i] == set[j])
+			if (str[j] == set[i])
 			{
-				ptr = ft_strchr(s1, s1[i + 1]);
-				is_same = 0;
+				is_same = 1;
 			}
 			i++;
 		}
 		j++;
 	}
-	return (ptr);
+	return (str + j -1);
 }
-*/
-#include "libft.h"
 
-static size_t	ft_strcount(const char *s, char c)
+static int	trim_after(char *s1, char const *set)
 {
-	size_t	count;
+	int		i;
+	int		j;
 
-	count = 1;
-	while (*s)
+	if (ft_strlen(s1) == 0)
+		return (0);
+	i = ft_strlen(s1) - 1;
+	j = 0;
+	while (set[j])
 	{
-		if (*s != c)
+		if (s1[i] == set[j])
 		{
-			count++;
-			while (*s != '\0' && *s != c)
-				s++;
+			i--;
+			j = 0;
 		}
-		while (*s != '\0' && *s == c)
-			s++;
+		else
+			j++;
 	}
-	return (count);
-}
-
-static size_t	ft_lenchr(char const *s, size_t start, char c)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[start + i] != c && s[start + i] != '\0')
-		i++;
 	return (i);
 }
 
-static	int	ft_setstrs(char **arr, char const *s, size_t count, char c)
+static char	*onlynull(void)
 {
-	size_t	i_s;
-	size_t	i_arr;
-	size_t	len_str;
+	char	*str;
 
-	i_s = 0;
-	i_arr = 0;
-	while (i_arr < count - 1)
-	{
-		while (s[i_s] == c)
-			i_s++;
-		len_str = ft_lenchr(s, i_s, c) + 1;
-		arr[i_arr] = (char *)ft_calloc(len_str, sizeof(char));
-		if (!arr[i_arr])
-			return (0);
-		ft_strlcpy(arr[i_arr], s + i_s, len_str);
-		i_s = i_s + len_str;
-		i_arr++;
-	}
-	return (1);
-}
-
-char	**ft_split(char const *s, char c)
-{
-	char	**arr;
-	size_t	str_count;
-
-	if (!s)
+	str = (char *)malloc(1 * sizeof(char));
+	if (!str)
 		return (0);
-	str_count = ft_strcount(s, c);
-	arr = (char **)ft_calloc(str_count, sizeof(char *));
-	if (arr)
-	{
-		if (ft_setstrs(arr, s, str_count, c))
-			return (arr);
-	}
-	free(arr);
-	return (0);
+	str[0] = 0;
+	return (str);
 }
+
+char	*ft_strtrim(char const *s1, char const *set)
+{
+	char	*str;
+	char	*trimmed;
+	int		len;
+
+	if (!s1 || !set)
+		return (0);
+	trimmed = trim_before(s1, set);
+	if (!trimmed)
+		return (onlynull());
+	if (ft_strchr(set, *trimmed) != 0)
+		return (onlynull());
+	else
+		len = trim_after(trimmed, set) + 2;
+	str = (char *)malloc((len) * sizeof(char));
+	if (str)
+	{
+		ft_strlcpy(str, trimmed, len);
+		return (str);
+	}
+	else
+		return (0);
+}
+
