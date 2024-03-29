@@ -6,17 +6,24 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 16:33:48 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/03/28 12:46:47 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/03/29 16:40:10 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr_fd(char *s, int fd)
+int	ft_putstr_fd(char *s, int fd)
 {
-	while (*s)
+	int	i;
+
+	if (s == NULL)
+		return (ft_putstr_fd("(null)", fd));
+	i = 0;
+	while (s[i])
 	{
-		ft_putchar_fd(*s, fd);
-		s++;
+		if (ft_putchar_fd(s[i], fd) == -1)
+			return (-1);
+		i++;
 	}
+	return (i);
 }

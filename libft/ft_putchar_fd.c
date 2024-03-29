@@ -6,15 +6,15 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 16:22:30 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/03/28 12:46:27 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/03/29 16:41:51 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putchar_fd(char c, int fd)
+int	ft_putchar_fd(char c, int fd)
 {
-	write(fd, &c, 1);
+	return (write(fd, &c, 1));
 }
 
 /* int main(void)

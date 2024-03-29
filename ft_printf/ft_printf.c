@@ -6,62 +6,65 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:24:45 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/03/28 12:12:19 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/03/29 21:07:13 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+static int	ft_putptr(unsigned long ptr)
+{
+	int	result;
+
+	result = 0;
+	result += ft_putstr_fd("0x", 1);
+	result += ft_putnbrbase_fd(ptr, "0123456789abcdef", 1);
+	return (result);
+}
+
+static int	ft_check_value(va_list args, char c)
+{
+	int	result;
+
+	result = 0;
+	if (c == 'c')
+		result = ft_putchar_fd(va_arg(args, int), 1);
+	else if (c == 'd' || c == 'i')
+		result = ft_putnbr_fd(va_arg(args, int), 1);
+	else if (c == 's')
+		result = ft_putstr_fd(va_arg(args, char *), 1);
+	else if (c == 'u')
+		result = ft_putnbrbase_fd(va_arg(args, unsigned int), "0123456789", 1);
+	else if (c == 'x')
+		result = ft_putnbrbase_fd(va_arg(args, unsigned int),
+				"0123456789abcdef", 1);
+	else if (c == 'X')
+		result = ft_putnbrbase_fd(va_arg(args, unsigned int),
+				"0123456789ABCDEF", 1);
+	else if (c == '%')
+		result = ft_putchar_fd('%', 1);
+	else if (c == 'p')
+		result = ft_putptr(va_arg(args, unsigned long));
+	return (result);
+}
+
 int	ft_printf(const char *str, ...)
 {
-	//it should return the number of chars it read
 	va_list	args;
 	int		result;
 	int		i;
-	
-	va_start( args, str);
-	/* va_start must be called before any use of va_arg - the second parameter marks the start of the list*/
+
+	va_start(args, str);
 	result = 0;
 	i = 0;
 	while (str[i] != '\0')
 	{
 		if (str[i] == '%' && str[i + 1] != '\0')
-			result += ft_get_value(str[++i]);
+			result += ft_check_value(args, str[++i]);
 		else
 			result += ft_putchar_fd(str[i], 1);
 		i++;
 	}
 	va_end(args);
 	return (result);
-}
-
-int	print_format(char *str)
-{
-	int i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i - 1] == '%')
-			ft_check_value(str[i]);
-		ft_putchar(str[i], 1);
-	}
-	return (i);
-}
-
-int ft_check_value(va_list args, char c)
-{
-	int result;
-
-	result = 0;
-	if (c == 'd' || c == 'i')
-		result = ft_putnbr_fd(va_arg(args, int), 1);
-	/* Each time va_arg is called, you move to the next argument. */
-	else if (c == 's')
-		result = ft_putstr_fd(va_arg(args, char *), 1);
-	else if (c == 'p')
-	{
-		result += ft_putstr_fd("0x")
-		
-	}
 }
