@@ -1,4 +1,4 @@
-CC = cc
+CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 SOURCE = ft_isalpha.c \
 		ft_isdigit.c \
@@ -34,6 +34,7 @@ SOURCE = ft_isalpha.c \
 		ft_putstr_fd.c \
 		ft_putendl_fd.c \
 		ft_putnbr_fd.c \
+		ft_putnbrbase_fd.c \
 
 BONUS = ft_lstnew_bonus.c \
 		ft_lstadd_front_bonus.c \
@@ -56,18 +57,15 @@ $(NAME): $(OBJECTS)
 
 .PHONY: all bonus clean fclean re
 
-bonus: $(BOBJECTS)
-
-$(BOBJECTS):
-	${CC} ${CFLAGS} -c $(BONUS)
-	ar -rcs ${NAME} ${BOBJECTS}
+bonus:
+	@make SOURCE="$(SOURCE) $(BONUS)"
 
 clean:
 	@rm -f $(OBJECTS) $(BOBJECTS)
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo "\033[34m \033[43m Limipo"
+	@echo "\033[34m \033[43m todo clean"
 
 re: fclean all
 

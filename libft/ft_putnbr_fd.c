@@ -6,25 +6,29 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 17:17:38 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/03/28 12:46:41 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/03/29 21:07:46 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbr_fd(int n, int fd)
+int	ft_putnbr_fd(int n, int fd)
 {
 	char	*str;
+	int		i;
 
+	i = 0;
 	str = ft_itoa(n);
 	if (str)
-		ft_putstr_fd(str, fd);
+		i = ft_putstr_fd(str, fd);
 	free(str);
+	return (i);
 }
-/*
-int main(void)
+
+/* int main(void)
 {
-	ft_putnbr_fd("-2147483648", 1);
+	int res = ft_putnbr_fd(42332, 1);
+	printf("\n ------- \n");
+	printf("res = %i \n ", res);
 	return (0);
-}
-*/
+} */
