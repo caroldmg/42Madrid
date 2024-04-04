@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 16:41:39 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/03/28 12:47:06 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/02/13 10:50:34 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,3 +38,16 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 	}
 	return (0);
 }
+/*
+int	main(void)
+{
+	char	*haystack = "encuentra algo por aqui";
+	char	*needle = "algo";
+	size_t	len = 15;
+
+	strnstr(haystack, needle, len);
+	ft_strnstr(haystack, needle, len);
+
+	return (0);
+}
+*/

@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:24:45 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/03/29 21:07:13 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/04/04 12:14:58 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,3 +68,12 @@ int	ft_printf(const char *str, ...)
 	va_end(args);
 	return (result);
 }
+
+/* int main(void)
+{
+	int res1 = ft_printf("1 --> ");
+	int res2 = printf("2 --> ");
+	
+	ft_printf("res1 = %i \n res2 = %i \n", res1, res2);
+	return (0);	
+} */

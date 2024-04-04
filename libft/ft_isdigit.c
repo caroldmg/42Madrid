@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 12:40:31 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/03/28 12:45:42 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/02/13 10:56:18 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,12 @@
 
 int	ft_isdigit(int c)
 {
-	return ((c >= '0' && c <= '9'));
+	int	isdigit;
+
+	isdigit = 0;
+	if (c >= '0' && c <= '9')
+		isdigit = 1;
+	return (isdigit);
 }
 
 /*

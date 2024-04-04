@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 12:56:42 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/03/28 12:45:56 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/02/13 12:42:17 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 	if (!lst || !del)
 		return ;
 	current = *lst;
-	while (current != NULL)
+	while (current)
 	{
 		temp = current;
 		current = current->next;
