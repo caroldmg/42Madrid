@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:24:45 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/04/22 13:00:11 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/04/23 20:22:22 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ int	ft_printf(const char *str, ...)
 	{
 		if (str[i] == '%' && str[i + 1] != '\0')
 			result += ft_check_value(args, str[++i]);
+		else if (str[i] == '%' && str[i + 1] == '\0')
+			return (result);
 		else
 			result += ft_putchar(str[i]);
 		i++;
@@ -61,8 +63,8 @@ int	ft_printf(const char *str, ...)
 
 /* int main(void)
 {
-	int res1 = ft_printf("1 --> ");
-	int res2 = printf("2 --> ");
+	int res1 = ft_printf("1 --> %");
+	int res2 = printf("2 --> %");
 	
 	ft_printf("res1 = %i \n res2 = %i \n", res1, res2);
 	return (0);	
