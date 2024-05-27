@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:24:36 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/05/24 12:15:17 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/05/27 15:49:17 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,13 @@ static int	error_syntax(char *a)
 	while (a[i])
 	{
 		if (!ft_isdigit(a[i]))
-			return (0);
+		{
+			write(1, "Error\n", 6);
+			return (1);
+		}
 		i++;
 	}
-	return (1);
+	return (0);
 }
 
 static int error_duplicate(t_stack_node *a, int nbr)
@@ -79,7 +82,10 @@ static int error_duplicate(t_stack_node *a, int nbr)
 	while (a)
 	{
 		if (a->value == nbr)
+		{
+			write(1, "Error\n", 6);
 			return (1);
+		}
 		a = a->next;
 	}
 	return (0);
