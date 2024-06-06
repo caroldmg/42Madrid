@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 17:27:08 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/05/27 15:43:29 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/05/28 13:43:43 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 typedef struct s_stack_node
 {
 	struct s_stack_node *prev;
-    int *value;
+    int value;
     //int *index;
     struct s_stack_node   *next;
 }	t_stack_node;
@@ -30,9 +30,10 @@ typedef struct s_stack_node
 //funciones de stack
 t_stack_node	*ft_get_last_node(t_stack_node *stack);
 int				ft_stack_size(t_stack_node *stack);
+t_stack_node	*ft_new_node(int nb);
 
 //crear stack
-void			stack_init(t_stack_node **a, char **argv);
+//void			stack_init(t_stack_node **a, char **argv);
 
 //swap
 void			sb(t_stack_node **b);
@@ -48,5 +49,9 @@ void			ra(t_stack_node **a);
 void			rb(t_stack_node **b);
 void			rr(t_stack_node **a, t_stack_node **b);
 
+//reverse rotate
+void	rra(t_stack_node **a);
+void	rrb(t_stack_node **b);
+void	rrr(t_stack_node **a, t_stack_node **b);
 
 #endif

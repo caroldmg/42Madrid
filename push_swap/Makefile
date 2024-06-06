@@ -1,33 +1,47 @@
 CFLAGS = -Wall -Wextra -Werror
 CC = gcc
-SOURCE = push_swap.c
-OBJECTS = $(SOURCE:.c=.o)
-LIBFT = ./libft/libft.a
-PRINTF = ./ft_printf/libftprintf.a
-NAME = push_swap
+SRC = push_swap.c \
+		ps_stack_init.c \
+		ps_stack_utils.c \
+		ps_push.c \
+		ps_swap.c \
+		ps_reverse_rotate.c \
+		ps_rotate.c \
+
+OBJ			=	$(SRC:.c=.o)
+HEADER		=	push_swap.h
+
+LIBFT_DIR	=	libft
+LIBFT		=	$(LIBFT_DIR)/libft.a
+
+PRINTF_DIR	=	ft_printf
+PRINTF		=	$(PRINTF_DIR)/libftprintf.a
+
+NAME		=	push_swap
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(OBJECTS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJECTS) $(LIBFT)
-
-$(OBJECTS): $(SOURCE)
-	$(CC) $(CFLAGS) -c $(SOURCE)
-
 $(LIBFT):
-	$(MAKE) -C ./libft
+	@$(MAKE) -C $(LIBFT_DIR)
+	@$(MAKE) bonus -C $(LIBFT_DIR)
 
 $(PRINTF):
-	$(MAKE) -C ./ft_printf
+	@$(MAKE) -C $(PRINTF_DIR)
+
+$(NAME): $(OBJ) $(LIBFT) $(PRINTF)
+	@$(CC) $(CFLAGS) -I$(LIBFT_DIR) -I$(PRINTF_DIR) $(OBJ) $(LIBFT) $(PRINTF) -o $(NAME)
+
+%.o: %.c
+	@$(CC) $(CFLAGS) -I$(LIBFT_DIR) -I$(PRINTF_DIR) -c $< -o $@
 
 clean:
-	$(MAKE) clean -C ./libft
-	$(MAKE) clean -C ./ft_printf
-	rm -f $(OBJECTS)
+	@$(MAKE) -C $(LIBFT_DIR) clean
+	@$(MAKE) -C $(PRINTF_DIR) clean
+	@rm -f $(OBJ)
 
 fclean: clean
-	$(MAKE) fclean -C ./libft
-	$(MAKE) fclean -C ./ft_printf
-	rm -f $(NAME)
+	@$(MAKE) -C $(LIBFT_DIR) fclean
+	@$(MAKE) -C $(PRINTF_DIR) fclean
+	@rm -f $(NAME)
 
 re: fclean all

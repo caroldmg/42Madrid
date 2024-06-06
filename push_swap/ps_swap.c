@@ -6,13 +6,13 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 16:32:12 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/05/23 19:34:29 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/05/28 13:45:27 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void **swap(t_stack_node **stack)
+static void swap(t_stack_node **stack)
 {
 	t_stack_node *aux;
 	t_stack_node *first;
@@ -24,7 +24,7 @@ static void **swap(t_stack_node **stack)
 	first = aux->next;
 	aux->next = first->next;
 	first->next = aux;
-    stack = first;
+    *stack = first;
 	// añadir lo del prev?
 }
 

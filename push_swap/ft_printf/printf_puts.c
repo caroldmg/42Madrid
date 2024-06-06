@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 11:27:17 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/04/22 13:00:32 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/05/28 16:06:59 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,15 +63,8 @@ int	ft_putnbrbase(size_t nbr, char *base, int blen)
 	int	result;
 
 	result = 0;
-	if (nbr < 0)
-	{
-		result += ft_putchar('-');
-		nbr *= -1;
-	}
 	if (nbr >= (size_t)blen)
-	{
 		result += ft_putnbrbase(nbr / blen, base, blen);
-	}
 	result += ft_putchar(base[nbr % blen]);
 	return (result);
 }

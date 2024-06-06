@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 12:53:33 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/05/27 14:53:01 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/05/28 13:45:46 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,19 @@ static void rotate(t_stack_node **stack)
 	}
 }
 
-static void rotate2(t_stack_node **stack)
-{
-	t_stack_node *last;
+// static void rotate2(t_stack_node **stack)
+// {
+// 	t_stack_node *last;
 
-	if (stack == NULL || *stack == NULL)
-		return ;
-	last = ft_get_last_node(*stack);
-	last->next = *stack;
-	*stack = (*stack)->next;
-	(*stack)->prev = NULL;
-	last->next->prev = last;
-	last->next->next = NULL;
-}
+// 	if (stack == NULL || *stack == NULL)
+// 		return ;
+// 	last = ft_get_last_node(*stack);
+// 	last->next = *stack;
+// 	*stack = (*stack)->next;
+// 	(*stack)->prev = NULL;
+// 	last->next->prev = last;
+// 	last->next->next = NULL;
+// }
 
 void	ra(t_stack_node **a)
 {
