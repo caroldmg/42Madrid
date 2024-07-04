@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 17:27:08 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/05/28 13:43:43 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/07/04 13:20:32 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,27 @@
 
 typedef struct s_stack_node
 {
-	struct s_stack_node *prev;
-    int value;
-    //int *index;
-    struct s_stack_node   *next;
+    int					value;
+    int 				index;
+	struct s_stack_node	*prev;
+    struct s_stack_node	*next;
 }	t_stack_node;
+
+/*
+ESTRUCTURA SEGUN LA FORMA DE HACERLO DE LA CHICA QUE USA EL TURCO
+
+typedef struct s_stack_node
+{
+	int	nbr;
+	int index;
+	int push_cost;
+	int	is_above_med;
+	int	is_cheapest;
+	struct	s_stack_node *target_node;
+	struct	s_stack_node *next;
+	struct	s_stack_node *prev;
+}	t_stack_node 
+*/
 
 # include <string.h>
 # include <limits.h>
@@ -30,7 +46,7 @@ typedef struct s_stack_node
 //funciones de stack
 t_stack_node	*ft_get_last_node(t_stack_node *stack);
 int				ft_stack_size(t_stack_node *stack);
-t_stack_node	*ft_new_node(int nb);
+void			ft_new_node(t_stack_node **stack , int nb);
 
 //crear stack
 //void			stack_init(t_stack_node **a, char **argv);

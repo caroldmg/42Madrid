@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 14:37:55 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/05/28 13:41:45 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/07/04 13:20:12 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,11 @@
 
 t_stack_node *ft_get_last_node(t_stack_node *stack)
 {
-	t_stack_node *last;
-	
-	last = stack;
-	if (stack == NULL)
+	if (!stack)
 		return (NULL);
-	while (last -> next)
-		last = last->next;
-	return (last);
+	while (stack -> next)
+		stack = stack->next;
+	return (stack);
 }
 
 int	ft_stack_size(t_stack_node *stack)
@@ -39,14 +36,27 @@ int	ft_stack_size(t_stack_node *stack)
 	return (size);
 }
 
-t_stack_node	*ft_new_node(int nb)
+void	ft_new_node(t_stack_node **stack, int nb)
 {
 	t_stack_node	*node;
+	t_stack_node	*last;
 
+	if (!stack)
+		return ;
 	node = malloc(sizeof(t_stack_node));
 	if (!node)
-		return (0);
+		return ;
 	node->value = nb;
 	node->next = NULL;
-	return (node);
+	if (!*stack)
+	{
+		*stack = node;
+		node->prev = NULL;
+	}
+	else
+	{
+		last = ft_get_last_node(*stack);
+		last->next = node;
+		node->prev = last;
+	}
 }

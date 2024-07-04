@@ -14,8 +14,8 @@ HEADER		=	push_swap.h
 LIBFT_DIR	=	libft
 LIBFT		=	$(LIBFT_DIR)/libft.a
 
-PRINTF_DIR	=	ft_printf
-PRINTF		=	$(PRINTF_DIR)/libftprintf.a
+# PRINTF_DIR	=	ft_printf
+# PRINTF		=	$(PRINTF_DIR)/libftprintf.a
 
 NAME		=	push_swap
 
@@ -25,23 +25,23 @@ $(LIBFT):
 	@$(MAKE) -C $(LIBFT_DIR)
 	@$(MAKE) bonus -C $(LIBFT_DIR)
 
-$(PRINTF):
-	@$(MAKE) -C $(PRINTF_DIR)
+# $(PRINTF):
+# 	@$(MAKE) -C $(PRINTF_DIR)
 
-$(NAME): $(OBJ) $(LIBFT) $(PRINTF)
-	@$(CC) $(CFLAGS) -I$(LIBFT_DIR) -I$(PRINTF_DIR) $(OBJ) $(LIBFT) $(PRINTF) -o $(NAME)
+$(NAME): $(OBJ) $(LIBFT)
+	@$(CC) $(CFLAGS) -I$(LIBFT_DIR) $(OBJ) $(LIBFT) -o $(NAME)
 
 %.o: %.c
-	@$(CC) $(CFLAGS) -I$(LIBFT_DIR) -I$(PRINTF_DIR) -c $< -o $@
+	@$(CC) $(CFLAGS) -I$(LIBFT_DIR)  -c $< -o $@
 
 clean:
 	@$(MAKE) -C $(LIBFT_DIR) clean
-	@$(MAKE) -C $(PRINTF_DIR) clean
+#	@$(MAKE) -C $(PRINTF_DIR) clean
 	@rm -f $(OBJ)
 
 fclean: clean
 	@$(MAKE) -C $(LIBFT_DIR) fclean
-	@$(MAKE) -C $(PRINTF_DIR) fclean
+#	@$(MAKE) -C $(PRINTF_DIR) fclean
 	@rm -f $(NAME)
 
 re: fclean all
