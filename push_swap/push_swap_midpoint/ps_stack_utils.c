@@ -6,13 +6,13 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 14:37:55 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/07/15 16:05:46 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/07/17 12:38:56 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack_node *ft_get_last_node(t_stack_node *stack)
+t_node *ft_get_last_node(t_node *stack)
 {
 	if (!stack)
 		return (NULL);
@@ -21,7 +21,7 @@ t_stack_node *ft_get_last_node(t_stack_node *stack)
 	return (stack);
 }
 
-int	ft_stack_size(t_stack_node *stack)
+int	ft_stack_size(t_node *stack)
 {
 	int size;
 
@@ -36,14 +36,14 @@ int	ft_stack_size(t_stack_node *stack)
 	return (size);
 }
 
-void	ft_new_node(t_stack_node **stack, int nb)
+void	ft_new_node(t_node **stack, int nb)
 {
-	t_stack_node	*node;
-	t_stack_node	*last;
+	t_node	*node;
+	t_node	*last;
 
 	if (!stack)
 		return ;
-	node = malloc(sizeof(t_stack_node));
+	node = malloc(sizeof(t_node));
 	if (!node)
 		return ;
 	node->next = NULL;

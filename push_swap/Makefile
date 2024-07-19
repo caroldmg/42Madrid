@@ -7,6 +7,7 @@ SRC = push_swap.c \
 		ps_swap.c \
 		ps_reverse_rotate.c \
 		ps_rotate.c \
+		small_sort.c \
 
 OBJ			=	$(SRC:.c=.o)
 HEADER		=	push_swap.h

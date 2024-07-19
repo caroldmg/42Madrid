@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 17:27:08 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/07/04 13:20:32 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/07/16 15:33:00 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ typedef struct s_stack_node
 {
     int					value;
     int 				index;
+	int					cost;
 	struct s_stack_node	*prev;
     struct s_stack_node	*next;
 }	t_stack_node;
@@ -49,7 +50,16 @@ int				ft_stack_size(t_stack_node *stack);
 void			ft_new_node(t_stack_node **stack , int nb);
 
 //crear stack
-//void			stack_init(t_stack_node **a, char **argv);
+void			stack_init(t_stack_node **a, char **argv);
+
+//gestión de errores
+void			free_all(t_stack_node **stack, char **argv);
+int				error_duplicate(t_stack_node *a, int nbr);
+int				error_syntax(char *str);
+
+//ordenar
+void	sort_three(t_stack_node **a);
+void	sort_two(t_stack_node **a); 
 
 //swap
 void			sb(t_stack_node **b);
@@ -66,8 +76,8 @@ void			rb(t_stack_node **b);
 void			rr(t_stack_node **a, t_stack_node **b);
 
 //reverse rotate
-void	rra(t_stack_node **a);
-void	rrb(t_stack_node **b);
-void	rrr(t_stack_node **a, t_stack_node **b);
+void			rra(t_stack_node **a);
+void			rrb(t_stack_node **b);
+void			rrr(t_stack_node **a, t_stack_node **b);
 
 #endif
