@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 12:21:27 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/07/19 11:57:30 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/07/22 18:03:21 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,15 @@ t_node	*ft_get_last_node(t_node *stack);
 int		ft_stack_size(t_node *stack);
 void	ft_new_node(t_node **stack, int nb);
 
+//parseo y errores
+void	stack_init(t_node **a, char **argv);
+int 	ft_check_value(char *value);
+int		ft_check_repeat(t_node *stack, int nb);
+void	free_all(t_node **stack);
+
 //ordenar array
+int		is_sorted(t_node *stack);
+void	sort_three(t_node **a);
 int 	*quicksort(int* arr, int low, int high);
 int		*stack_to_array(t_node *stack);
 int		is_less_midpoint(int *arr, int nb);

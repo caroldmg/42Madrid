@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 12:20:27 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/07/19 11:56:32 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/07/22 12:42:30 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int	*stack_to_array(t_node *stack)
 	DE MOMENTO PARA ORDENAR EL ARRAY VOY A USAR ESTE QUICKSORT,
 	HAY QUE REVISAR OPTIMIZACIÓN
 */
-
 
 static int ft_arrlen(int *arr)
 {
