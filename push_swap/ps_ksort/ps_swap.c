@@ -6,13 +6,13 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 16:32:12 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/07/15 16:03:01 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/07/26 15:07:25 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	swap(t_stack_node **stack)
+static void	swap(t_node **stack)
 {
 	int				len;
 
@@ -28,19 +28,19 @@ static void	swap(t_stack_node **stack)
 	(*stack)->prev = NULL;
 }
 
-void sa(t_stack_node **a)
+void sa(t_node **a)
 {
 	swap(a);
 	write(1, "sa\n", 3);
 }
 
-void sb(t_stack_node **b)
+void sb(t_node **b)
 {
 	swap(b);
 	write(1, "sb\n", 3);
 }
 
-void ss(t_stack_node **a, t_stack_node **b)
+void ss(t_node **a, t_node **b)
 {
 	swap(a);
 	swap(b);

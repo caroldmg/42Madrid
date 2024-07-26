@@ -6,15 +6,15 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:13:18 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/07/15 16:05:04 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/07/26 15:07:42 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void reverse_rotate(t_stack_node **stack)
+static void reverse_rotate(t_node **stack)
 {
-	t_stack_node	*last;
+	t_node	*last;
 	int				len;
 
 	len = ft_stack_size(*stack);
@@ -27,19 +27,19 @@ static void reverse_rotate(t_stack_node **stack)
 	*stack = last;
 	last->next->prev = last;
 }
-void rra(t_stack_node **a)
+void rra(t_node **a)
 {
 	reverse_rotate(a);
 	write(1, "rra\n", 3);
 }
 
-void rrb(t_stack_node **b)
+void rrb(t_node **b)
 {
 	reverse_rotate(b);
 	write(1, "rrb\n", 3);
 }
 
-void rrr(t_stack_node **a, t_stack_node **b)
+void rrr(t_node **a, t_node **b)
 {
 	reverse_rotate(a);
 	reverse_rotate(b);

@@ -6,16 +6,16 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 12:53:33 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/07/15 16:06:07 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/07/26 15:07:36 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// static void rotate(t_stack_node **stack)
+// static void rotate(t_node **stack)
 // {
-// 	t_stack_node	*current;
-// 	t_stack_node	*aux;
+// 	t_node	*current;
+// 	t_node	*aux;
 
 // 	current = ft_get_last_node(*stack);
 // 	aux = NULL;
@@ -34,9 +34,9 @@
 // 	}
 // }
 
-static void rotate(t_stack_node **stack)
+static void rotate(t_node **stack)
 {
-	t_stack_node	*last;
+	t_node	*last;
 	int				len;
 
 	len = ft_stack_size(*stack);
@@ -50,19 +50,19 @@ static void rotate(t_stack_node **stack)
 	last->next->next = NULL;
 }
 
-void	ra(t_stack_node **a)
+void	ra(t_node **a)
 {
 	rotate(a);
 	write(1, "ra\n", 3);
 }
 
-void rb(t_stack_node **b)
+void rb(t_node **b)
 {
 	rotate(b);
 	write(1, "rb\n", 3);
 }
 
-void rr(t_stack_node **a, t_stack_node **b)
+void rr(t_node **a, t_node **b)
 {
 	rotate(a);
 	rotate(b);

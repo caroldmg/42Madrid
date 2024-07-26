@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 12:20:27 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/07/22 12:42:30 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/07/26 12:14:01 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	*stack_to_array(t_node *stack)
 	if (!stack)
 		return (NULL);
 	i = 0;
-	arr = malloc(sizeof(int) * ft_stack_size(stack));
+	arr = malloc(sizeof(int) * (ft_stack_size(stack) + 1));
 	if (!arr)
 		return (NULL);
 	while (stack)
@@ -29,18 +29,32 @@ int	*stack_to_array(t_node *stack)
 		i++;
 		stack = stack->next;
 	}
+	arr[i] = '\0';
 	return (arr);
 }
 
+int	ft_len_to_midpoint(int *arr)
+{
+	int len;
+	int mid;
+	
+	len = 0;
+	mid = get_midpoint(arr);
+	while (arr[len] != mid)
+		len++;
+	return (len);
+}
 /* 
 	DE MOMENTO PARA ORDENAR EL ARRAY VOY A USAR ESTE QUICKSORT,
 	HAY QUE REVISAR OPTIMIZACIÓN
 */
 
-static int ft_arrlen(int *arr)
+int ft_arrlen(int *arr)
 {
 	int i;
-
+	
+	if (!arr)
+		return(0);
 	i = 0;
 	while (arr[i])
 		i++;
