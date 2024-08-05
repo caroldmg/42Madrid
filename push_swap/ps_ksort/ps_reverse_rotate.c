@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:13:18 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/07/26 15:07:42 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/08/05 16:17:54 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,18 @@ static void reverse_rotate(t_node **stack)
 void rra(t_node **a)
 {
 	reverse_rotate(a);
-	write(1, "rra\n", 3);
+	write(1, "rra\n", 4);
 }
 
 void rrb(t_node **b)
 {
 	reverse_rotate(b);
-	write(1, "rrb\n", 3);
+	write(1, "rrb\n", 4);
 }
 
 void rrr(t_node **a, t_node **b)
 {
 	reverse_rotate(a);
 	reverse_rotate(b);
-	write(1, "rrr\n", 3);
+	write(1, "rrr\n", 4);
 }

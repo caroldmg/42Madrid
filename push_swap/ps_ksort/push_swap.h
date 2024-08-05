@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 17:27:08 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/07/26 15:08:17 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/08/05 16:51:38 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,12 @@ typedef struct s_node
 # include <string.h>
 # include <limits.h>
 # include <stdio.h>
-# include "./libft/libft.h"
-# include "./ft_printf/ft_printf.h"
+# include "../libft/libft.h"
+# include "../ft_printf/ft_printf.h"
+
+
+
+void	show_stacks(t_node **a, t_node **b);
 
 //funciones de stack
 t_node	*ft_get_last_node(t_node *stack);
@@ -43,11 +47,12 @@ int		ft_check_repeat(t_node *stack, int nb);
 void	free_all(t_node **stack);
 
 //ordenar
-void	sort_two(t_node **a);
-void	sort_three(t_node **a);
-void	sort_four(t_node **a);
-void	sort_five(t_node **a);
+void	sort_two(t_node **a, t_node **b);
+void	sort_three(t_node **a, t_node **b);
+void	sort_four(t_node **a, t_node **b);
+void	sort_five(t_node **a, t_node **b);
 void	push_swap(t_node **a, t_node **b);
+void	common_sort(t_node **a, t_node **b, int size);
 
 //swap
 void	sb(t_node **b);

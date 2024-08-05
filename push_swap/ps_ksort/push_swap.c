@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 17:20:49 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/07/26 14:33:03 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/08/05 16:52:45 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,16 @@ void	push_swap(t_node **a, t_node **b)
 {
 	int size;
 
-	size = ft_stack_size(a);
+	size = ft_stack_size(*a);
 	ft_add_index(a);
 	if (size < 3)
-		sort_two(&a);
+		sort_two(a, b);
 	else if (size == 3)
-		sort_three(&a);
+		sort_three(a, b);
 	else if (size == 4)
-		sort_four(&a);
+		sort_four(a, b);
 	else if (size == 5)
-		sort_five(&a);
+		sort_five(a, b);
 	else if (size > 5)
 		common_sort(a, b, size);
 }

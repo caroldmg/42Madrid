@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 16:21:58 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/07/26 15:06:47 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/08/05 16:56:06 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,34 +32,46 @@ static t_node	*find_highest(t_node *a)
 	return (high_node);
 }
 //two elements
-void	sort_two(t_node **a)
+void	sort_two(t_node **a, t_node **b)
 {
+	show_stacks(a, b);
 	if ((*a)->value > (*a)->next->value)
+	{
+		show_stacks(a, b);
 		sa(a);
+	}
 }
 
 
 //three elements
-void	sort_three(t_node **a)
+void	sort_three(t_node **a, t_node **b)
 {
 	t_node	*high;
 
-	high = find_highest(*a); //funcion para encontrar el mayor nodo de la lista
+	high = find_highest(*a);
+	show_stacks(a, b);
 	if (*a == high)
+	{
 		ra(a);
+		show_stacks(a, b);	
+	}
 	else if ((*a)->next == high)
+	{
 		rra(a);
+		show_stacks(a, b);
+	}
 	if ((*a)->value > (*a)->next->value)
+	{
 		sa(a);
+		show_stacks(a, b);
+	}
 }
 
-void	sort_four(t_node **a)
+void	sort_four(t_node **a, t_node **b)
 {
-	t_node	**b;
 	t_node	*min;
 	t_node	*current;
 
-	b = NULL;
 	min = *a;
 	while (current->next)
 	{
@@ -69,18 +81,19 @@ void	sort_four(t_node **a)
 	}
 	while ((*a) != min)
 		ra(a);
+	show_stacks(a, b);
 	pb(a, b);
-	sort_three(a);
+	show_stacks(a, b);
+	sort_three(a, b);
 	pa(a, b);
+	show_stacks(a, b);
 }
 
-void	sort_five(t_node **a)
+void	sort_five(t_node **a, t_node **b)
 {
-	t_node	**b;
 	t_node	*min;
 	t_node	*current;
 
-	b = NULL;
 	min = *a;
 	while (current->next)
 	{
@@ -89,8 +102,13 @@ void	sort_five(t_node **a)
 		current = current->next;
 	}
 	while ((*a) != min)
+	{
 		ra(a);
+		show_stacks(a, b);
+	}
 	pb(a, b);
-	sort_four(a);
+	show_stacks(a, b);
+	sort_four(a, b);
 	pa(a, b);
+	show_stacks(a, b);
 }

@@ -1,6 +1,6 @@
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g3
 CC = gcc
-SRC = push_swap.c \
+SRC = 	push_swap.c \
 		ps_stack_init.c \
 		ps_stack_utils.c \
 		ps_push.c \
@@ -8,11 +8,14 @@ SRC = push_swap.c \
 		ps_reverse_rotate.c \
 		ps_rotate.c \
 		small_sort.c \
+		ps_sort.c \
+		ps_checks.c \
+		main.c \
 
 OBJ			=	$(SRC:.c=.o)
 HEADER		=	push_swap.h
 
-LIBFT_DIR	=	libft
+LIBFT_DIR	=	../libft/
 LIBFT		=	$(LIBFT_DIR)/libft.a
 
 # PRINTF_DIR	=	ft_printf

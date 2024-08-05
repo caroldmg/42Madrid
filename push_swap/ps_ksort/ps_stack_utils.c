@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 14:37:55 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/07/26 15:07:07 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/08/05 15:41:10 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,16 +69,20 @@ void	ft_add_index(t_node **stack)
 	int		count;
 
 	current = *stack;
+	printf("inside ft_add_index \n");
 	while (current)
 	{
 		aux = *stack;
 		count = 0;
+		//printf("current value --> %i \t aux value --> %i \n", current->value, aux->value);
 		while (aux)
 		{
 			if (current->value > aux->value)
 				count++;
+			aux = aux->next;
 		}
 		current->index = count;
+		printf("current value --> %i \t current index --> %i \n", current->value, current->index);
 		current = current->next;
 	}
 }
@@ -90,8 +94,11 @@ int	stack_sorted(t_node *stack)
 	while (stack->next)
 	{
 		if (stack->value > stack->next->value)
-			return (0);
+		{
+			printf("current value --> %i, \t next value --> %i \n", stack->value, stack->next->value);
+			return (1);
+		}
 		stack = stack->next;
 	}
-	return (1);
+	return (0);
 }

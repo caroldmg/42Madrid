@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:24:36 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/07/26 14:11:06 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/08/05 12:08:00 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static long	ft_atol(const char *str)
 	}
 	while (str[i] >= '0' && str[i] <= '9')
 	{
-		nbr = nbr * 10 + str[i] - 0;
+		nbr = (nbr * 10) + (str[i] - '0');
 		i++;
 	}
 	return (nbr * sign);
@@ -53,7 +53,7 @@ void stack_init(t_node **a, char **argv)
 		nbr = ft_atol(argv[i]);
 		if (nbr > INT_MAX || nbr < INT_MIN)
 			free_all(a);
-		if (error_duplicate(*a, nbr))
+		if (ft_check_repeat(*a, nbr))
 			free_all(a);
 		ft_new_node(a, nbr);
 		++i;
