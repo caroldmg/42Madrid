@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 14:06:53 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/08/05 16:10:39 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/08/07 17:22:54 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	show_stacks(t_node **a, t_node **b)
 	printf("╰───────╨───────╯\n");
 }
 
-int	main(int argc, char ** argv)
+int	main(int argc, char **argv)
 {
 	t_node	*a;
 	t_node	*b;
@@ -54,7 +54,7 @@ int	main(int argc, char ** argv)
 		argv = ft_split(argv[1], ' ');
 	stack_init(&a, argv + 1);
 	show_stacks(&a, &b);
-	if (!stack_sorted(a))
+	if (stack_sorted(a))
 	{
 		printf("stack is sorted!!");
 		return (0);

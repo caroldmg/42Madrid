@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 16:32:12 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/07/26 15:07:25 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/08/07 13:36:01 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,19 @@ static void	swap(t_node **stack)
 	(*stack)->prev = NULL;
 }
 
-void sa(t_node **a)
+void	sa(t_node **a)
 {
 	swap(a);
 	write(1, "sa\n", 3);
 }
 
-void sb(t_node **b)
+void	sb(t_node **b)
 {
 	swap(b);
 	write(1, "sb\n", 3);
 }
 
-void ss(t_node **a, t_node **b)
+void	ss(t_node **a, t_node **b)
 {
 	swap(a);
 	swap(b);

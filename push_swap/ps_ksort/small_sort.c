@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 16:21:58 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/08/05 16:56:06 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/08/07 13:39:47 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static t_node	*find_highest(t_node *a)
 {
-	int				high;
+	int		high;
 	t_node	*high_node;
-	
+
 	if (!a)
 		return (NULL);
 	high = INT_MIN;
@@ -31,7 +31,7 @@ static t_node	*find_highest(t_node *a)
 	}
 	return (high_node);
 }
-//two elements
+
 void	sort_two(t_node **a, t_node **b)
 {
 	show_stacks(a, b);
@@ -42,8 +42,6 @@ void	sort_two(t_node **a, t_node **b)
 	}
 }
 
-
-//three elements
 void	sort_three(t_node **a, t_node **b)
 {
 	t_node	*high;
@@ -53,7 +51,7 @@ void	sort_three(t_node **a, t_node **b)
 	if (*a == high)
 	{
 		ra(a);
-		show_stacks(a, b);	
+		show_stacks(a, b);
 	}
 	else if ((*a)->next == high)
 	{
@@ -73,19 +71,26 @@ void	sort_four(t_node **a, t_node **b)
 	t_node	*current;
 
 	min = *a;
-	while (current->next)
+	current = *a;
+	while (current)
 	{
-		if (current->index > min->index)
+		if (current->index < min->index)
 			min = current;
 		current = current->next;
 	}
 	while ((*a) != min)
+	{
 		ra(a);
+		show_stacks(a, b);
+	}
 	show_stacks(a, b);
 	pb(a, b);
 	show_stacks(a, b);
 	sort_three(a, b);
 	pa(a, b);
+	show_stacks(a, b);
+	if (!stack_sorted(*a))
+		ra(a);
 	show_stacks(a, b);
 }
 
@@ -95,9 +100,10 @@ void	sort_five(t_node **a, t_node **b)
 	t_node	*current;
 
 	min = *a;
-	while (current->next)
+	current = *a;
+	while (current)
 	{
-		if (current->index > min->index)
+		if (current->index < min->index)
 			min = current;
 		current = current->next;
 	}

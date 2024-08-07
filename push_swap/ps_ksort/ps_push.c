@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 18:55:04 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/07/26 15:07:50 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/08/07 13:31:34 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	push(t_node **src, t_node **dst)
 {
-	t_node *node;
-	
+	t_node	*node;
+
 	if (!*src)
 		return ;
 	node = *src;
@@ -29,7 +29,7 @@ static void	push(t_node **src, t_node **dst)
 		node->next = NULL;
 	}
 	else
-	{ 
+	{
 		node->next = *dst;
 		node->next->prev = node;
 		*dst = node;

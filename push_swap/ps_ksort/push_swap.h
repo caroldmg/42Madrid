@@ -6,26 +6,28 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 17:27:08 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/08/05 16:51:38 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/08/07 17:27:16 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-typedef struct s_node
-{
-    int				value;
-    int 			index;
-	struct s_node	*prev;
-    struct s_node	*next;
-}	t_node;
-
 # include <string.h>
 # include <limits.h>
 # include <stdio.h>
 # include "../libft/libft.h"
-# include "../ft_printf/ft_printf.h"
+//# include "../ft_printf/ft_printf.h"
+
+typedef struct s_node
+{
+	int				value;
+	int				index;
+	struct s_node	*prev;
+	struct s_node	*next;
+}	t_node;
+
+
 
 
 
@@ -34,17 +36,19 @@ void	show_stacks(t_node **a, t_node **b);
 //funciones de stack
 t_node	*ft_get_last_node(t_node *stack);
 int		ft_stack_size(t_node *stack);
-void	ft_new_node(t_node **stack , int nb);
+void	ft_new_node(t_node **stack, int nb);
 int		stack_sorted(t_node *stack);
 void	ft_add_index(t_node **stack);
 
 //crear stack
 void	stack_init(t_node **a, char **argv);
+char	**ft_split(char *str, char c);
 
 //gestión de errores
-int 	ft_check_value(char *value);
+int		ft_check_value(char *value);
 int		ft_check_repeat(t_node *stack, int nb);
 void	free_all(t_node **stack);
+void	handle_error(t_node **a);
 
 //ordenar
 void	sort_two(t_node **a, t_node **b);

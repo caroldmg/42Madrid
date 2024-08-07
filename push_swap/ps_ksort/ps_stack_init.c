@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:24:36 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/08/05 12:08:00 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/08/07 17:26:44 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ static long	ft_atol(const char *str)
 	else if (str[i] == '-')
 	{
 		sign *= -1;
-		i++;	
+		i++;
 	}
-	while (str[i] >= '0' && str[i] <= '9')
+	while (ft_isdigit(str[i]))
 	{
 		nbr = (nbr * 10) + (str[i] - '0');
 		i++;
@@ -40,7 +40,7 @@ static long	ft_atol(const char *str)
 	return (nbr * sign);
 }
 
-void stack_init(t_node **a, char **argv)
+void	stack_init(t_node **a, char **argv)
 {
 	long	nbr;
 	int		i;
@@ -49,13 +49,13 @@ void stack_init(t_node **a, char **argv)
 	while (argv[i])
 	{
 		if (ft_check_value(argv[i]))
-			free_all(a);
+			handle_error(a);
 		nbr = ft_atol(argv[i]);
 		if (nbr > INT_MAX || nbr < INT_MIN)
-			free_all(a);
-		if (ft_check_repeat(*a, nbr))
-			free_all(a);
-		ft_new_node(a, nbr);
+			handle_error(a);
+		if (ft_check_repeat(*a, (int)nbr))
+			handle_error(a);
+		ft_new_node(a, (int)nbr);
 		++i;
 	}
 }

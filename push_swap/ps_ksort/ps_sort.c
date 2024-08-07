@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 17:55:29 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/08/05 16:08:57 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/08/07 13:33:53 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ static int	ft_sqrt(int nb)
 	return (i - 1);
 }
 
-static void ft_const_sort(t_node **a, t_node **b, int size)
+static void	ft_const_sort(t_node **a, t_node **b, int size)
 {
 	int	i;
 	int	constant;
-	
+
 	i = 0;
 	constant = ft_sqrt(size) * 1.4;
 	while (*a)
@@ -53,9 +53,9 @@ static void ft_const_sort(t_node **a, t_node **b, int size)
 	}
 }
 
-static int ft_count_rotate(t_node *stack, int max)
+static int	ft_count_rotate(t_node *stack, int max)
 {
-	int c;
+	int	c;
 
 	c = 0;
 	while (stack && stack->index != max)
@@ -66,11 +66,11 @@ static int ft_count_rotate(t_node *stack, int max)
 	return (c);
 }
 
-void common_sort(t_node **a, t_node **b, int size)
+void	common_sort(t_node **a, t_node **b, int size)
 {
 	int	rb_count;
 	int	rrb_count;
-	
+
 	ft_const_sort(a, b, size);
 	while (size - 1 >= 0)
 	{

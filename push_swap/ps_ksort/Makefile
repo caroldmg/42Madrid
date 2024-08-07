@@ -1,8 +1,9 @@
-CFLAGS = -Wall -Wextra -Werror -g3
+CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
 CC = gcc
 SRC = 	push_swap.c \
 		ps_stack_init.c \
 		ps_stack_utils.c \
+		ps_split.c \
 		ps_push.c \
 		ps_swap.c \
 		ps_reverse_rotate.c \

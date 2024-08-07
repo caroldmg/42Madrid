@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 12:53:33 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/07/26 15:07:36 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/08/07 13:33:11 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@
 // 	}
 // }
 
-static void rotate(t_node **stack)
+static void	rotate(t_node **stack)
 {
 	t_node	*last;
-	int				len;
+	int		len;
 
 	len = ft_stack_size(*stack);
 	if (!stack || !*stack || len == 1)
@@ -56,13 +56,13 @@ void	ra(t_node **a)
 	write(1, "ra\n", 3);
 }
 
-void rb(t_node **b)
+void	rb(t_node **b)
 {
 	rotate(b);
 	write(1, "rb\n", 3);
 }
 
-void rr(t_node **a, t_node **b)
+void	rr(t_node **a, t_node **b)
 {
 	rotate(a);
 	rotate(b);
