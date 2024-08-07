@@ -26,7 +26,6 @@ SOURCE = ft_isalpha.c \
 		ft_substr.c \
 		ft_strjoin.c \
 		ft_strtrim.c \
-		ft_split.c \
 		ft_itoa.c \
 		ft_strmapi.c \
 		ft_striteri.c \
@@ -34,6 +33,7 @@ SOURCE = ft_isalpha.c \
 		ft_putstr_fd.c \
 		ft_putendl_fd.c \
 		ft_putnbr_fd.c \
+#		ft_split.c \
 
 BONUS = ft_lstnew_bonus.c \
 		ft_lstadd_front_bonus.c \
