@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 14:06:53 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/08/07 17:22:54 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/08/12 10:40:21 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,28 @@ void	show_stacks(t_node **a, t_node **b)
 	printf("╰───────╨───────╯\n");
 }
 
+// int	main(int argc, char **argv)
+// {
+// 	t_node	*a;
+// 	t_node	*b;
+
+// 	a = NULL;
+// 	b = NULL;
+// 	if (argc == 1 || (argc == 2 && !argv[1][0]))
+// 		return (1);
+// 	else if (argc == 2)
+// 		argv = ft_split(argv[1], ' ');
+// 	stack_init(&a, argv + 1);
+// 	if (stack_sorted(a))
+// 	{
+// 		printf("stack is sorted!!");
+// 		return (0);
+// 	}
+// 	push_swap(&a, &b);
+// 	free_all(&a);
+// 	return (0);
+// }
+
 int	main(int argc, char **argv)
 {
 	t_node	*a;
@@ -50,15 +72,10 @@ int	main(int argc, char **argv)
 	b = NULL;
 	if (argc == 1 || (argc == 2 && !argv[1][0]))
 		return (1);
-	else if (argc == 2)
-		argv = ft_split(argv[1], ' ');
-	stack_init(&a, argv + 1);
-	show_stacks(&a, &b);
+	else if (argc >= 2)
+		a = stack_init(argv, &a);
 	if (stack_sorted(a))
-	{
-		printf("stack is sorted!!");
-		return (0);
-	}
+		return (free_all(&a), 0);
 	push_swap(&a, &b);
 	free_all(&a);
 	return (0);

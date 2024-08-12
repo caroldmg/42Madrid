@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 17:27:08 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/08/07 17:27:16 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/08/12 16:57:53 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,21 @@ int		stack_sorted(t_node *stack);
 void	ft_add_index(t_node **stack);
 
 //crear stack
-void	stack_init(t_node **a, char **argv);
-char	**ft_split(char *str, char c);
+t_node	*stack_init(char **argv, t_node **a);
+long	ft_atol(const char *str);
+// char	**ft_split(char *str, char c);
 
 //gestión de errores
-int		ft_check_value(char *value);
-int		ft_check_repeat(t_node *stack, int nb);
+void	ft_check_value(char **argv, t_node **a);
+void	ft_check_repeat(t_node **stack);
+int		ft_nums_ok(char **nums);
 void	free_all(t_node **stack);
+void	ft_free_split(char **str);
 void	handle_error(t_node **a);
 
 //ordenar
-void	sort_two(t_node **a, t_node **b);
-void	sort_three(t_node **a, t_node **b);
+void	sort_two(t_node **a);
+void	sort_three(t_node **a);
 void	sort_four(t_node **a, t_node **b);
 void	sort_five(t_node **a, t_node **b);
 void	push_swap(t_node **a, t_node **b);

@@ -6,11 +6,30 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 17:20:49 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/08/07 13:36:26 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/08/12 13:30:06 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	free_all(t_node **stack)
+{
+	t_node	*aux;
+	t_node	*current;
+
+	if (!stack)
+		return ;
+	current = *stack;
+	while (current)
+	{
+		aux = current->next;
+		current->value = 0;
+		free(current);
+		current = aux;
+	}
+	free(stack);
+	*stack = NULL;
+}
 
 void	push_swap(t_node **a, t_node **b)
 {
@@ -18,11 +37,10 @@ void	push_swap(t_node **a, t_node **b)
 
 	size = ft_stack_size(*a);
 	ft_add_index(a);
-	show_stacks(a, b);
 	if (size < 3)
-		sort_two(a, b);
+		sort_two(a);
 	else if (size == 3)
-		sort_three(a, b);
+		sort_three(a);
 	else if (size == 4)
 		sort_four(a, b);
 	else if (size == 5)

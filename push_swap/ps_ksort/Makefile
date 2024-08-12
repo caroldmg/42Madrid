@@ -1,9 +1,8 @@
-CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
-CC = gcc
+CFLAGS = -Wall -Wextra -Werror -g3 #-fsanitize=address 
+CC = cc
 SRC = 	push_swap.c \
 		ps_stack_init.c \
 		ps_stack_utils.c \
-		ps_split.c \
 		ps_push.c \
 		ps_swap.c \
 		ps_reverse_rotate.c \
@@ -12,6 +11,7 @@ SRC = 	push_swap.c \
 		ps_sort.c \
 		ps_checks.c \
 		main.c \
+#		ps_split.c \
 
 OBJ			=	$(SRC:.c=.o)
 HEADER		=	push_swap.h

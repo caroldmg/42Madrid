@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 17:55:29 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/08/07 13:33:53 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/08/09 13:47:22 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ static void	ft_const_sort(t_node **a, t_node **b, int size)
 		}
 		else
 			ra(a);
-		show_stacks(a, b);
 	}
 }
 
@@ -90,6 +89,5 @@ void	common_sort(t_node **a, t_node **b, int size)
 			pa(a, b);
 			size--;
 		}
-		show_stacks(a, b);
 	}
 }

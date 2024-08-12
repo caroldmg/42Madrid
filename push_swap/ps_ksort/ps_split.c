@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 15:13:36 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/08/07 13:34:04 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/08/09 17:24:18 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	count_words(char *str, char c)
 	while (*str)
 	{
 		inside_word = 0;
-		while (*str == c && *str)
+		while (*str == c)
 			++str;
 		while (*str != c && *str)
 		{
@@ -50,7 +50,7 @@ static char	*get_next_word(char *str, char c)
 	while ((str[cursor + len] != c) && str[cursor + len])
 		++len;
 	next_str = malloc((size_t)len * sizeof(char) + 1);
-	if (NULL == next_str)
+	if (!next_str)
 		return (NULL);
 	while ((str[cursor] != c) && str[cursor])
 		next_str[i++] = str[cursor++];
@@ -69,14 +69,14 @@ char	**ft_split(char *str, char c)
 	if (!words_number)
 		exit(1);
 	vector_strings = malloc(sizeof(char *) * (size_t)(words_number + 2));
-	if (NULL == vector_strings)
+	if (!vector_strings)
 		return (NULL);
 	while (words_number-- >= 0)
 	{
-		if (0 == i)
+		if (i == 0)
 		{
 			vector_strings[i] = malloc(sizeof(char));
-			if (NULL == vector_strings[i])
+			if (!vector_strings[i])
 				return (NULL);
 			vector_strings[i++][0] = '\0';
 			continue ;

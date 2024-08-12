@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 14:37:55 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/08/07 17:28:20 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/08/12 16:26:56 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	ft_new_node(t_node **stack, int nb)
 		return ;
 	node->next = NULL;
 	node->value = nb;
-	if (!*stack)
+	if (!(*stack))
 	{
 		*stack = node;
 		node->prev = NULL;
