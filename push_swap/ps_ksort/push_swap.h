@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 17:27:08 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/08/12 16:57:53 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/08/13 17:23:41 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct s_node
 
 
 
-void	show_stacks(t_node **a, t_node **b);
+// void	show_stacks(t_node **a, t_node **b);
 
 //funciones de stack
 t_node	*ft_get_last_node(t_node *stack);
@@ -49,9 +49,10 @@ long	ft_atol(const char *str);
 void	ft_check_value(char **argv, t_node **a);
 void	ft_check_repeat(t_node **stack);
 int		ft_nums_ok(char **nums);
-void	free_all(t_node **stack);
+void	free_all(t_node **stack, int error_flag);
 void	ft_free_split(char **str);
 void	handle_error(t_node **a);
+void	error_msg(void);
 
 //ordenar
 void	sort_two(t_node **a);

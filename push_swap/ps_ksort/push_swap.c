@@ -6,13 +6,13 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 17:20:49 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/08/12 13:30:06 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/08/13 17:23:23 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	free_all(t_node **stack)
+void	free_all(t_node **stack, int error_flag)
 {
 	t_node	*aux;
 	t_node	*current;
@@ -27,7 +27,8 @@ void	free_all(t_node **stack)
 		free(current);
 		current = aux;
 	}
-	free(stack);
+	if (error_flag)
+		free(stack);
 	*stack = NULL;
 }
 
@@ -37,6 +38,7 @@ void	push_swap(t_node **a, t_node **b)
 
 	size = ft_stack_size(*a);
 	ft_add_index(a);
+	// show_stacks(a, b);
 	if (size < 3)
 		sort_two(a);
 	else if (size == 3)

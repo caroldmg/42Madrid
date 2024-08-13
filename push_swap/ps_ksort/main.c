@@ -6,40 +6,40 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 14:06:53 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/08/12 10:40:21 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/08/13 17:23:36 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 //TODO delete
-void	show_stacks(t_node **a, t_node **b)
-{
-	t_node	*node_a;
-	t_node	*node_b;
+// void	show_stacks(t_node **a, t_node **b)
+// {
+// 	t_node	*node_a;
+// 	t_node	*node_b;
 
-	node_a = *a;
-	node_b = *b;
-	printf("╭───────╥───────╮\n│   a\t║   b\t│\n╞═══════╬═══════╡\n");
-	while (node_a || node_b)
-	{
-		if (node_a)
-		{
-			printf("│ %i\t║", node_a->index);
-			node_a = node_a->next;
-		}
-		else
-			printf("│\t║");
-		if (node_b)
-		{
-			printf(" %i\t│\n", node_b->index);
-			node_b = node_b->next;
-		}
-		else
-			printf("\t│\n");
-	}
-	printf("╰───────╨───────╯\n");
-}
+// 	node_a = *a;
+// 	node_b = *b;
+// 	printf("╭───────╥───────╮\n│   a\t║   b\t│\n╞═══════╬═══════╡\n");
+// 	while (node_a || node_b)
+// 	{
+// 		if (node_a)
+// 		{
+// 			printf("│ %i\t║", node_a->index);
+// 			node_a = node_a->next;
+// 		}
+// 		else
+// 			printf("│\t║");
+// 		if (node_b)
+// 		{
+// 			printf(" %i\t│\n", node_b->index);
+// 			node_b = node_b->next;
+// 		}
+// 		else
+// 			printf("\t│\n");
+// 	}
+// 	printf("╰───────╨───────╯\n");
+// }
 
 // int	main(int argc, char **argv)
 // {
@@ -75,8 +75,10 @@ int	main(int argc, char **argv)
 	else if (argc >= 2)
 		a = stack_init(argv, &a);
 	if (stack_sorted(a))
-		return (free_all(&a), 0);
+		return (free_all(&a, 0), 0);
+	// show_stacks(&a, &b);
 	push_swap(&a, &b);
-	free_all(&a);
+	// show_stacks(&a, &b);
+	free_all(&a, 0);
 	return (0);
 }

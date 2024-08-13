@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:24:36 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/08/12 18:12:55 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/08/13 17:21:40 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,12 @@ void	ft_free_split(char **str)
 void	handle_error(t_node **a)
 {
 	if (a)
-		free_all(a);
+		free_all(a, 0);
+	error_msg();
+}
+
+void	error_msg(void)
+{
 	write(2, "Error\n", 6);
 	exit(1);
 }
@@ -101,7 +106,7 @@ static void	ft_check_split(char **argv, t_node **stack)
 	int		i;
 	int		j;
 
-	i = 0;
+	i = 1;
 	j = 0;
 	numbers = NULL;
 	while (argv[i])
@@ -111,7 +116,7 @@ static void	ft_check_split(char **argv, t_node **stack)
 		if (!ft_nums_ok(numbers))
 		{
 			ft_free_split(numbers);
-			handle_error(stack);
+			error_msg();;
 		}
 		else
 		{
