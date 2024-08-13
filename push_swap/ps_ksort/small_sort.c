@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 16:21:58 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/08/09 13:59:34 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/08/13 19:23:02 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,20 +75,40 @@ void	sort_four(t_node **a, t_node **b)
 
 void	sort_five(t_node **a, t_node **b)
 {
+	small_sort_helper(a);
+	pb(a, b);
+	small_sort_helper(a);
+	pb(a, b);
+	sort_three(a);
+	pa(a, b);
+	pa(a, b);
+}
+
+
+void	small_sort_helper(t_node **a)
+{
 	t_node	*min;
 	t_node	*current;
+	int i;
 
 	min = *a;
 	current = *a;
+	i = 0;
 	while (current)
 	{
 		if (current->index < min->index)
 			min = current;
 		current = current->next;
 	}
-	while ((*a) != min)
-		ra(a);
-	pb(a, b);
-	sort_four(a, b);
-	pa(a, b);
+	current = *a;
+	while (current && current != min) {
+		i++;
+		current = current->next;
+	}
+	while ((*a) != min) {
+		if (i > 2)	
+			rra(a);
+		else
+			ra(a);
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 17:27:08 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/08/13 17:23:41 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/08/13 19:20:55 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <limits.h>
 # include <stdio.h>
 # include "../libft/libft.h"
-//# include "../ft_printf/ft_printf.h"
 
 typedef struct s_node
 {
@@ -26,10 +25,6 @@ typedef struct s_node
 	struct s_node	*prev;
 	struct s_node	*next;
 }	t_node;
-
-
-
-
 
 // void	show_stacks(t_node **a, t_node **b);
 
@@ -59,6 +54,7 @@ void	sort_two(t_node **a);
 void	sort_three(t_node **a);
 void	sort_four(t_node **a, t_node **b);
 void	sort_five(t_node **a, t_node **b);
+void	small_sort_helper(t_node **a);
 void	push_swap(t_node **a, t_node **b);
 void	common_sort(t_node **a, t_node **b, int size);
 
