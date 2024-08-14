@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 16:21:58 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/08/13 19:23:02 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/08/14 16:14:50 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,6 @@ static t_node	*find_highest(t_node *a)
 		a = a->next;
 	}
 	return (high_node);
-}
-
-void	sort_two(t_node **a)
-{
-	if ((*a)->value > (*a)->next->value)
-		sa(a);
 }
 
 void	sort_three(t_node **a)
@@ -73,42 +67,51 @@ void	sort_four(t_node **a, t_node **b)
 		ra(a);
 }
 
-void	sort_five(t_node **a, t_node **b)
+void	small_sort_helper(t_node **a, t_node **b, t_node *current, t_node *min)
 {
-	small_sort_helper(a);
+	int		i;
+
+	current = *a;
+	i = 0;
+	while (current && current != min)
+	{
+		i++;
+		current = current->next;
+	}
+	while ((*a) != min)
+	{
+		if (i > 2)
+			rra(a);
+		else
+			ra(a);
+	}
 	pb(a, b);
-	small_sort_helper(a);
-	pb(a, b);
-	sort_three(a);
-	pa(a, b);
-	pa(a, b);
 }
 
-
-void	small_sort_helper(t_node **a)
+void	sort_five(t_node **a, t_node **b)
 {
 	t_node	*min;
 	t_node	*current;
-	int i;
 
 	min = *a;
 	current = *a;
-	i = 0;
 	while (current)
 	{
 		if (current->index < min->index)
 			min = current;
 		current = current->next;
 	}
+	small_sort_helper(a, b, current, min);
+	min = *a;
 	current = *a;
-	while (current && current != min) {
-		i++;
+	while (current)
+	{
+		if (current->index < min->index)
+			min = current;
 		current = current->next;
 	}
-	while ((*a) != min) {
-		if (i > 2)	
-			rra(a);
-		else
-			ra(a);
-	}
+	small_sort_helper(a, b, current, min);
+	sort_three(a);
+	pa(a, b);
+	pa(a, b);
 }

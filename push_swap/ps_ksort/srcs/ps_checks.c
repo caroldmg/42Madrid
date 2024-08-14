@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 16:12:35 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/08/12 17:05:18 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/08/14 15:54:49 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,32 +33,58 @@ static int	ft_check_len(char *nums)
 	return (1);
 }
 
+// void	ft_check_value(char **argv, t_node **a)
+// {
+// 	int	i;
+// 	int	j;
+// 	int	nums;
+
+// 	i = 1;
+// 	j = 0;
+// 	nums = 0;
+// 	while (argv[i])
+// 	{
+// 		if (argv[i][0] == '\0')
+// 			handle_error(a);
+// 		while (argv[i][j])
+// 		{
+// 			if (!(ft_isdigit(argv[i][j])) && (argv[i][j] != ' ')
+// 			&& (argv[i][j] != '-') && (argv[i][j] != '+'))
+// 				handle_error(a);
+// 			if (ft_isdigit(argv[i][j]))
+// 				nums++;
+// 			j++;
+// 		}
+// 		if (nums == 0)
+// 			handle_error(a);
+// 		j = 0;
+// 		nums = 0;
+// 		i++;
+// 	}
+// }
+
 void	ft_check_value(char **argv, t_node **a)
 {
 	int	i;
 	int	j;
-	int	nums;
 
 	i = 1;
-	j = 0;
-	nums = 0;
 	while (argv[i])
 	{
 		if (argv[i][0] == '\0')
 			handle_error(a);
+		j = 0;
 		while (argv[i][j])
 		{
-			if (!(ft_isdigit(argv[i][j])) && (argv[i][j] != ' ')
-			&& (argv[i][j] != '-') && (argv[i][j] != '+'))
+			if (!ft_isdigit(argv[i][j]) && argv[i][j] != ' '
+				&& argv[i][j] != '-' && argv[i][j] != '+')
 				handle_error(a);
 			if (ft_isdigit(argv[i][j]))
-				nums++;
+				break ;
 			j++;
 		}
-		if (nums == 0)
+		if (!ft_isdigit(argv[i][j]))
 			handle_error(a);
-		j = 0;
-		nums = 0;
 		i++;
 	}
 }
