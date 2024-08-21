@@ -32,3 +32,4 @@ bool is_stable(double c, int max_iterations) {
     }
     return true;
 }
+

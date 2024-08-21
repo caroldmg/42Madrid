@@ -10,30 +10,67 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+// #include "fractol.h"
 
-void	ft_error(void)
+// void	ft_error(void)
+// {
+// 	ft_printf("%s", mlx_strerror(mlx_errno));
+// 	exit(EXIT_FAILURE);
+// }
+
+// int	main (int argc, char **argv)
+// {
+// 	mlx_t	*ptr_mlx;
+
+// 	if (argc == 1 || argv[1][0] == NULL || !valid_fractol(argv))
+// 		return (EXIT_FAILURE);
+
+// 	ptr_mlx = mlx_init(WIDTH, HEIGHT, "fractol", true);
+// 	if (!ptr_mlx)
+// 		ft_error();
+
+
+// 	// Register a hook and pass mlx as an optional param.
+// 	// NOTE: Do this before calling mlx_loop!
+// 	//mlx_loop_hook(mlx, ft_hook, mlx);
+// 	mlx_loop(ptr_mlx);
+// 	mlx_terminate(ptr_mlx);
+// 	return (EXIT_SUCCESS);
+// }
+
+
+typedef struct s_complex_num
 {
-	ft_printf("%s", mlx_strerror(mlx_errno));
-	exit(EXIT_FAILURE);
-}
+	double	real;
+	double	im;
+}	t_complex_num;
 
-int	main (int argc, char **argv)
+#include <stdio.h>
+
+int	main()
 {
-	mlx_t	*ptr_mlx;
+	t_complex_num z;
+	t_complex_num c;
+	double temp_real;
 
-	if (argc == 1 || argv[1][0] == NULL || !valid_fractol(argv))
-		return (EXIT_FAILURE);
+	z.real = 0;
+	z.im = 0;
 
-	ptr_mlx = mlx_init(WIDTH, HEIGHT, "fractol", true);
-	if (!ptr_mlx)
-		ft_error();
+	c.real = 5;
+	c.im = 2;
 
+	for (int i = 0; i < 3; ++i)
+	{
+		// z = z^2 + c --> (a+b)2 = a^2 + b^2 + 2ab,
+		// pero im^2 siempre es -1
+		// x^2 - y^2 + 2xy
+		temp_real = (z.real * z.real) - (z.im * z.im);
+		z.im = 2 * z.real * z.im;
+		z.real = temp_real;
 
-	// Register a hook and pass mlx as an optional param.
-	// NOTE: Do this before calling mlx_loop!
-	//mlx_loop_hook(mlx, ft_hook, mlx);
-	mlx_loop(ptr_mlx);
-	mlx_terminate(ptr_mlx);
-	return (EXIT_SUCCESS);
+		z.real += c.real;
+		z.im += c.im;
+
+		printf("iteration n -> %d \t real %f imaginary %f \n", i, z.real, z.im);
+	}
 }

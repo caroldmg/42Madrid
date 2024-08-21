@@ -18,6 +18,12 @@
 #define WIDTH 256
 #define HEIGHT 256
 
+typedef struct s_complex_num
+{
+	double	real;
+	double	im;
+}	t_complex_num;
+
 bool	valid_fractol(char *name);
 void	ft_wrong_arg(void);
 void	ft_error(void);
