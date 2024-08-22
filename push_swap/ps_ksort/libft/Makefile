@@ -49,25 +49,29 @@ BONUS = ft_lstnew_bonus.c \
 OBJECTS = $(SOURCE:.c=.o)
 BOBJECTS = $(BONUS:.c=.o)
 NAME = libft.a
+MAKEFLAGS = --no-print-directory
 
 all: $(NAME)
 
 $(NAME): $(OBJECTS)
-	ar rcs $(NAME) $(OBJECTS)
+	@ar rcs $(NAME) $(OBJECTS)
 
 .PHONY: all bonus clean fclean re
 
 bonus: $(BOBJECTS)
 
+$(OBJECTS):
+	@${CC} ${CFLAGS} -c $(SOURCE)
+
 $(BOBJECTS):
-	${CC} ${CFLAGS} -c $(BONUS)
-	ar -rcs ${NAME} ${BOBJECTS}
+	@${CC} ${CFLAGS} -c $(BONUS)
+	@ar -rcs ${NAME} ${BOBJECTS}
 
 clean:
-	rm -f $(OBJECTS) $(BOBJECTS)
+	@rm -f $(OBJECTS) $(BOBJECTS)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
 

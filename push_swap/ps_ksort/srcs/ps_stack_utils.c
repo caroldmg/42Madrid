@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 14:37:55 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/08/12 16:26:56 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/08/16 12:46:00 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ void	ft_new_node(t_node **stack, int nb)
 	}
 }
 
-// cuántos nodos tienen menor index que el nodo actual
 void	ft_add_index(t_node **stack)
 {
 	t_node	*current;

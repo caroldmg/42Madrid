@@ -3,44 +3,61 @@
 
 NAME := fractol
 CFLAGS := -Wextra -Wall -Werror #-Wunreachable-code -Ofast
+
+MAKEFLAGS = --no-print-directory
+
 LIBMLX := ./MLX42/
-LIBFT := ./libft/
-PRINTF := ./ft_printf/
+LIBFT_DIR := ./libft/
+PRINTF_DIR := ./ft_printf/
 
-HEADERS	:= -I ./include -I $(LIBMLX)/include
-LIBS	:= $(LIBMLX)build/libmlx42.a -ldl -lglfw -pthread -lm \
-			$(LIBFT)libft.a \
-			$(PRINTF)libftprintf.a
+HEADERS	:=	 \
+			 -I $(LIBFT_DIR) $(OBJ) $(LIBFT) \
+			 -I $(PRINTF_DIR) $(OBJ) $(PRINTF) \
+			 -I $(LIBMLX)include/MLX42 \
+			 
 
-SRCS := key_hooks.c \
+MLX	:= $(LIBMLX)build/libmlx42.a
+MLX_FLAGS	:= -ldl -lglfw -pthread -lm 
+
+
+LIBFT :=	$(LIBFT_DIR)libft.a 
+
+PRINTF :=	$(PRINTF_DIR)libftprintf.a
+
+SRCS := key_hooks.c 
+
 OBJS := ${SRCS:.c=.o}
 
-all: libmlx libft ft_printf $(NAME)
+all: $(MLX) $(LIBFT) $(PRINTF) $(NAME)
 
-libmlx:
-	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
+$(MLX):
+	cmake $(LIBMLX) -B $(LIBMLX)build && make -C $(LIBMLX)build -j4 
 
-libft:
-	@make -C $(LIBFT)
+$(LIBFT):
+	$(MAKE) -C $(LIBFT_DIR)
 
-ft_printf:
-	@make -C $(PRINTF)
+$(PRINTF):
+	$(MAKE) -C $(PRINTF_DIR)
 
 
 %.o: %.c
-	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS)
+	$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS)
 
-$(NAME): $(OBJS) libft ft_printf
-	@$(CC) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME)
+$(NAME): $(OBJS) $(LIBFT) $(PRINTF)
+	$(CC) $(OBJS) $(MLX) $(LIBFT) $(PRINTF) $(MLX_FLAGS) -o $(NAME)
 
 clean:
 	@rm -rf $(OBJS)
 	@rm -rf $(LIBMLX)/build
-	@$(MAKE) -C $(LIBFT) clean
-	@$(MAKE) -C $(PRINTF) clean
+	@$(MAKE) -C $(LIBFT_DIR) clean
+	@$(MAKE) -C $(PRINTF_DIR) clean
 
 fclean: clean
 	@rm -rf $(NAME)
+	@rm -rf $(OBJS)
+	@rm -rf $(LIBMLX)/build
+	@$(MAKE) -C $(LIBFT_DIR) fclean
+	@$(MAKE) -C $(PRINTF_DIR) fclean
 
 re: clean all
 

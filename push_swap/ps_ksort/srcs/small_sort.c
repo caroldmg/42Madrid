@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 16:21:58 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/08/14 16:14:50 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/08/16 12:21:02 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,6 @@ void	sort_four(t_node **a, t_node **b)
 	pb(a, b);
 	sort_three(a);
 	pa(a, b);
-	if (!stack_sorted(*a))
-		ra(a);
 }
 
 void	small_sort_helper(t_node **a, t_node **b, t_node *current, t_node *min)

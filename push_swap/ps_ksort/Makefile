@@ -4,6 +4,7 @@ HEADER		=	-I $(INC)
 
 CFLAGS = -Wall -Wextra -Werror -g3 $(HEADER) #-fsanitize=address 
 CC = cc
+MAKEFLAGS = --no-print-directory
 
 # Directories
 LIBFT_DIR = libft/
@@ -11,9 +12,9 @@ SRC_DIR		= srcs/
 INC			= ./includes
 
 SRC = 	$(SRC_DIR)commands/push.c \
-			$(SRC_DIR)commands/reverse_rotate.c \
-			$(SRC_DIR)commands/rotate.c \
-			$(SRC_DIR)commands/swap.c \
+		$(SRC_DIR)commands/reverse_rotate.c \
+		$(SRC_DIR)commands/rotate.c \
+		$(SRC_DIR)commands/swap.c \
 		$(SRC_DIR)push_swap.c \
 		$(SRC_DIR)ps_stack_init.c \
 		$(SRC_DIR)ps_stack_utils.c \
@@ -42,9 +43,11 @@ $(NAME): $(OBJ) $(LIBFT)
 clean:
 	@$(MAKE) -C $(LIBFT_DIR) clean
 	@rm -f $(OBJ)
+	@echo limpio
 
-fclean: clean
+fclean:
 	@$(MAKE) -C $(LIBFT_DIR) fclean
-	@rm -f $(NAME)
+	@rm -f $(NAME) $(OBJ)
+	@echo f-limpio
 
 re: fclean all

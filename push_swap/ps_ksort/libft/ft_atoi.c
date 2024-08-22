@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 17:23:35 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/02/13 10:56:32 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/08/16 12:50:07 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,3 @@ int	ft_atoi(const char *str)
 	}
 	return ((int)nbr * sign);
 }
-/*
-#include <stdio.h>
-
-int	main(void)
-{
-	char	*num = "188890";
-
-	printf("%d \n", atoi(num));
-	printf("%d \n", ft_atoi(num));
-}
-*/

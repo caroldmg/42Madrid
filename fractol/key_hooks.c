@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:16:53 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/08/20 16:27:04 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/08/22 15:12:51 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	ft_keyhook(mlx_key_data_t keydata, void *param)
 {
+	(void)param;
+	(void)keydata;
 	if (keydata.key == MLX_KEY_J && keydata.action == MLX_PRESS)
 		ft_printf("Hola ");
 	if (keydata.key == MLX_KEY_K && keydata.action == MLX_RELEASE)
@@ -25,6 +27,7 @@ void	ft_keyhook(mlx_key_data_t keydata, void *param)
 int	main(void)
 {
 	mlx_t* mlx;
+	ft_printf("%i",ft_atoi("89"));
 
 	if (!(mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true)))
 		return (EXIT_FAILURE);
