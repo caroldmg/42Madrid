@@ -2,7 +2,7 @@
 # 	-ldl -lglfw(3) -pthread -lm
 
 NAME := fractol
-CFLAGS := -Wextra -Wall -Werror #-Wunreachable-code -Ofast
+CFLAGS := -Wextra -Wall -Werror -g3 #-Wunreachable-code -Ofast
 
 MAKEFLAGS = --no-print-directory
 
@@ -24,7 +24,12 @@ LIBFT :=	$(LIBFT_DIR)libft.a
 
 PRINTF :=	$(PRINTF_DIR)libftprintf.a
 
-SRCS := key_hooks.c 
+SRCS := 	complex_maths.c \
+			draw.c \
+			fractal_init.c \
+			mandelbrot.c \
+			parse.c \
+			main.c \
 
 OBJS := ${SRCS:.c=.o}
 
