@@ -6,23 +6,23 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 16:14:53 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/08/28 17:32:56 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/08/29 15:33:48 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-double	abs_complex_val(t_complex_num nb)
+double	abs_complex_val(t_complex_num *nb)
 {
 	double result;
 
 	result = 0;
-	if (nb.x < 0)
-		nb.x *= -1;
-	result += nb.x;
-	if (nb.y < 0)
-		nb.y *= -1;
-	result += nb.y;
+	if (nb->x < 0)
+		nb->x *= -1;
+	result += nb->x;
+	if (nb->y < 0)
+		nb->y *= -1;
+	result += nb->y;
 	return (result);
 }
 
@@ -46,16 +46,16 @@ t_complex_num	complex_sum(t_complex_num z, t_complex_num c)
 	return (result);
 }
 
-t_complex_num	complex_mandel_formula(t_complex_num z, t_complex_num c)
+t_complex_num	*complex_mandel_formula(t_complex_num *z, t_complex_num *c)
 {
 	double	temp_x;
 
-	temp_x = (z.x * z.x) - (z.y * z.y);
-	z.y = 2 * z.x * z.y;
-	z.x = temp_x;
+	temp_x = (z->x * z->x) - (z->y * z->y);
+	z->y = 2 * z->x * z->y;
+	z->x = temp_x;
 
-	z.x += c.x;
-	z.y += c.y;
+	z->x += c->x;
+	z->y += c->y;
 	return (z);
 }
 

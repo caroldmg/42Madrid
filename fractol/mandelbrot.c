@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 16:31:41 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/08/28 17:47:15 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/08/29 15:42:54 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,15 @@ bool	is_stable(double c, int max_iterations)
     return true;
 }
 
-int	mandelbrot(int max, t_complex_num z, t_complex_num c)
-{
-	if (max > 0)
-		return (mandelbrot(max -1, complex_mandel_formula(z, c), c));
-	else if (abs_complex_val(z) > 2)
-		return (0);
-	else
-		return (1);
-}
+// int	mandelbrot(int max, t_complex_num z, t_complex_num c)
+// {
+// 	if (max > 0)
+// 		return (mandelbrot(max -1, complex_mandel_formula(z, c), c));
+// 	else if (abs_complex_val(z) > 2)
+// 		return (0);
+// 	else
+// 		return (1);
+// }
 
 
 
