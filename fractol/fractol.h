@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 14:47:25 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/08/29 15:40:05 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/09/06 18:24:56 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,27 @@
 # include <stdio.h>
 # include <math.h>
 
-# define WIDTH 800
-# define HEIGHT 800
-# define BLACK 0
-# define WHITE 255
+# define WIDTH 1000
+# define HEIGHT 1000
+
+/*
+ * COLORS
+*/
+#define BLACK       0x000000  // RGB(0, 0, 0)
+#define WHITE       0xFFFFFF  // RGB(255, 255, 255)
+#define RED         0xFF0000  // RGB(255, 0, 0)
+#define GREEN       0x00FF00  // RGB(0, 255, 0)
+#define BLUE        0x0000FF  // RGB(0, 0, 255)
+
+// Psychedelic colors
+#define MAGENTA_BURST   0xFF00FF  // A vibrant magenta
+#define LIME_SHOCK      0xCCFF00  // A blinding lime
+#define NEON_ORANGE     0xFF6600  // A blazing neon orange
+#define PSYCHEDELIC_PURPLE 0x660066  // A deep purple
+#define AQUA_DREAM      0x33CCCC  // A bright turquoise
+#define HOT_PINK        0xFF66B2  // As the name suggests!
+#define ELECTRIC_BLUE   0x0066FF  // A radiant blue
+#define LAVA_RED        0xFF3300  // A bright, molten red
 
 typedef struct s_complex_num
 {
@@ -39,6 +56,7 @@ typedef struct s_fractal
 	int			max_iter;
 	t_complex_num	*z_values;
 	t_complex_num	*c_values;
+	// HOOKS AND EVENTS // TODO
 }	t_fractal;
 
 /*
@@ -67,10 +85,11 @@ t_complex_num	*complex_mandel_formula(t_complex_num *z, t_complex_num *c);
 t_complex_num	complex_sq(t_complex_num nb);
 t_complex_num	complex_sum(t_complex_num z, t_complex_num c);
 double			ft_scale(double unscaled, double new_min, double new_max, double old_max);
-double			abs_complex_val(t_complex_num *nb);
+// double			abs_complex_val(t_complex_num *nb);
+double	escape_comparison(t_fractal *fractal);
 
 //IMAGE
-void	draw_pixel(int x, int y, t_fractal *fractal);
+// void	draw_pixel(int x, int y, t_fractal *fractal);
 void	fractal_render(t_fractal *fractal);
 
 #endif

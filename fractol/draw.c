@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:26:08 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/09/04 12:46:53 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/09/06 18:26:21 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,17 @@
 //  return (0);
 // }
 
-static void	ft_put_pixel(int x, int y, int color, mlx_image_t *img)
-{
-	int offset;
+// static void	ft_put_pixel(int x, int y, int color, mlx_image_t *img)
+// {
+// 	int offset;
 	
-	offset = (y * img->width) + (x * (4/8));
-	*(img->pixels + offset) = color;
-}
+// 	offset = (y * img->width) + (x * (4/8));
+// 	*(img->pixels + offset) = color;
+// }
 
 // RENDER
 
-void	draw_pixel(int x, int y, t_fractal *fractal)
+static void	draw_pixel(int x, int y, t_fractal *fractal)
 {
 	int				i;
 	int				color;
@@ -65,15 +65,18 @@ void	draw_pixel(int x, int y, t_fractal *fractal)
 		// z = z^2 + c 
 		fractal->z_values = complex_mandel_formula(fractal->z_values, fractal->c_values);
 	
-		if (abs_complex_val(fractal->z_values) > 2) //escapa del set
+		// if (abs_complex_val(fractal->z_values) > 2) //escapa del set
+		if (escape_comparison(fractal)) 
 		{
-			color = ft_scale(i, 0, 255, fractal->max_iter);
-			ft_put_pixel(x, y, color, fractal->image);
+			color = ft_scale(i, BLACK, WHITE, fractal->max_iter);
+			// ft_put_pixel(x, y, color, fractal->image);
+			mlx_put_pixel(fractal->image, x, y, color);
 			return ;
 		}
 		++i;
 	}
-	ft_put_pixel(x, y, BLACK, fractal->image);
+	// ft_put_pixel(x, y, BLACK, fractal->image);
+	mlx_put_pixel(fractal->image, x, y, HOT_PINK);
 }
 
 void	fractal_render(t_fractal *fractal)
@@ -94,7 +97,6 @@ void	fractal_render(t_fractal *fractal)
 		}
 		y++;
 	}
-	if (mlx_image_to_window(fractal->mlx, fractal->image, x, y) < 0)
-		ft_error();
+	mlx_image_to_window(fractal->mlx, fractal->image, 0, 0);
 	
 }

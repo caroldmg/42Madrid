@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 16:12:08 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/09/04 12:41:14 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/09/06 18:24:34 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	fract_data_init(t_fractal *fractal)
 {
-	fractal->max_iter = 42;
+	fractal->max_iter = 142;
 	fractal->c_values = malloc(sizeof(t_complex_num));
 	if (!fractal->c_values)
 	{
@@ -53,5 +53,6 @@ void	fractal_init(t_fractal *fractal)
 		free(fractal);
 		ft_error();
 	}
+	// events_init() TODO
 }
 

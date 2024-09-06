@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 14:43:38 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/08/29 15:47:50 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/09/06 15:40:39 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int	main(int argc, char **argv)
 	fractal = NULL;
 	//  if (parse(argc, argv) != 0)
 	//  	return (1);
+
 	if ((argc == 2 && (ft_strcmp(argv[1], "mandel") == 0) ) || (argc == 4 && (ft_strcmp(argv[1], "julia") == 0)))
 	{
 		fractal = malloc(sizeof(t_fractal));

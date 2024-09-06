@@ -6,25 +6,25 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 16:14:53 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/08/29 15:33:48 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/09/06 16:54:01 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-double	abs_complex_val(t_complex_num *nb)
-{
-	double result;
+// double	abs_complex_val(t_complex_num *nb)
+// {
+// 	double result;
 
-	result = 0;
-	if (nb->x < 0)
-		nb->x *= -1;
-	result += nb->x;
-	if (nb->y < 0)
-		nb->y *= -1;
-	result += nb->y;
-	return (result);
-}
+// 	result = 0;
+// 	if (nb->x < 0)
+// 		nb->x *= -1;
+// 	result += nb->x;
+// 	if (nb->y < 0)
+// 		nb->y *= -1;
+// 	result += nb->y;
+// 	return (result);
+// }
 
 t_complex_num	complex_sq(t_complex_num nb)
 {
@@ -44,6 +44,12 @@ t_complex_num	complex_sum(t_complex_num z, t_complex_num c)
 	result.y = z.y + c.y;
 
 	return (result);
+}
+
+double	escape_comparison(t_fractal *fractal)
+{
+	return ((fractal->z_values->x * fractal->z_values->x) + (fractal->z_values->y * fractal->z_values->y) > 4);
+	//fractal->escape_value = 4
 }
 
 t_complex_num	*complex_mandel_formula(t_complex_num *z, t_complex_num *c)
