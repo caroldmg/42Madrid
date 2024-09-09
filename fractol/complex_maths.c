@@ -6,49 +6,37 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 16:14:53 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/09/06 16:54:01 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/09/09 17:35:27 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-// double	abs_complex_val(t_complex_num *nb)
+// t_complex_num	complex_sq(t_complex_num nb)
 // {
-// 	double result;
+// 	double	temp_x;
 
-// 	result = 0;
-// 	if (nb->x < 0)
-// 		nb->x *= -1;
-// 	result += nb->x;
-// 	if (nb->y < 0)
-// 		nb->y *= -1;
-// 	result += nb->y;
+// 	temp_x = (nb.x * nb.x) - (nb.y * nb.y);
+// 	nb.y = 2 * nb.x * nb.y;
+// 	nb.x = temp_x;
+// 	return (nb);
+// }
+
+// t_complex_num	complex_sum(t_complex_num z, t_complex_num c)
+// {
+// 	t_complex_num	result;
+
+// 	result.x = z.x + c.x;
+// 	result.y = z.y + c.y;
+
 // 	return (result);
 // }
 
-t_complex_num	complex_sq(t_complex_num nb)
-{
-	double	temp_x;
 
-	temp_x = (nb.x * nb.x) - (nb.y * nb.y);
-	nb.y = 2 * nb.x * nb.y;
-	nb.x = temp_x;
-	return (nb);
-}
-
-t_complex_num	complex_sum(t_complex_num z, t_complex_num c)
-{
-	t_complex_num	result;
-
-	result.x = z.x + c.x;
-	result.y = z.y + c.y;
-
-	return (result);
-}
 
 double	escape_comparison(t_fractal *fractal)
 {
-	return ((fractal->z_values->x * fractal->z_values->x) + (fractal->z_values->y * fractal->z_values->y) > 4);
+	return ((fractal->z_values->x * fractal->z_values->x) + (fractal->z_values->y * fractal->z_values->y) > fractal->escape);
 	//fractal->escape_value = 4
 }
 

@@ -2,7 +2,7 @@
 # 	-ldl -lglfw(3) -pthread -lm
 
 NAME := fractol
-CFLAGS := -g3 -Wextra -Wall -Werror  #-Wunreachable-code -Ofast
+CFLAGS := -g3 -Wextra -Wall #-Werror  #-Wunreachable-code -Ofast
 
 MAKEFLAGS = --no-print-directory
 
@@ -28,8 +28,10 @@ SRCS := 	complex_maths.c \
 			draw.c \
 			fractal_init.c \
 			mandelbrot.c \
-			parse.c \
 			main.c \
+			parse.c \
+
+# SRCS := 	key_hooks.c
 
 OBJS := ${SRCS:.c=.o}
 

@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 14:43:38 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/09/06 15:40:39 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/09/09 18:43:17 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,12 @@ int	main(int argc, char **argv)
 	if ((argc == 2 && (ft_strcmp(argv[1], "mandel") == 0) ) || (argc == 4 && (ft_strcmp(argv[1], "julia") == 0)))
 	{
 		fractal = malloc(sizeof(t_fractal));
-		fractal_init(fractal);
+		fractal_init(fractal, argv);
 		printf("ha terminado el fract init \n");
 		
 		fractal_render(fractal);
+		// mlx_scroll_hook(fractal->mlx, ft_scroll_zoom, NULL);
+		// mlx_key_hook(fractal->mlx, &ft_keyhook, fractal);
 		mlx_loop(fractal->mlx);
 		return (0);
 	}
