@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 14:47:25 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/09/09 18:38:19 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/09/10 14:21:31 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ bool	valid_fractol(char *name);
 void	ft_wrong_arg(void);
 void	ft_error(void);
 int		parse(int argc, char **argv);
-void	fractal_init(t_fractal *fractal);
+void	fractal_init(t_fractal *fractal, char **argv);
 
 //maths 
 t_complex_num	*complex_mandel_formula(t_complex_num *z, t_complex_num *c);

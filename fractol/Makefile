@@ -2,7 +2,7 @@
 # 	-ldl -lglfw(3) -pthread -lm
 
 NAME := fractol
-CFLAGS := -g3 -Wextra -Wall #-Werror  #-Wunreachable-code -Ofast
+CFLAGS := -g3 -Wextra -Wall -Werror  #-Wunreachable-code -Ofast
 
 MAKEFLAGS = --no-print-directory
 

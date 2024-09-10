@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 16:12:08 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/09/09 18:47:39 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/09/10 18:29:16 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,18 @@
 		fractal->max_iter -= 10;
 	fractal_render(fractal);
 } */
-static int	julia_init(t_fractal *fractal, char **argv)
+static void	julia_init(t_fractal *fractal, char **argv)
 {
-	fractal->c_values->x = atodbl(argv[2]);
-	fractal->c_values->y = atodbl(argv[3]);
+	fractal->c_values->x = ft_atodbl(argv[2]);
+	fractal->c_values->y = ft_atodbl(argv[3]);
+	// printf("c value x --> %f, c value y --> %f, \n", fractal->c_values->x, fractal->c_values->y);
 }
 
 
 static int	fract_data_init(t_fractal *fractal, char **argv)
 {
 	fractal->name = argv[1];
-	fractal->max_iter = 142;
+	fractal->max_iter = 42;
 	fractal->escape = 4;
 	fractal->shift_x = 0.0;
 	fractal->shift_y = 0.0;
@@ -56,6 +57,7 @@ static int	fract_data_init(t_fractal *fractal, char **argv)
 	}
 	if (ft_strcmp(fractal->name, "julia") == 0)
 		julia_init(fractal, argv);
+	printf("c value x --> %f, c value y --> %f, \n", fractal->c_values->x, fractal->c_values->y);
 	fractal->z_values = malloc(sizeof(t_complex_num));
 	if (!fractal->z_values)
 	{
