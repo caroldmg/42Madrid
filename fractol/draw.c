@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:26:08 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/09/10 18:48:21 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/09/12 20:07:40 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,32 +24,28 @@ static void	draw_pixel(int x, int y, t_fractal *fractal)
 	int				color;
 
 	i = 0;
+	fractal->z_values->x = (ft_scale(x, -2 , +2, WIDTH) * fractal->zoom) + fractal->shift_x;
+	fractal->z_values->y = (ft_scale(y, +2 , -2, HEIGHT) * fractal->zoom) + fractal->shift_y;
 
-	// fractal->z_values->x = 0.0;
-	// fractal->z_values->y = 0.0;
-	
-	fractal->z_values->x = (ft_scale(x, -2, +2, WIDTH) * fractal->zoom);
-	fractal->z_values->y = (ft_scale(y, +2, -2, HEIGHT) * fractal->zoom);
-
-	if (ft_strcmp(fractal->name, "mandel") == 0)
+	if (fractal->name == mandel)
 		mandel_c(fractal);
 
 	while (i < fractal->max_iter)
 	{	
 		fractal->z_values = complex_mandel_formula(fractal->z_values, fractal->c_values);
+		//  printf("x --> %f \ny --> %f \n", fractal->c_values->x, fractal->c_values->y);
 	
 		if (escape_comparison(fractal)) 
 		{
-			color = ft_scale(i, WHITE, BLACK, fractal->max_iter);
+			color = fractal->color * i;
 			mlx_put_pixel(fractal->image, x, y, color);
 			return ;
 		}
 		++i;
 	}
-	mlx_put_pixel(fractal->image, x, y, HOT_PINK);
+	//printf("hola");
+	mlx_put_pixel(fractal->image, x, y, BLACK);
 }
-
-
 
 void	fractal_render(t_fractal *fractal)
 {

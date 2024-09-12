@@ -26,10 +26,10 @@ PRINTF :=	$(PRINTF_DIR)libftprintf.a
 
 SRCS := 	complex_maths.c \
 			draw.c \
-			fractal_init.c \
-			mandelbrot.c \
+			init.c \
 			main.c \
-			parse.c \
+			hooks.c \
+			ft_errors.c \
 
 # SRCS := 	key_hooks.c
 

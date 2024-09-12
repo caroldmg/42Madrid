@@ -1,8 +1,0 @@
-{
-	"files.associations": {
-		"fractol.h": "c",
-		"ft_printf.h": "c",
-		"mlx42_int.h": "c"
-	},
-	"makefile.configureOnOpen": false
-}

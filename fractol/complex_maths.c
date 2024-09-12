@@ -6,33 +6,11 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 16:14:53 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/09/09 17:35:27 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/09/12 12:36:05 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-// t_complex_num	complex_sq(t_complex_num nb)
-// {
-// 	double	temp_x;
-
-// 	temp_x = (nb.x * nb.x) - (nb.y * nb.y);
-// 	nb.y = 2 * nb.x * nb.y;
-// 	nb.x = temp_x;
-// 	return (nb);
-// }
-
-// t_complex_num	complex_sum(t_complex_num z, t_complex_num c)
-// {
-// 	t_complex_num	result;
-
-// 	result.x = z.x + c.x;
-// 	result.y = z.y + c.y;
-
-// 	return (result);
-// }
-
-
 
 double	escape_comparison(t_fractal *fractal)
 {
