@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 16:12:08 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/09/12 20:05:47 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/09/13 18:33:11 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,9 @@ static void	julia_init(t_fractal *fractal, char **argv)
 	{
 		fractal->c_values->x = 0.364052;
 		fractal->c_values->y = -0.158;
-		printf("julia\n");
 	}
-	// printf("x --> %f \ny --> %f \n", fractal->c_values->x, fractal->c_values->y);
 	fractal->c_original->x = fractal->c_values->x;
 	fractal->c_original->y = fractal->c_values->y;
-	// printf("x --> %f \ny --> %f \n", fractal->c_original->x, fractal->c_original->y);
 }
 
 void	julia_random(t_fractal *fractal)
@@ -46,7 +43,6 @@ void	julia_random(t_fractal *fractal)
 		time_y--;
 	while (time_y < 0)
 		time_y++;
-	//printf("time_x1 --> %f \ntime_y --> %f \n", time_x, time_y);
 	fractal->c_values->x = time_x * 2 - 1;
 	fractal->c_values->y = time_y * 2 - 1;
 	rand();// entre 0 y MAX_INT
@@ -66,14 +62,14 @@ void	fract_name(t_fractal *fractal, char *name, int argc)
 		ft_wrong_arg();
 }
 
-static int	fract_data_init(t_fractal *fractal, char **argv)
+static int	fract_jm_init(t_fractal *fractal, char **argv)
 {
-	fractal->max_iter = 2;
+	fractal->max_iter = 42;
 	fractal->escape = 4;
 	fractal->shift_x = 0.0;
 	fractal->shift_y = 0.0;
 	fractal->zoom = 1.0;
-	fractal->color = MAGENTA_BURST;
+	fractal->color = SUPER_YELLOW;
 	fractal->c_values = malloc(sizeof(t_complex_num));
 	if (!fractal->c_values)
 	{
@@ -83,7 +79,6 @@ static int	fract_data_init(t_fractal *fractal, char **argv)
 	fractal->c_original = malloc(sizeof(t_complex_num));
 	if (!fractal->c_original)
 	{
-		ft_printf("no malloc\n");
 		mlx_terminate(fractal->mlx);
 		return (1);
 	}
@@ -101,8 +96,28 @@ static int	fract_data_init(t_fractal *fractal, char **argv)
 	return (0);
 }
 
+static int	fract_barnsley_init(t_fractal *fractal)
+{
+	fractal->max_iter = 0;
+	fractal->escape = 0;
+	fractal->color = FERN;
+	fractal->shift_x = 0.0;
+	fractal->shift_y = 0.0;
+	fractal->zoom = 1.0;
+	fractal->c_original = NULL;
+	fractal->c_values = NULL;
+	if (!fractal->z_values)
+	{
+		mlx_terminate(fractal->mlx);
+		return (1);
+	}
+	return (0);
+}
+
 void	fractal_init(t_fractal *fractal, char **argv)
 {
+	int data_init;
+
 	fractal->mlx = mlx_init(WIDTH, HEIGHT, "fractol", true);
 	if (!fractal->mlx)
 		ft_error();
@@ -118,7 +133,11 @@ void	fractal_init(t_fractal *fractal, char **argv)
 		mlx_terminate(fractal->mlx);
 		ft_error();
 	}
-	if (fract_data_init(fractal, argv))
+	if (fractal->name == barnsley)
+		data_init = fract_barnsley_init(fractal);
+	else
+		data_init = fract_jm_init(fractal, argv);
+	if (data_init == 1)
 	{
 		free(fractal);
 		ft_error();

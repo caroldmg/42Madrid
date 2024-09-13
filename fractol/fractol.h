@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 14:47:25 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/09/12 20:05:39 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/09/13 18:37:24 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,20 +42,30 @@
 # define ELECTRIC_BLUE   0x0066FFFF  // A radiant blue
 # define LAVA_RED        0xFF3300FF // A bright, molten red
 # define SUPER_YELLOW	0xFCBE11FF
+# define FERN			0x1F8C0AFF 
 
+
+typedef enum e_name
+{
+	mandel = 0,
+	julia = 1,
+	barnsley = 2, 
+}	t_name;
 
 typedef struct s_complex_num
 {
 	double	x;
 	double	y;
 }	t_complex_num;
-
-typedef enum e_name
+typedef	struct s_barns_trans
 {
-	mandel = 0,
-	julia = 1,
-	//other = 2, 
-}	t_name;
+	double a;
+	double b;
+	double c; 
+	double d;
+	double f;
+	double e;
+}	t_barns_trans;
 
 typedef struct s_fractal
 {
@@ -91,8 +101,9 @@ double			escape_comparison(t_fractal *fractal);
 
 //IMAGE
 // void	draw_pixel(int x, int y, t_fractal *fractal);
-void			fractal_render(t_fractal *fractal);
-void	julia_random(t_fractal *fractal);
+void			fractal_jm_render(t_fractal *fractal);
+void			fractal_b_render(t_fractal *fractal);
+void			julia_random(t_fractal *fractal);
 
 // HOOKS
 

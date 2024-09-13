@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 14:43:38 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/09/12 19:14:02 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/09/13 18:25:28 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,21 @@ int	main(int argc, char **argv)
 	t_fractal *fractal;
 
 	fractal = NULL;
-	//  if (parse(argc, argv) != 0)
-	//  	return (1);
-
 	if (argc == 2 || (argc == 4))
 	{
-		fractal = malloc(sizeof(t_fractal));//TODO protecc
+		fractal = malloc(sizeof(t_fractal));
+		if (!fractal)
+			return (1);
 		fract_name(fractal, argv[1], argc);
 		fractal_init(fractal, argv);
-		
-		fractal_render(fractal);
+		if (fract_name == julia || fract_name == mandel)
+		{
+			fractal_jm_render(fractal);
+			mlx_key_hook(fractal->mlx, &ft_keyhook, fractal);
+		}
+		else
+			fract_b_render(fractal);
 		mlx_scroll_hook(fractal->mlx, ft_scroll_zoom, fractal);
-		mlx_key_hook(fractal->mlx, &ft_keyhook, fractal);
 		mlx_loop(fractal->mlx);
 		return (0);
 	}
@@ -38,6 +41,3 @@ int	main(int argc, char **argv)
 		ft_wrong_arg();
 	}
 }
-
-
-

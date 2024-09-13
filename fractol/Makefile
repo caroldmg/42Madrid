@@ -24,14 +24,14 @@ LIBFT :=	$(LIBFT_DIR)libft.a
 
 PRINTF :=	$(PRINTF_DIR)libftprintf.a
 
-SRCS := 	complex_maths.c \
-			draw.c \
-			init.c \
-			main.c \
-			hooks.c \
-			ft_errors.c \
+# SRCS := 	complex_maths.c \
+# 			draw.c \
+# 			init.c \
+# 			main.c \
+# 			hooks.c \
+# 			ft_errors.c \
 
-# SRCS := 	key_hooks.c
+SRCS := 	barnsley.c
 
 OBJS := ${SRCS:.c=.o}
 
