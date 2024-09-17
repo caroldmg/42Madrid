@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 12:34:21 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/09/12 12:34:59 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/09/17 16:47:27 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,6 @@ void	ft_error(void)
 
 void	ft_wrong_arg(void)
 {
-	ft_putendl_fd("Available fractals: mandel, julia, ship", 1);
+	ft_putendl_fd("Available fractals: mandel, julia, tinker", 1);
 	exit(EXIT_FAILURE);
 }

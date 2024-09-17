@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 14:43:38 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/09/13 18:25:28 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/09/17 21:09:31 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,12 @@ int	main(int argc, char **argv)
 			return (1);
 		fract_name(fractal, argv[1], argc);
 		fractal_init(fractal, argv);
-		if (fract_name == julia || fract_name == mandel)
-		{
+		if (fractal->name == julia || fractal->name == mandel)
 			fractal_jm_render(fractal);
-			mlx_key_hook(fractal->mlx, &ft_keyhook, fractal);
-		}
 		else
-			fract_b_render(fractal);
+			phoenix_render(fractal);
 		mlx_scroll_hook(fractal->mlx, ft_scroll_zoom, fractal);
+		mlx_key_hook(fractal->mlx, &ft_keyhook, fractal);
 		mlx_loop(fractal->mlx);
 		return (0);
 	}

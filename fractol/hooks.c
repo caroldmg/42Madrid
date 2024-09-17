@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:16:53 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/09/12 19:58:35 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/09/17 21:10:27 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,10 @@ void	ft_keyhook(mlx_key_data_t keydata, void *f)
 		fractal->max_iter -= 10;
 	else if (keydata.key == MLX_KEY_J && keydata.action == MLX_PRESS)
 		julia_random(fractal);
-		
-	fractal_render(fractal);
+	if (fractal->name == phoenix)
+		phoenix_render(fractal);
+	else
+		fractal_jm_render(fractal);
 }
 
 void	ft_scroll_zoom(double ydelta, double xdelta, void *f)
@@ -51,7 +53,7 @@ void	ft_scroll_zoom(double ydelta, double xdelta, void *f)
 	{
 		fractal->zoom *= 1.05;
 	}
-	fractal_render(fractal);
+	fractal_jm_render(fractal);
 }
 
 // void	hooks_init(t_fractal *fractal)

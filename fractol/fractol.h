@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 14:47:25 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/09/13 18:37:24 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/09/17 20:49:57 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef enum e_name
 {
 	mandel = 0,
 	julia = 1,
-	barnsley = 2, 
+	phoenix = 2, 
 }	t_name;
 
 typedef struct s_complex_num
@@ -57,15 +57,24 @@ typedef struct s_complex_num
 	double	x;
 	double	y;
 }	t_complex_num;
-typedef	struct s_barns_trans
-{
-	double a;
-	double b;
-	double c; 
-	double d;
-	double f;
-	double e;
-}	t_barns_trans;
+
+// typedef	struct s_barns_trans
+// {
+// 	double a;
+// 	double b;
+// 	double c; 
+// 	double d;
+// 	double f;
+// 	double e;
+// }	t_barns_trans;
+
+// typedef struct	s_tinker
+// {
+// 	double a;
+// 	double b;
+// 	double c; 
+// 	double d;
+// }	t_tinker;
 
 typedef struct s_fractal
 {
@@ -75,7 +84,7 @@ typedef struct s_fractal
 	int				window;
 	t_complex_num	*z_values;
 	t_complex_num	*c_values;
-	t_complex_num	*c_original;
+	t_complex_num	*aux;
 	int				color;
 
 	// HOOKS AND EVENTS // TODO
@@ -96,14 +105,33 @@ void			fractal_init(t_fractal *fractal, char **argv);
 
 //maths 
 t_complex_num	*complex_mandel_formula(t_complex_num *z, t_complex_num *c);
+t_complex_num	*phoenix_formula(t_complex_num *z, t_complex_num *c, t_complex_num *zlast);
 double			ft_scale(double unscaled, double new_min, double new_max, double old_max);
 double			escape_comparison(t_fractal *fractal);
 
 //IMAGE
 // void	draw_pixel(int x, int y, t_fractal *fractal);
 void			fractal_jm_render(t_fractal *fractal);
-void			fractal_b_render(t_fractal *fractal);
+void			fern_render(t_fractal *fractal);
 void			julia_random(t_fractal *fractal);
+// double			barnsley_random(void);
+
+//BARNSLEY
+
+// void	values_transform_1(t_barns_trans values);
+// void	values_transform_2(t_barns_trans values);
+// void	values_transform_3(t_barns_trans values);
+// void	values_transform_4(t_barns_trans values);
+
+//TINKERBELL
+// int			tinkerbell_init(t_fractal *fractal);
+// void		tinkerbell_values(t_tinker	*values);
+// void		tinkerbell_ecuation(t_fractal *fractal);
+// void		tinker_render(t_fractal *fractal);
+
+// PHOENIX
+void	phoenix_render(t_fractal *fractal);
+
 
 // HOOKS
 
