@@ -1,45 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   phoenix.c                                          :+:      :+:    :+:   */
+/*   julia_mandel.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/17 18:44:45 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/09/27 17:16:12 by cde-migu         ###   ########.fr       */
+/*   Created: 2024/08/27 14:26:08 by cde-migu          #+#    #+#             */
+/*   Updated: 2024/09/27 17:01:25 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-t_complex_num	phoenix_formula(t_fractal *fractal, t_complex_num z_last)
+t_complex_num	*complex_mandel_formula(t_complex_num *z, t_complex_num *c)
 {
-	t_complex_num	res;
-
-	res = complex_sum(complex_sum(\
-					complex_multi(*fractal->z_values, *fractal->z_values), \
-					*fractal->c_values), complex_multi(*fractal->aux, z_last));
-	return (res);
+	*z = complex_sum(complex_pow(*z, 2), *c);
+	return (z);
 }
 
-void	draw_phoenix(int x, int y, t_fractal *fractal)
+void	mandel_c(t_fractal *fractal)
 {
-	t_complex_num	z_last;
-	t_complex_num	z_next;
-	int				color;
+	fractal->c_values->x = fractal->z_values->x;
+	fractal->c_values->y = fractal->z_values->y;
+}
+
+void	draw_mandel_julia(int x, int y, t_fractal *fractal)
+{
 	int				i;
+	int				color;
 
 	i = 0;
 	fractal->z_values->x = (ft_scale(x, -2, +2, WIDTH) * fractal->zoom) \
-							+ fractal->shift_x;
+		+ fractal->shift_x;
 	fractal->z_values->y = (ft_scale(y, +2, -2, HEIGHT) * fractal->zoom) \
-							+ fractal->shift_y;
-	z_last = (t_complex_num){0.0, 0.0};
+		+ fractal->shift_y;
+	if (fractal->name == mandel)
+		mandel_c(fractal);
 	while (i < fractal->max_iter)
 	{
-		z_next = phoenix_formula(fractal, z_last);
-		z_last = *fractal->z_values;
-		*fractal->z_values = z_next;
+		fractal->z_values = \
+			complex_mandel_formula(fractal->z_values, fractal->c_values);
 		if (escape_comparison(fractal))
 		{
 			color = fractal->color * i;
@@ -51,7 +51,7 @@ void	draw_phoenix(int x, int y, t_fractal *fractal)
 	mlx_put_pixel(fractal->image, x, y, BLACK);
 }
 
-void	phoenix_render(t_fractal *fractal)
+void	fractal_jm_render(t_fractal *fractal)
 {
 	int	x;
 	int	y;
@@ -62,7 +62,7 @@ void	phoenix_render(t_fractal *fractal)
 		x = 0;
 		while (x < WIDTH)
 		{
-			draw_phoenix(x, y, fractal);
+			draw_mandel_julia(x, y, fractal);
 			x++;
 		}
 		y++;

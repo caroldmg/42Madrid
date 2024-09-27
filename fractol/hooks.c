@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:16:53 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/09/17 21:10:27 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/09/27 17:06:53 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_keyhook(mlx_key_data_t keydata, void *f)
 {
-	t_fractal *fractal;
+	t_fractal	*fractal;
 
 	fractal = f;
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
@@ -28,11 +28,13 @@ void	ft_keyhook(mlx_key_data_t keydata, void *f)
 	else if (keydata.key == MLX_KEY_DOWN && keydata.action == MLX_PRESS)
 		fractal->shift_y -= 0.5 * fractal->zoom;
 	else if (keydata.key == MLX_KEY_I && keydata.action == MLX_PRESS)
-		fractal->max_iter += 10; 
+		fractal->max_iter += 10;
 	else if (keydata.key == MLX_KEY_O && keydata.action == MLX_PRESS)
 		fractal->max_iter -= 10;
 	else if (keydata.key == MLX_KEY_J && keydata.action == MLX_PRESS)
 		julia_random(fractal);
+	else if (keydata.key == MLX_KEY_C && keydata.action == MLX_PRESS)
+		change_color(fractal);
 	if (fractal->name == phoenix)
 		phoenix_render(fractal);
 	else
@@ -41,9 +43,9 @@ void	ft_keyhook(mlx_key_data_t keydata, void *f)
 
 void	ft_scroll_zoom(double ydelta, double xdelta, void *f)
 {
-	t_fractal *fractal;
-	(void)ydelta;
+	t_fractal	*fractal;
 
+	(void)ydelta;
 	fractal = f;
 	if (xdelta > 0)
 	{
@@ -53,12 +55,8 @@ void	ft_scroll_zoom(double ydelta, double xdelta, void *f)
 	{
 		fractal->zoom *= 1.05;
 	}
-	fractal_jm_render(fractal);
+	if (fractal->name == phoenix)
+		phoenix_render(fractal);
+	else
+		fractal_jm_render(fractal);
 }
-
-// void	hooks_init(t_fractal *fractal)
-// {
-// 	mlx_scroll_hook(fractal->mlx, &ft_scroll_zoom, fractal); //TODO ftscroll
-// 	mlx_key_hook(fractal->mlx, &ft_keyhook, NULL); //ft_keyhook
-// 	// añadir hooks de cerrar ventana, seguimiento del cursor 
-// }

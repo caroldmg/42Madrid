@@ -25,14 +25,13 @@ LIBFT :=	$(LIBFT_DIR)libft.a
 PRINTF :=	$(PRINTF_DIR)libftprintf.a
 
 SRCS := 	complex_maths.c \
-			draw.c \
+			julia_mandel.c \
 			init.c \
 			main.c \
 			hooks.c \
 			ft_errors.c \
 			phoenix.c \
-
-# SRCS := 	barnsley.c
+			colors.c \
 
 OBJS := ${SRCS:.c=.o}
 
@@ -66,6 +65,9 @@ fclean: clean
 	@rm -rf $(LIBMLX)/build
 	@$(MAKE) -C $(LIBFT_DIR) fclean
 	@$(MAKE) -C $(PRINTF_DIR) fclean
+
+norma: 
+	norminette $(SRCS)
 
 re: clean all
 
