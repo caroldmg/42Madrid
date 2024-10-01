@@ -6,15 +6,28 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:26:08 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/09/27 17:01:25 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/10/01 14:56:29 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
+// t_complex_num	*complex_mandel_formula(t_complex_num *z, t_complex_num *c)
+// {
+// 	*z = complex_sum(complex_pow(*z, 2), *c);
+// 	return (z);
+// }
+
 t_complex_num	*complex_mandel_formula(t_complex_num *z, t_complex_num *c)
 {
-	*z = complex_sum(complex_pow(*z, 2), *c);
+	double	temp_x;
+
+	temp_x = (z->x * z->x) - (z->y * z->y);
+	z->y = 2 * z->x * z->y;
+	z->x = temp_x;
+
+	z->x += c->x;
+	z->y += c->y;
 	return (z);
 }
 

@@ -1,6 +1,7 @@
 #In order to use the functions in MLX, you'll need to link it with your application.
 # 	-ldl -lglfw(3) -pthread -lm
 
+CC = cc
 NAME := fractol
 CFLAGS := -g3 -Wextra -Wall -Werror  #-Wunreachable-code -Ofast
 

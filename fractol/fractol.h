@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 14:47:25 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/09/27 16:36:57 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/10/01 15:12:07 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ typedef struct s_fractal
 void			ft_wrong_arg(void);
 void			ft_error(void);
 int				error_terminate_mlx(t_fractal *fractal);
+void			ft_close(t_fractal *fractal);
 
 // init
 void			fractal_init(t_fractal *fractal, char **argv);

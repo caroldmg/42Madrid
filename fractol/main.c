@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 14:43:38 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/09/27 17:03:08 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/09/30 14:48:09 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ void	fract_name(t_fractal *fractal, char *name, int argc)
 	else if (ft_strcmp(name, "phoenix") == 0)
 		fractal->name = phoenix;
 	else
+	{
+		free(fractal);
 		ft_wrong_arg();
+	}
 }
 
 int	main(int argc, char **argv)
