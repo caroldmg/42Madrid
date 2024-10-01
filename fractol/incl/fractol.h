@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 14:47:25 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/10/01 15:12:07 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/10/01 19:03:06 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef enum e_name
 {
 	mandel = 0,
 	julia = 1,
-	phoenix = 2, 
+	phoenix = 2,
 }	t_name;
 
 typedef struct s_complex_num
@@ -83,7 +83,8 @@ void			ft_close(t_fractal *fractal);
 void			fractal_init(t_fractal *fractal, char **argv);
 
 //maths 
-double			ft_scale(double unscaled, double new_min, double new_max, double old_max);
+double			ft_scale(double unscaled, double new_min, \
+				double new_max, double old_max);
 double			escape_comparison(t_fractal *fractal);
 t_complex_num	complex_sum(t_complex_num a, t_complex_num b);
 t_complex_num	complex_pow(t_complex_num a, int b);
@@ -100,7 +101,6 @@ void			change_color(t_fractal *fractal);
 // PHOENIX
 void			phoenix_render(t_fractal *fractal);
 // void	draw_phoenix(int x, int y, t_fractal *fractal);
-
 
 // HOOKS
 

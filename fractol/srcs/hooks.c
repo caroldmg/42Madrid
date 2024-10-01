@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:16:53 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/10/01 13:04:24 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/10/01 19:34:33 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_keyhook(mlx_key_data_t keydata, void *f)
 
 	fractal = f;
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
-		ft_close(fractal);
+		mlx_close_window(fractal->mlx);
 	else if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_PRESS)
 		fractal->shift_x -= 0.5 * fractal->zoom;
 	else if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS)

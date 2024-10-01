@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 16:12:08 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/10/01 12:35:35 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/10/01 19:53:05 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,5 @@ void	fractal_init(t_fractal *fractal, char **argv)
 	if (fractal->window < 0)
 		error_terminate_mlx(fractal);
 	if (data_init(fractal, argv) == 1)
-	{
-		free(fractal);
-		ft_error();
-	}
+		error_terminate_mlx(fractal);
 }

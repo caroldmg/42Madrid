@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   ft_sqrt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/03 16:22:30 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/03/29 15:25:07 by cde-migu         ###   ########.fr       */
+/*   Created: 2024/09/26 19:26:05 by cde-migu          #+#    #+#             */
+/*   Updated: 2024/09/26 19:26:27 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_putchar_fd(char c, int fd)
+int	ft_sqrt(int nb)
 {
-	return (write(fd, &c, 1));
-}
+	int	i;
 
-/* int main(void)
-{
-	ft_putchar_fd('a', 3);
-	return (0);
-} */
+	if (nb < 4)
+		return (1);
+	i = 2;
+	while (i * i <= nb)
+		i++;
+	return (i - 1);
+}

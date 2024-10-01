@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:26:08 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/10/01 14:56:29 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/10/01 19:04:10 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ t_complex_num	*complex_mandel_formula(t_complex_num *z, t_complex_num *c)
 	temp_x = (z->x * z->x) - (z->y * z->y);
 	z->y = 2 * z->x * z->y;
 	z->x = temp_x;
-
 	z->x += c->x;
 	z->y += c->y;
 	return (z);
