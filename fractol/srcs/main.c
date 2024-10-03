@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 14:43:38 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/10/01 19:59:53 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/10/03 12:05:48 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,10 @@ void	ft_free_end(t_fractal *fractal)
 	free(fractal->c_values);
 	free(fractal->z_values);
 	free(fractal->aux);
-	// mlx_delete_image(fractal->mlx, fractal->image);
 	mlx_terminate(fractal->mlx);
+	free(fractal->mlx);
 	free(fractal);
+	exit(EXIT_SUCCESS);
 }
 
 int	main(int argc, char **argv)
@@ -57,7 +58,6 @@ int	main(int argc, char **argv)
 		mlx_key_hook(fractal->mlx, &ft_keyhook, fractal);
 		mlx_loop(fractal->mlx);
 		ft_free_end(fractal);
-		return (0);
 	}
 	else
 	{
