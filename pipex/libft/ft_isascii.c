@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/03 12:49:42 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/10/08 12:17:57 by cde-migu         ###   ########.fr       */
+/*   Created: 2024/01/09 13:27:59 by cde-migu          #+#    #+#             */
+/*   Updated: 2024/01/14 18:13:51 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
-# include <fcntl.h>
-# include <unistd.h>
-# include <sys/wait.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <string.h>
-# include "libft.h"
-// # include "ft_printf.h"
-# define WRITE_E 1
-# define READ_E 0
+#include "libft.h"
 
-#endif
+int	ft_isascii(int c)
+{
+	int	isascii;
+
+	isascii = 0;
+	if (c >= 0 && c <= 127)
+		isascii = 1;
+	return (isascii);
+}
+
+/*
+#include <ctype.h>
+#include <stdio.h>
+int	main(void)
+{
+	printf("%d", isascii(138));
+	printf("%d", ft_isascii(138));
+	return (0);
+}
+*/

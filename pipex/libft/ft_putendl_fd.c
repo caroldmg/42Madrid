@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/03 12:49:42 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/10/08 12:17:57 by cde-migu         ###   ########.fr       */
+/*   Created: 2024/02/03 16:36:41 by cde-migu          #+#    #+#             */
+/*   Updated: 2024/02/13 11:17:56 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
-# include <fcntl.h>
-# include <unistd.h>
-# include <sys/wait.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <string.h>
-# include "libft.h"
-// # include "ft_printf.h"
-# define WRITE_E 1
-# define READ_E 0
+#include "libft.h"
 
-#endif
+void	ft_putendl_fd(char *s, int fd)
+{
+	while (*s)
+	{
+		write(fd, s, 1);
+		s++;
+	}
+	write(fd, "\n", 1);
+}
+/*
+int	main(void)
+{
+	char	*s = "hola amigos";
+	ft_putendl_fd(s, 1);
+	return (0);
+}
+*/

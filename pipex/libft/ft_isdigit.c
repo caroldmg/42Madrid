@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/03 12:49:42 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/10/08 12:17:57 by cde-migu         ###   ########.fr       */
+/*   Created: 2024/01/09 12:40:31 by cde-migu          #+#    #+#             */
+/*   Updated: 2024/02/13 10:56:18 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
-# include <fcntl.h>
-# include <unistd.h>
-# include <sys/wait.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <string.h>
-# include "libft.h"
-// # include "ft_printf.h"
-# define WRITE_E 1
-# define READ_E 0
+#include "libft.h"
 
-#endif
+int	ft_isdigit(int c)
+{
+	int	isdigit;
+
+	isdigit = 0;
+	if (c >= '0' && c <= '9')
+		isdigit = 1;
+	return (isdigit);
+}
+
+/*
+#include <ctype.h>
+#include <stdio.h>
+int	main(void)
+{
+	printf("%d", isdigit(50));
+	printf("%d", ft_isdigit(50));
+	return (0);
+}
+*/

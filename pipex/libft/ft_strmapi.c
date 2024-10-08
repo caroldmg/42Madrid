@@ -1,26 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/03 12:49:42 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/10/08 12:17:57 by cde-migu         ###   ########.fr       */
+/*   Created: 2024/02/03 13:20:14 by cde-migu          #+#    #+#             */
+/*   Updated: 2024/02/03 13:40:16 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
-# include <fcntl.h>
-# include <unistd.h>
-# include <sys/wait.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <string.h>
-# include "libft.h"
-// # include "ft_printf.h"
-# define WRITE_E 1
-# define READ_E 0
+#include "libft.h"
 
-#endif
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+{
+	size_t	len;
+	int		count;
+	char	*new_str;
+
+	if (!s || !f)
+		return (0);
+	count = 0;
+	len = ft_strlen(s);
+	new_str = malloc((len + 1) * sizeof(char));
+	if (!new_str)
+		return (0);
+	while (count < (int)len)
+	{
+		new_str[count] = f(count, s[count]);
+		count++;
+	}
+	new_str[len] = '\0';
+	return (new_str);
+}
