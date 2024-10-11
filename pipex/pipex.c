@@ -26,6 +26,17 @@ char	**paths(char *envp)
 	mypaths = ft_split(env_paths, ' ');
 }
 
+void second_child(int fd, char *cmd, int file[2])
+{
+	if (dup2(fd, STDOUT_FILENO) < 0)
+		return ;
+	close(file[WRITE_E]);
+	if (dup2(file[READ_E], STDOUT_FILENO) < 0)
+		return ;
+	close(file[WRITE_E]);
+	close(file[READ_E]);
+}
+
 void	first_child(int fd, char *cmd, int file[2])
 {
 	int 	i;
@@ -38,6 +49,7 @@ void	first_child(int fd, char *cmd, int file[2])
 	if (dup2(file[WRITE_E], STDOUT_FILENO) < 0)
 		return ;
 	close(file[READ_E]);
+	close(file[WRITE_E]);
 	mypaths = paths();
 	while (mypaths[++i])
 	{
@@ -56,13 +68,15 @@ void	pipex(int fd1, int fd2, char *cmd1, char *cmd2)
 	pid_t	child1;
 	pid_t	child2;
 
-	// pipe(file);
+	if (pipe(file) < 0)
+		return (1);
 	child1 = fork();
 	if (child1 < 0)
 		return (perror("Fork: "));
+	// a los errores les podria asignar un numero para saber en qué momento ha fallado 
 	if (child1 == 0)
 		first_child(fd1, cmd1, file);
-	child1 = fork();
+	child2 = fork();
 	if (child2 < 0)
 		return (perror("Fork: "));
 	if (child2 == 0)
