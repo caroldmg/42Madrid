@@ -19,52 +19,101 @@
  */
 char	**paths(char *envp)
 {
-	char	**mypaths;
-	char	*env_paths;
-
-	// env_paths = ft_substr(envp, 0, )
-	mypaths = ft_split(env_paths, ' ');
+	char *PATH_from_envp;
+	char **mypaths;
+	char **mycmdargs;
+// retrieve the line PATH from envp
+	PATH_from_envp = ft_substr(envp ....);
+	mypaths = ft_split(PATH_from_envp, ":"); 
+	mycmdargs = ft_split(ag[2], " ");
 }
 
-void second_child(int fd, char *cmd, int file[2])
+void second_child(int file[2], char **argv, char **envp)
 {
-	if (dup2(fd, STDOUT_FILENO) < 0)
-		return ;
+	int outfile;
+
+	outfile = open(argv[4], );
+	if (outfile < 0)
+		perror("open: ")
 	close(file[WRITE_E]);
-	if (dup2(file[READ_E], STDOUT_FILENO) < 0)
+	if (dup2(outfile, STDOUT_FILENO) < 0)
 		return ;
-	close(file[WRITE_E]);
+	if (dup2(file[READ_E], STDIN_FILENO) < 0)
+		return ;
 	close(file[READ_E]);
 }
 
-void	first_child(int fd, char *cmd, int file[2])
-{
-	int 	i;
-	char	**mypaths;
+// void	first_child(int file[2], char **argv, char **envp)
+// {
+// 	int 	i;
+// 	char	**mypaths;
+// 	char	**splitted;
 
-	i = -1;
-	if (dup2(fd, STDIN_FILENO) < 0)
-		return ;
+// 	i = -1;
+// 	splitted = ft_split(argv[2], ' ');
+// 	if (dup2(fd, STDIN_FILENO) < 0)
+// 		return ;
+// 	close(file[READ_E]);
+// 	if (dup2(file[WRITE_E], STDOUT_FILENO) < 0)
+// 		return ;
+// 	close(file[READ_E]);
+// 	close(file[WRITE_E]);
+// 	mypaths = paths();
+// 	while (mypaths[++i])
+// 	{
+// 		cmd = ft_strjoin(mypaths[i], cmd);
+// 		execve(mypaths[i], cmd, NULL);
+// 		perror("Error");
+// 		free(cmd);
+// 	}
+// 	return (EXIT_FAILURE);
+// }
+
+void	first_child(int file[2], char **argv, char **envp)
+{
+	int	infile;
+
+	infile = open(argv[1], O_RDONLY);
+	if (infile < 0)
+		// error de que no se ha abierto correctamente
+	{
+		perror("open: ");
+	}
 	close(file[READ_E]);
+	if (dup2(infile, STDIN_FILENO));
 	if (dup2(file[WRITE_E], STDOUT_FILENO) < 0)
 		return ;
-	close(file[READ_E]);
-	close(file[WRITE_E]);
-	mypaths = paths();
-	while (mypaths[++i])
-	{
-		cmd = ft_strjoin(mypaths[i], cmd);
-		execve(mypaths[i], cmd, NULL);
-		perror("Error");
-		free(cmd);
-	}
-	return (EXIT_FAILURE);
+	path_exec(argv[2], envp);
 }
 
-void	pipex(int fd1, int fd2, char *cmd1, char *cmd2)
+// void	pipex(int fd1, int fd2, char *cmd1, char *cmd2)
+// {
+// 	int		file[2];
+// 	int		status;
+// 	pid_t	child1;
+// 	pid_t	child2;
+
+// 	if (pipe(file) < 0)
+// 		return (1);
+// 	child1 = fork();
+// 	if (child1 < 0)
+// 		return (perror("Fork: "));
+// 	// a los errores les podria asignar un numero para saber en qué momento ha fallado 
+// 	if (child1 == 0)
+// 		first_child(fd1, cmd1, file);
+// 	child2 = fork();
+// 	if (child2 < 0)
+// 		return (perror("Fork: "));
+// 	if (child2 == 0)
+// 		second_child(fd2, cmd2);
+// 	close(file[0]);
+// 	close(file[1]);
+// 	waitpid(child1, &status, 0);
+// 	waitpid(child2, &status, 0);
+// }
+
+void	pipex(int argc, char **argv, char **envp, int file[2])
 {
-	int		file[2];
-	int		status;
 	pid_t	child1;
 	pid_t	child2;
 
@@ -75,7 +124,7 @@ void	pipex(int fd1, int fd2, char *cmd1, char *cmd2)
 		return (perror("Fork: "));
 	// a los errores les podria asignar un numero para saber en qué momento ha fallado 
 	if (child1 == 0)
-		first_child(fd1, cmd1, file);
+		first_child(file, argv, envp);
 	child2 = fork();
 	if (child2 < 0)
 		return (perror("Fork: "));
@@ -85,4 +134,9 @@ void	pipex(int fd1, int fd2, char *cmd1, char *cmd2)
 	close(file[1]);
 	waitpid(child1, &status, 0);
 	waitpid(child2, &status, 0);
+}
+
+parse(char **argv)
+{
+
 }
