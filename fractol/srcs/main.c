@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 14:43:38 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/10/03 12:05:48 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/10/14 14:40:37 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	ft_free_end(t_fractal *fractal)
 	free(fractal->z_values);
 	free(fractal->aux);
 	mlx_terminate(fractal->mlx);
-	free(fractal->mlx);
 	free(fractal);
 	exit(EXIT_SUCCESS);
 }

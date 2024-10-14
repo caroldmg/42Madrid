@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 12:49:42 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/10/08 12:17:57 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/10/14 13:02:12 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,12 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <string.h>
-# include "libft.h"
+// # include "libft.h"
 // # include "ft_printf.h"
 # define WRITE_E 1
 # define READ_E 0
+
+char	**get_paths(char **envp);
+
 
 #endif
