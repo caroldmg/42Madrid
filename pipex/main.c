@@ -6,11 +6,9 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 15:35:28 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/10/14 11:22:46 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/10/15 11:34:16 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "pipex.h"
 
 #include "pipex.h"
 
@@ -57,8 +55,7 @@ char	**paths(char *envp)
 	char **mypaths;
 	char **mycmdargs;
 // retrieve the line PATH from envp
-	PATH_from_envp = ft_substr(envp, );
+	PATH_from_envp = ft_substr(envp ....);
 	mypaths = ft_split(PATH_from_envp, ":"); 
 	mycmdargs = ft_split(ag[2], " ");
 }
-
