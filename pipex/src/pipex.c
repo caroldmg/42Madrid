@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 15:44:46 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/10/15 11:34:25 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/10/15 11:36:29 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,12 +117,8 @@ void	pipex(int argc, char **argv, char **envp, int file[2])
 	pid_t	child1;
 	pid_t	child2;
 
-<<<<<<< HEAD
-	pipe(file);
-=======
 	if (pipe(file) < 0)
 		return (1);
->>>>>>> 1b579f49b1db7b3c3107c6d2b426fecfdbf92457
 	child1 = fork();
 	if (child1 < 0)
 		return (perror("Fork: "));
@@ -133,7 +129,7 @@ void	pipex(int argc, char **argv, char **envp, int file[2])
 	if (child2 < 0)
 		return (perror("Fork: "));
 	if (child2 == 0)
-		second_child(fd2, cmd2, file);
+		second_child(file, argv, envp);
 	close(file[0]);
 	close(file[1]);
 	waitpid(child1, &status, 0);
