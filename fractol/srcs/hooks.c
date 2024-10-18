@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:16:53 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/10/01 19:34:33 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/10/17 18:49:57 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,9 @@ void	ft_scroll_zoom(double ydelta, double xdelta, void *f)
 	(void)ydelta;
 	fractal = f;
 	if (xdelta > 0)
-	{
 		fractal->zoom *= 0.95;
-	}
 	else if (xdelta < 0)
-	{
 		fractal->zoom *= 1.05;
-	}
 	if (fractal->name == phoenix)
 		phoenix_render(fractal);
 	else

@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 14:47:25 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/10/01 19:03:06 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/10/17 16:18:56 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ typedef struct s_fractal
 	int				color;
 	int				color_pos;
 
-	// HOOKS AND EVENTS // TODO
+	// HOOKS AND EVENTS 
 	double			escape;
 	int				max_iter;
 	double			shift_x;
