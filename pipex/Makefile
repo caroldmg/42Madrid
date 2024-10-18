@@ -19,7 +19,7 @@ SRC_DIR := ./src
 OBJ_DIR := ./obj
 
 HEADERS :=	\
-			I $(LIBFT_DIR) $(OBJ) $(LIBFT) \
+			-I $(LIBFT_DIR) $(OBJ) $(LIBFT) \
 			-I $(PRINTF_DIR) $(OBJ) $(PRINTF)
 
 LIBFT :=	$(LIBFT_DIR)libft.a 
@@ -27,7 +27,7 @@ LIBFT :=	$(LIBFT_DIR)libft.a
 PRINTF :=	$(PRINTF_DIR)libftprintf.a
 
 SRCS :=		main.c \
-			paths.c \
+			utils.c \
 			pipex.c \
 
 OBJS := $(addprefix $(OBJ_DIR)/,$(SRCS:.c=.o))
@@ -45,10 +45,10 @@ $(PRINTF):
 	$(MAKE) -C $(PRINTF_DIR)
 
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INCL_DIR)/pipex.h
 	$(CC) $(CFLAGS) $(HEADERS) -I $(INCL_DIR) -o $@ -c $<
 
-$(NAME): obj $(OBJS) $(LIBFT) $(PRINTF) $(MLX)
+$(NAME): obj $(OBJS) $(LIBFT) $(PRINTF)
 	$(CC) $(OBJS) $(LIBFT) $(PRINTF) -o $(NAME)
 	@echo "$(GREEN)Compilación completada con éxito.$(RESET)"
 
@@ -64,8 +64,5 @@ fclean:
 	@$(MAKE) -C $(LIBFT_DIR) fclean
 	@$(MAKE) -C $(PRINTF_DIR) fclean
 	@echo "$(GREEN) ¡Todo limpio! $(RESET)"
-
-norma: 
-	norminette $(SRCS) $(HEADERS)
 
 re: clean all

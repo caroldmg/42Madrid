@@ -1,28 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/04 15:35:28 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/10/18 15:57:32 by cde-migu         ###   ########.fr       */
+/*   Created: 2024/10/04 12:50:13 by cde-migu          #+#    #+#             */
+/*   Updated: 2024/10/18 15:56:32 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int	main(int argc, char **argv, char **envp)
+char	**get_paths(char **envp)
 {
-	int	file[2];
+	int		i;
+	char	**my_paths;
 
-	if (argc != 5)
+	i = 0;
+	while (envp[i] && ft_strncmp(envp[i], "PATH=", 5))
+		i++;
+	my_paths = ft_split(envp[i], ':');
+	return (my_paths);
+}
+
+void	free_all(char **arr)
+{
+	int	i;
+
+	i = 0;
+	while (arr[i])
 	{
-		printf("Para utilizar correctamente el programa: \n \t \
-				./pipex <infile> <cmd1> <cmd2> <outfile> \n");
-		return (1);
+		free(arr[i]);
+		i++;
 	}
-	if (pipe(file) < 0)
-		return (1);
-	pipex(argv, envp, file);
+	free(arr);
 }

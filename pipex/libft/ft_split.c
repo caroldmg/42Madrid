@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 11:18:33 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/05/16 12:01:47 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/10/18 15:54:17 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,22 +95,3 @@ char	**ft_split(char const *s, char c)
 	}
 	return (arr);
 }
-/*
-#include <stdio.h>
-int	main(void)
-{
-		const char *str1 = "Hello,World,Split,Me";
-	ft_split(str1, ',');
-
-	const char *str2 = "Lorem ipsum dolor sit amet";
-	ft_split(str2, ' ');
-
-	const char *str3 = "apple,banana,cherry,orange";
-	ft_split(str3, ',');
-
-	ft_split("hello!", 32:' ');
-
-	return (0);
-}
-*/
-
