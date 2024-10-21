@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 16:12:08 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/10/01 19:53:05 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/10/21 15:18:32 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	julia_init(t_fractal *fractal, char **argv)
 	return (0);
 }
 
-int	phoenix_init(t_fractal *fractal)
+int	phoenix_init(t_fractal *fractal, char **argv)
 {
 	fractal->c_values->x = 0.269;
 	fractal->c_values->y = 0.00;
@@ -41,6 +41,8 @@ int	phoenix_init(t_fractal *fractal)
 		return (error_terminate_mlx(fractal->mlx));
 	fractal->aux->x = 0.0;
 	fractal->aux->y = -0.01;
+	if (argv[2])
+		phoenix_value(fractal, argv);
 	return (0);
 }
 
@@ -75,6 +77,8 @@ int	data_init(t_fractal *fractal, char **argv)
 	fractal->shift_y = 0.0;
 	fractal->zoom = 1.0;
 	fractal->color = SUPER_YELLOW;
+	// fractal->h = HEIGHT;
+	// fractal->w = WIDTH;
 	fractal->c_values = malloc(sizeof(t_complex_num));
 	if (!fractal->c_values)
 		return (error_terminate_mlx(fractal));
@@ -86,7 +90,7 @@ int	data_init(t_fractal *fractal, char **argv)
 	else if (fractal->name == julia)
 		return (julia_init(fractal, argv));
 	else
-		return (phoenix_init(fractal));
+		return (phoenix_init(fractal, argv));
 	return (0);
 }
 

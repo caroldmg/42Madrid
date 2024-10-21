@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:16:53 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/10/17 18:49:57 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/10/21 15:18:19 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,3 +56,16 @@ void	ft_scroll_zoom(double ydelta, double xdelta, void *f)
 	else
 		fractal_jm_render(fractal);
 }
+
+// void	ft_resize(int32_t width, int32_t height, void	*f)
+// {
+// 	t_fractal	*fractal;
+
+// 	fractal = f;
+// 	fractal->w = width;
+// 	fractal->h = height;
+// 	if (fractal->name == phoenix)
+// 		phoenix_render(fractal);
+// 	else
+// 		fractal_jm_render(fractal);
+// }

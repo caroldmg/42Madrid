@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 18:44:45 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/09/27 17:16:12 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/10/21 15:17:47 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,32 @@ t_complex_num	phoenix_formula(t_fractal *fractal, t_complex_num z_last)
 					complex_multi(*fractal->z_values, *fractal->z_values), \
 					*fractal->c_values), complex_multi(*fractal->aux, z_last));
 	return (res);
+}
+
+void	phoenix_value(t_fractal *fractal, char **argv)
+{
+	if (ft_strcmp(argv[2], "2") == 0)
+	{
+		fractal->c_values->x = 0.5667;
+		fractal->aux->x = -0.5;
+	}
+	if (ft_strcmp(argv[2], "3") == 0)
+	{
+		fractal->c_values->x = -0.4;
+		fractal->c_values->y = 0.1;
+		fractal->aux->x = 0.29550;
+	}
+	if (ft_strcmp(argv[2], "4") == 0)
+	{
+		fractal->c_values->x = 0.4;
+		fractal->aux->x = -0.25;
+	}
+	if (ft_strcmp(argv[2], "5") == 0)
+	{
+		fractal->c_values->x = 0.1;
+		fractal->c_values->y = 0.6;
+		fractal->aux->x = -0.35;
+	}
 }
 
 void	draw_phoenix(int x, int y, t_fractal *fractal)

@@ -1,7 +1,7 @@
 
 CC = cc
 NAME := fractol
-CFLAGS := -g3 -Wextra -Wall -Werror  #-Wunreachable-code -Ofast
+CFLAGS := -g3 -Wextra -Wall -Werror  -Wunreachable-code -Ofast
 
 MAKEFLAGS = --no-print-directory
 
@@ -85,7 +85,7 @@ fclean:
 	@echo "$(GREEN) ¡Todo limpio! $(RESET)"
 
 norma: 
-	norminette $(SRCS) $(HEADERS)
+	norminette $(SRCS) $(INCL_DIR)
 
 re: clean all
 

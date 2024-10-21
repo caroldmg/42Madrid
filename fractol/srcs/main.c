@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 14:43:38 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/10/14 14:40:37 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/10/21 15:18:25 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	main(int argc, char **argv)
 	t_fractal	*fractal;
 
 	fractal = NULL;
-	if (argc == 2 || (argc == 4))
+	if (argc >= 2 && argc <= 4)
 	{
 		fractal = malloc(sizeof(t_fractal));
 		if (!fractal)
@@ -55,6 +55,7 @@ int	main(int argc, char **argv)
 			phoenix_render(fractal);
 		mlx_scroll_hook(fractal->mlx, ft_scroll_zoom, fractal);
 		mlx_key_hook(fractal->mlx, &ft_keyhook, fractal);
+		// mlx_resize_hook(fractal->mlx, &ft_resize, fractal);
 		mlx_loop(fractal->mlx);
 		ft_free_end(fractal);
 	}

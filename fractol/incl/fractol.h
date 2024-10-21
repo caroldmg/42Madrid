@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 14:47:25 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/10/17 16:18:56 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/10/21 15:19:02 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,25 +20,25 @@
 # include <stdio.h>
 # include <math.h>
 
-# define WIDTH 1000
-# define HEIGHT 1000
+# define WIDTH	2000
+# define HEIGHT	2000
 
 /*
  * COLORS
 */
-# define BLACK       0x000000FF  // RGB(0, 0, 0)
-# define WHITE       0xFFFFFFFF  // RGB(255, 255, 255)
+# define BLACK						0x000000FF
+# define WHITE						0xFFFFFFFF
 
 // Psychedelic colors
-# define NEON_ORANGE     0xFF6600FF
-# define PSYCHEDELIC_PURPLE 0x660066FF
-# define AQUA_DREAM      0x33CCCCFF
-# define HOT_PINK        0xE55982FF 
-# define CYAN_ELECTRIC     0xFF2CFFFF
-# define MCDONALDS		0xFFC72CFF
-# define SUPER_YELLOW	0xFCBE11FF
-# define PNKY_PASTEL	0xFFC4D6FF
-# define CUTE_GREEN		0xC1E378FF
+# define NEON_ORANGE				0xFF6600FF
+# define PSYCHEDELIC_PURPLE			0x660066FF
+# define AQUA_DREAM					0x33CCCCFF
+# define HOT_PINK 					0xE55982FF 
+# define CYAN_ELECTRIC				0xFF2CFFFF
+# define MCDONALDS					0xFFC72CFF
+# define SUPER_YELLOW				0xFCBE11FF
+# define PNKY_PASTEL				0xFFC4D6FF
+# define CUTE_GREEN					0xC1E378FF
 
 typedef enum e_name
 {
@@ -64,6 +64,10 @@ typedef struct s_fractal
 	t_complex_num	*aux;
 	int				color;
 	int				color_pos;
+	// HEIGHT
+	// int				w;
+	// // WIDTH
+	// int				h;
 
 	// HOOKS AND EVENTS 
 	double			escape;
@@ -91,7 +95,6 @@ t_complex_num	complex_pow(t_complex_num a, int b);
 t_complex_num	complex_multi(t_complex_num a, t_complex_num b);
 
 //IMAGE
-// void	draw_pixel(int x, int y, t_fractal *fractal);
 void			fractal_jm_render(t_fractal *fractal);
 void			julia_random(t_fractal *fractal);
 
@@ -100,11 +103,11 @@ void			change_color(t_fractal *fractal);
 
 // PHOENIX
 void			phoenix_render(t_fractal *fractal);
-// void	draw_phoenix(int x, int y, t_fractal *fractal);
+void			phoenix_value(t_fractal *fractal, char **argv);
 
 // HOOKS
-
 void			ft_scroll_zoom(double ydelta, double xdelta, void *f);
 void			ft_keyhook(mlx_key_data_t keydata, void *f);
+// void		ft_resize(int32_t width, int32_t height, void	*f);
 
 #endif
