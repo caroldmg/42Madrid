@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 15:44:46 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/10/18 15:56:07 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/10/21 11:50:06 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	path_exec(char *argv, char **envp)
 	perror("Error: ");
 	free_all(mypaths);
 	free_all(cmd);
-	exit(EXIT_FAILURE);
+	exit(path_error);
 }
 
 void	second_child(int file[2], char **argv, char **envp)
@@ -59,7 +59,7 @@ void	first_child(int file[2], char **argv, char **envp)
 {
 	int	infile;
 
-	infile = open(argv[1], O_RDONLY, 0777);
+	infile = open(argv[1], O_RDONLY, 0666);
 	if (infile < 0)
 		perror("open: ");
 	close(file[READ_E]);
@@ -80,12 +80,12 @@ void	pipex(char **argv, char **envp, int file[2])
 
 	child1 = fork();
 	if (child1 < 0)
-		return (perror("Fork: "));
+		return (fork_error);
 	if (child1 == 0)
 		first_child(file, argv, envp);
 	child2 = fork();
 	if (child2 < 0)
-		return (perror("Fork: "));
+		return (fork_error);
 	if (child2 == 0)
 		second_child(file, argv, envp);
 	close(file[0]);
