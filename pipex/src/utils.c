@@ -6,11 +6,31 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 12:50:13 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/10/18 15:56:32 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/10/22 18:12:46 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
+void	command_path(char **cmd, char **envp)
+{
+	char	*temp;
+
+	temp = ft_strdup(cmd[0]);
+	if (access(temp, 0) == 0)
+	{
+		execve(temp, cmd, envp);
+		free(temp);
+		perror("Error: failed execution");
+		exit(EXIT_FAILURE);
+	}
+	else
+	{
+		free(temp);
+		perror("Error commando not found");
+		exit(EXIT_FAILURE);
+	}
+}
 
 char	**get_paths(char **envp)
 {
@@ -22,6 +42,34 @@ char	**get_paths(char **envp)
 		i++;
 	my_paths = ft_split(envp[i], ':');
 	return (my_paths);
+}
+
+void	path_exec(char *argv, char **envp)
+{
+	int		i;
+	char	**cmd;
+	char	**mypaths;
+	char	*temp;
+	char	*executable;
+
+	i = 0;
+	cmd = ft_split(argv, ' ');
+	mypaths = get_paths(envp);
+	if (mypaths == NULL)
+		command_path(cmd, envp);
+	while (mypaths[++i])
+	{
+		temp = ft_strjoin(mypaths[i], "/");
+		executable = ft_strjoin(temp, cmd[0]);
+		free(temp);
+		if (access(executable, X_OK) == 0)
+			execve(executable, cmd, envp);
+		free(executable);
+	}
+	perror("Error: ");
+	free_all(mypaths);
+	free_all(cmd);
+	exit(EXIT_FAILURE);
 }
 
 void	free_all(char **arr)

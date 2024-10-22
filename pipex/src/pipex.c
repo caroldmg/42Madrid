@@ -6,37 +6,11 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 15:44:46 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/10/21 11:50:06 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/10/22 18:11:34 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
-void	path_exec(char *argv, char **envp)
-{
-	int		i;
-	char	**cmd;
-	char	**mypaths;
-	char	*temp;
-	char	*executable;
-
-	i = 0;
-	cmd = ft_split(argv, ' ');
-	mypaths = get_paths(envp);
-	while (mypaths[++i])
-	{
-		temp = ft_strjoin(mypaths[i], "/");
-		executable = ft_strjoin(temp, cmd[0]);
-		free(temp);
-		if (access(executable, X_OK) == 0)
-			execve(executable, cmd, envp);
-		free(executable);
-	}
-	perror("Error: ");
-	free_all(mypaths);
-	free_all(cmd);
-	exit(path_error);
-}
 
 void	second_child(int file[2], char **argv, char **envp)
 {
@@ -44,7 +18,10 @@ void	second_child(int file[2], char **argv, char **envp)
 
 	outfile = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (outfile < 0)
+	{
+		close(file[READ_E]);
 		perror("open: ");
+	}
 	close(file[WRITE_E]);
 	if (dup2(outfile, STDOUT_FILENO) < 0)
 		return ;
@@ -61,7 +38,10 @@ void	first_child(int file[2], char **argv, char **envp)
 
 	infile = open(argv[1], O_RDONLY, 0666);
 	if (infile < 0)
+	{
+		close(file[WRITE_E]);
 		perror("open: ");
+	}
 	close(file[READ_E]);
 	if (dup2(infile, STDIN_FILENO) < 0)
 		return ;
@@ -80,12 +60,12 @@ void	pipex(char **argv, char **envp, int file[2])
 
 	child1 = fork();
 	if (child1 < 0)
-		return (fork_error);
+		return (perror("Fork: "));
 	if (child1 == 0)
 		first_child(file, argv, envp);
 	child2 = fork();
 	if (child2 < 0)
-		return (fork_error);
+		return (perror("Fork: "));
 	if (child2 == 0)
 		second_child(file, argv, envp);
 	close(file[0]);

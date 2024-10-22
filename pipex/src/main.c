@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 15:35:28 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/10/21 11:47:52 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/10/22 17:22:24 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ int	main(int argc, char **argv, char **envp)
 	{
 		printf("Para utilizar correctamente el programa: \n \t \
 				./pipex <infile> <cmd1> <cmd2> <outfile> \n");
-		return (wrong_input);
+		return (EXIT_FAILURE);
 	}
 	if (pipe(file) < 0)
-		return (pipe_error);
+		return (EXIT_FAILURE);
 	pipex(argv, envp, file);
 }

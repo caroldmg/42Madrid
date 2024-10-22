@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 12:49:42 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/10/21 11:51:34 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/10/22 17:22:03 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@
 # define READ_E 0
 # define SPACE ' '
 
-enum	e_errors
+/* enum	e_errors
 {
 	wrong_input = 1,
 	pipe_error = 2,
 	fork_error = 3,
 	path_error = 4,
-}	t_error;
+}	t_error; */
 
 void	pipex(char **argv, char **envp, int file[2]);
 void	path_exec(char *argv, char **envp);
