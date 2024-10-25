@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 15:35:28 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/10/22 17:22:24 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/10/25 16:28:49 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,3 +26,8 @@ int	main(int argc, char **argv, char **envp)
 		return (EXIT_FAILURE);
 	pipex(argv, envp, file);
 }
+
+/* 
+	creo que Jorge lo que hacía era coger los paths y separarlos desde el principio;
+	de ese modo hago la funcion de get_paths solo una vez, y no una por comando
+ */
