@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 16:12:08 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/10/21 15:18:32 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/11/07 17:31:37 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ int	data_init(t_fractal *fractal, char **argv)
 	fractal->shift_y = 0.0;
 	fractal->zoom = 1.0;
 	fractal->color = SUPER_YELLOW;
-	// fractal->h = HEIGHT;
-	// fractal->w = WIDTH;
+	fractal->h = HEIGHT;
+	fractal->w = WIDTH;
 	fractal->c_values = malloc(sizeof(t_complex_num));
 	if (!fractal->c_values)
 		return (error_terminate_mlx(fractal));
@@ -107,4 +107,19 @@ void	fractal_init(t_fractal *fractal, char **argv)
 		error_terminate_mlx(fractal);
 	if (data_init(fractal, argv) == 1)
 		error_terminate_mlx(fractal);
+}
+
+void	fract_name(t_fractal *fractal, char *name, int argc)
+{
+	if (argc == 2 && ft_strcmp(name, "mandel") == 0)
+		fractal->name = mandel;
+	else if (ft_strcmp(name, "julia") == 0)
+		fractal->name = julia;
+	else if (ft_strcmp(name, "phoenix") == 0)
+		fractal->name = phoenix;
+	else
+	{
+		free(fractal);
+		ft_wrong_arg();
+	}
 }

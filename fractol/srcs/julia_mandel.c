@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:26:08 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/10/21 15:17:55 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/11/07 12:24:09 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ void	draw_mandel_julia(int x, int y, t_fractal *fractal)
 	int				color;
 
 	i = 0;
-	fractal->z_values->x = (ft_scale(x, -2, +2, WIDTH) * fractal->zoom) \
+	fractal->z_values->x = (ft_scale(x, -2, +2, fractal->w) * fractal->zoom) \
 		+ fractal->shift_x;
-	fractal->z_values->y = (ft_scale(y, +2, -2, HEIGHT) * fractal->zoom) \
+	fractal->z_values->y = (ft_scale(y, +2, -2, fractal->h) * fractal->zoom) \
 		+ fractal->shift_y;
 	if (fractal->name == mandel)
 		mandel_c(fractal);
@@ -69,10 +69,10 @@ void	fractal_jm_render(t_fractal *fractal)
 	int	y;
 
 	y = 0;
-	while (y < HEIGHT)
+	while (y < fractal->h)
 	{
 		x = 0;
-		while (x < WIDTH)
+		while (x < fractal->w)
 		{
 			draw_mandel_julia(x, y, fractal);
 			x++;

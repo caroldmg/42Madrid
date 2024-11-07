@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 14:47:25 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/10/21 15:19:02 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/11/07 15:30:28 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include <stdio.h>
 # include <math.h>
 
-# define WIDTH	2000
-# define HEIGHT	2000
+# define WIDTH	1000
+# define HEIGHT	1000
 
 /*
  * COLORS
@@ -33,12 +33,12 @@
 # define NEON_ORANGE				0xFF6600FF
 # define PSYCHEDELIC_PURPLE			0x660066FF
 # define AQUA_DREAM					0x33CCCCFF
-# define HOT_PINK 					0xE55982FF 
+# define COOL_RED 					0xF31F00FF
 # define CYAN_ELECTRIC				0xFF2CFFFF
 # define MCDONALDS					0xFFC72CFF
 # define SUPER_YELLOW				0xFCBE11FF
 # define PNKY_PASTEL				0xFFC4D6FF
-# define CUTE_GREEN					0xC1E378FF
+# define CUTE_GREEN					0x66BB6AFF
 
 typedef enum e_name
 {
@@ -65,9 +65,9 @@ typedef struct s_fractal
 	int				color;
 	int				color_pos;
 	// HEIGHT
-	// int				w;
-	// // WIDTH
-	// int				h;
+	int				w;
+	// WIDTH
+	int				h;
 
 	// HOOKS AND EVENTS 
 	double			escape;
@@ -82,6 +82,7 @@ void			ft_wrong_arg(void);
 void			ft_error(void);
 int				error_terminate_mlx(t_fractal *fractal);
 void			ft_close(t_fractal *fractal);
+void			ft_free_end(t_fractal *fractal);
 
 // init
 void			fractal_init(t_fractal *fractal, char **argv);
@@ -108,6 +109,6 @@ void			phoenix_value(t_fractal *fractal, char **argv);
 // HOOKS
 void			ft_scroll_zoom(double ydelta, double xdelta, void *f);
 void			ft_keyhook(mlx_key_data_t keydata, void *f);
-// void		ft_resize(int32_t width, int32_t height, void	*f);
+void			ft_resize(int32_t width, int32_t height, void	*f);
 
 #endif

@@ -40,7 +40,7 @@ SRCS := 	complex_maths.c \
 			init.c \
 			main.c \
 			hooks.c \
-			ft_errors.c \
+			error_and_free.c \
 			phoenix.c \
 			colors.c \
 

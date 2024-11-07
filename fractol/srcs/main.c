@@ -6,36 +6,11 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 14:43:38 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/10/21 15:18:25 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/11/07 17:31:20 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-void	fract_name(t_fractal *fractal, char *name, int argc)
-{
-	if (argc == 2 && ft_strcmp(name, "mandel") == 0)
-		fractal->name = mandel;
-	else if (ft_strcmp(name, "julia") == 0)
-		fractal->name = julia;
-	else if (ft_strcmp(name, "phoenix") == 0)
-		fractal->name = phoenix;
-	else
-	{
-		free(fractal);
-		ft_wrong_arg();
-	}
-}
-
-void	ft_free_end(t_fractal *fractal)
-{
-	free(fractal->c_values);
-	free(fractal->z_values);
-	free(fractal->aux);
-	mlx_terminate(fractal->mlx);
-	free(fractal);
-	exit(EXIT_SUCCESS);
-}
 
 int	main(int argc, char **argv)
 {
@@ -55,7 +30,7 @@ int	main(int argc, char **argv)
 			phoenix_render(fractal);
 		mlx_scroll_hook(fractal->mlx, ft_scroll_zoom, fractal);
 		mlx_key_hook(fractal->mlx, &ft_keyhook, fractal);
-		// mlx_resize_hook(fractal->mlx, &ft_resize, fractal);
+		mlx_resize_hook(fractal->mlx, &ft_resize, fractal);
 		mlx_loop(fractal->mlx);
 		ft_free_end(fractal);
 	}

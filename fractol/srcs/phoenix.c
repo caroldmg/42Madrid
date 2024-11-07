@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 18:44:45 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/10/21 15:17:47 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/11/07 12:48:17 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ void	draw_phoenix(int x, int y, t_fractal *fractal)
 	int				i;
 
 	i = 0;
-	fractal->z_values->x = (ft_scale(x, -2, +2, WIDTH) * fractal->zoom) \
+	fractal->z_values->x = (ft_scale(x, -2, +2, fractal->w) * fractal->zoom) \
 							+ fractal->shift_x;
-	fractal->z_values->y = (ft_scale(y, +2, -2, HEIGHT) * fractal->zoom) \
+	fractal->z_values->y = (ft_scale(y, +2, -2, fractal->h) * fractal->zoom) \
 							+ fractal->shift_y;
 	z_last = (t_complex_num){0.0, 0.0};
 	while (i < fractal->max_iter)
@@ -83,10 +83,10 @@ void	phoenix_render(t_fractal *fractal)
 	int	y;
 
 	y = 0;
-	while (y < HEIGHT)
+	while (y < fractal->h)
 	{
 		x = 0;
-		while (x < WIDTH)
+		while (x < fractal->w)
 		{
 			draw_phoenix(x, y, fractal);
 			x++;

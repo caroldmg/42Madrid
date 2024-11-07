@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 14:42:16 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/09/27 16:48:26 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/11/07 15:27:02 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	color_init(unsigned int *colors)
 	colors[1] = NEON_ORANGE;
 	colors[2] = PSYCHEDELIC_PURPLE;
 	colors[3] = AQUA_DREAM;
-	colors[4] = HOT_PINK;
+	colors[4] = COOL_RED;
 	colors[5] = CYAN_ELECTRIC;
 	colors[6] = MCDONALDS;
 	colors[7] = PNKY_PASTEL;
