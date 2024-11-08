@@ -24,7 +24,7 @@ double	escape_comparison(t_fractal *fractal)
 
 double	ft_scale(double nb, double n_min, double n_max, double o_max)
 {
-	return ((n_max - n_min) * (nb - 0) / (o_max - 0) + n_min);
+	return ((n_max - n_min) * nb / o_max + n_min);
 }
 
 t_complex_num	complex_multi(t_complex_num a, t_complex_num b)
