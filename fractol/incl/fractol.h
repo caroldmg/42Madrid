@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 14:47:25 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/11/07 15:30:28 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/11/09 13:45:55 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@
 # define SUPER_YELLOW				0xFCBE11FF
 # define PNKY_PASTEL				0xFFC4D6FF
 # define CUTE_GREEN					0x66BB6AFF
+# define LILLAC						0xC8B8F2FF
 
 typedef enum e_name
 {
@@ -79,6 +80,7 @@ typedef struct s_fractal
 
 // error handle
 void			ft_wrong_arg(void);
+void			ft_wrong_usage(void);
 void			ft_error(void);
 int				error_terminate_mlx(t_fractal *fractal);
 void			ft_close(t_fractal *fractal);
@@ -86,6 +88,7 @@ void			ft_free_end(t_fractal *fractal);
 
 // init
 void			fractal_init(t_fractal *fractal, char **argv);
+void			fract_name(t_fractal *fractal, char *name, int argc);
 
 //maths 
 double			ft_scale(double unscaled, double new_min, \

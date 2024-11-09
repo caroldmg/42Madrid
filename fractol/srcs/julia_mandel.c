@@ -6,29 +6,29 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:26:08 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/11/07 12:24:09 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/11/08 17:30:17 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-// t_complex_num	*complex_mandel_formula(t_complex_num *z, t_complex_num *c)
-// {
-// 	*z = complex_sum(complex_pow(*z, 2), *c);
-// 	return (z);
-// }
-
 t_complex_num	*complex_mandel_formula(t_complex_num *z, t_complex_num *c)
 {
-	double	temp_x;
-
-	temp_x = (z->x * z->x) - (z->y * z->y);
-	z->y = 2 * z->x * z->y;
-	z->x = temp_x;
-	z->x += c->x;
-	z->y += c->y;
+	*z = complex_sum(complex_pow(*z, 2), *c);
 	return (z);
 }
+
+// t_complex_num	*complex_mandel_formula(t_complex_num *z, t_complex_num *c)
+// {
+// 	double	temp_x;
+
+// 	temp_x = (z->x * z->x) - (z->y * z->y);
+// 	z->y = 2 * z->x * z->y;
+// 	z->x = temp_x;
+// 	z->x += c->x;
+// 	z->y += c->y;
+// 	return (z);
+// }
 
 void	mandel_c(t_fractal *fractal)
 {
@@ -80,4 +80,26 @@ void	fractal_jm_render(t_fractal *fractal)
 		y++;
 	}
 	mlx_image_to_window(fractal->mlx, fractal->image, 0, 0);
+}
+
+void	julia_random(t_fractal *fractal)
+{
+	double	time_x;
+	double	time_y;
+
+	if (fractal->name == julia)
+	{
+		time_x = mlx_get_time() - (int) mlx_get_time() + fractal->aux->x;
+		time_y = mlx_get_time() - (int) mlx_get_time() + fractal->aux->y;
+		while (time_x > 1)
+			time_x--;
+		while (time_x < 0)
+			time_x++;
+		while (time_y > 1)
+			time_y--;
+		while (time_y < 0)
+			time_y++;
+		fractal->c_values->x = time_x * 2 - 1;
+		fractal->c_values->y = time_y * 2 - 1;
+	}
 }

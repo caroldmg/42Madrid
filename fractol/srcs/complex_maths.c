@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 16:14:53 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/09/27 16:51:25 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/11/09 13:40:25 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ double	escape_comparison(t_fractal *fractal)
 
 double	ft_scale(double nb, double n_min, double n_max, double o_max)
 {
-	return ((n_max - n_min) * (nb - 0) / (o_max - 0) + n_min);
+	return ((n_max - n_min) * nb / o_max + n_min);
 }
 
 t_complex_num	complex_multi(t_complex_num a, t_complex_num b)

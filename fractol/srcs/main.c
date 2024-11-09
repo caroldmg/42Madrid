@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 14:43:38 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/11/07 17:31:20 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/11/09 13:45:30 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,5 @@ int	main(int argc, char **argv)
 		ft_free_end(fractal);
 	}
 	else
-	{
-		ft_putendl_fd("Usage: ./fractol <fractal>", 1);
-		ft_wrong_arg();
-	}
+		ft_wrong_usage();
 }

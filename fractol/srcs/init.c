@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 16:12:08 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/11/07 17:31:37 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/11/08 17:26:10 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,28 +44,6 @@ int	phoenix_init(t_fractal *fractal, char **argv)
 	if (argv[2])
 		phoenix_value(fractal, argv);
 	return (0);
-}
-
-void	julia_random(t_fractal *fractal)
-{
-	double	time_x;
-	double	time_y;
-
-	if (fractal->name == julia)
-	{
-		time_x = mlx_get_time() - (int) mlx_get_time() + fractal->aux->x;
-		time_y = mlx_get_time() - (int) mlx_get_time() + fractal->aux->y;
-		while (time_x > 1)
-			time_x--;
-		while (time_x < 0)
-			time_x++;
-		while (time_y > 1)
-			time_y--;
-		while (time_y < 0)
-			time_y++;
-		fractal->c_values->x = time_x * 2 - 1;
-		fractal->c_values->y = time_y * 2 - 1;
-	}
 }
 
 int	data_init(t_fractal *fractal, char **argv)
