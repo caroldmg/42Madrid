@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 18:42:29 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/10/25 14:36:58 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/11/09 16:11:27 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,16 @@ int main(int argc, char **argv, char **envp)
 		printf("o puedes probar: \n \t \
 				./pipex here\_doc LIMITADOR comando comando \n");
 	}
-	else if (argc == 5)
-	{
-		if (pipe(file) < 0)
-			return (EXIT_FAILURE);
-		pipex(argv, envp, file);
-	}
+	// else if (argc == 5)
+	// {
+	// 	if (pipe(file) < 0)
+	// 		return (EXIT_FAILURE);
+	// 	pipex(argv, envp, file);
+	// }
 	if (ft_strcmp(argv[1], "here_doc") == 0)
 		here_doc(argv, envp, file);
 	else
-		pipex_bonus(argc, argv, envp, file);
+		pipex_bonus(argc - 2, argv, envp, file);
 }
 
 /* 

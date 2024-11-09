@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 15:57:50 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/10/25 16:27:50 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/11/09 16:19:32 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	make_children(int argc, char **argv, char **envp, int file[2], int i)
 	if (i == 1)
 		first_child(file, argv, envp);
 	else if (i == argc)
-		last_child(file, argv, envp);
+		last_child(file, argc, argv, envp);
 	else
 		middle_child(file, argv, envp, i);
 }
@@ -25,6 +25,54 @@ void	make_children(int argc, char **argv, char **envp, int file[2], int i)
 	last child es como second child en el anterior,
 	middle child necesita la i para saber qué comando debe coger
  */
+
+void	first_child(int file[2], char **argv, char **envp)
+{
+	int	infile;
+
+	infile = open(argv[1], O_RDONLY, 0666);
+	if (infile < 0)
+	{
+		close(file[WRITE_E]);
+		perror("open: ");
+	}
+	close(file[READ_E]);
+	if (dup2(infile, STDIN_FILENO) < 0)
+		return ;
+	close(infile);
+	if (dup2(file[WRITE_E], STDOUT_FILENO) < 0)
+		return ;
+	close(file[WRITE_E]);
+	path_exec(argv[2], envp);
+}
+
+void	middle_child(int file[2], char **argv, char **envp, int i)
+{
+	close(file[READ_E]);
+	if (dup2(file[WRITE_E], STDOUT_FILENO) < 0)
+		return ;
+	path_exec(argv[i], envp);
+}
+
+void	last_child(int file[2], int argc, char **argv, char **envp)
+{
+	int	outfile;
+
+	outfile = open(argv[argc - 1], O_WRONLY | O_CREAT | O_TRUNC, 0777);
+	if (outfile < 0)
+	{
+		close(file[READ_E]);
+		perror("open: ");
+	}
+	close(file[WRITE_E]);
+	if (dup2(outfile, STDOUT_FILENO) < 0)
+		return ;
+	close(outfile);
+	if (dup2(file[READ_E], STDIN_FILENO) < 0)
+		return ;
+	close(file[READ_E]);
+	path_exec(argv[argc - 2], envp);
+}
 
 void	pipex(int argc, char **argv, char **envp)
 {
