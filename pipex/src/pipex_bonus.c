@@ -6,25 +6,11 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 15:57:50 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/11/10 20:45:03 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/11/10 22:25:51 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
-void	handle_children(int argc, char **argv, char **envp, int file[2], int i)
-{
-	if (i == 1)
-		first_child(file, argv, envp);
-	else if (i == argc)
-		last_child(file, argc, argv, envp);
-	else
-		middle_child(file, argv, envp, i);
-}
-/* 
-	last child es como second child en el anterior,
-	middle child necesita la i para saber qué comando debe coger
- */
 
 void	first_child(int file[2], char **argv, char **envp)
 {
@@ -62,7 +48,9 @@ void	middle_child(int file[2], char **argv, char **envp, int i)
         perror("dup2: ");
         exit(1);
     }
+	close(file[WRITE_E]);
 	path_exec(argv[i], envp);
+	close(STDOUT_FILENO);
 }
 
 void	last_child(int file[2], int argc, char **argv, char **envp)
@@ -74,6 +62,7 @@ void	last_child(int file[2], int argc, char **argv, char **envp)
 	{
 		close(file[READ_E]);
 		perror("open: ");
+		exit(1);
 	}
 	close(file[WRITE_E]);
 	if (dup2(outfile, STDOUT_FILENO) < 0)
@@ -88,10 +77,20 @@ void	last_child(int file[2], int argc, char **argv, char **envp)
         exit(1);
     }
 	close(file[READ_E]);
-	path_exec(argv[argc - 1], envp);
+	path_exec(argv[argc - 2], envp);
 }
 
-void	pipex(int argc, char **argv, char **envp)
+void	handle_children(int argc, char **argv, char **envp, int file[2], int i)
+{
+	if (i == 1)
+		first_child(file, argv, envp);
+	else if (i == argc)
+		last_child(file, argc, argv, envp);
+	else
+		middle_child(file, argv, envp, i);
+}
+
+void	pipex_bonus(int argc, char **argv, char **envp)
 {
 	int 	i;
 	int		status;
@@ -111,6 +110,12 @@ void	pipex(int argc, char **argv, char **envp)
 		waitpid(child, &status, 0);
 		close(file[READ_E]);
 		close(file[WRITE_E]);
+		ft_putendl_fd("en el bucle de pipex_bonus", 2);
 		i++;
 	}
+	  for (int j = 0; j < argc - 1; j++)
+    {
+        wait(NULL);
+    }
+    
 }

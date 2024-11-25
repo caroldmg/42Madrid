@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 15:35:28 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/11/07 16:08:46 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/11/25 12:04:26 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 int	main(int argc, char **argv, char **envp)
 {
 	int	file[2];
-	int i = 0;
+	int	i;
+
+	i = 0;
 	while (envp[i])
 	{
 		printf("%d --> %s \n", i, envp[i]);
@@ -32,8 +34,3 @@ int	main(int argc, char **argv, char **envp)
 		return (EXIT_FAILURE);
 	pipex(argv, envp, file);
 }
-
-/* 
-	creo que Jorge lo que hacía era coger los paths y separarlos desde el principio;
-	de ese modo hago la funcion de get_paths solo una vez, y no una por comando
- */
