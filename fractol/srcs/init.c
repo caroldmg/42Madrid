@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 16:12:08 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/11/08 17:26:10 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/11/25 13:02:21 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	data_init(t_fractal *fractal, char **argv)
 {
 	fractal->color_pos = 0;
 	fractal->max_iter = 42;
-	fractal->escape = 16;
+	fractal->escape = 4;
 	fractal->shift_x = 0.0;
 	fractal->shift_y = 0.0;
 	fractal->zoom = 1.0;

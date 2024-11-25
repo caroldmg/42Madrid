@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 14:42:16 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/11/09 13:41:54 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/11/25 13:03:37 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,5 @@ void	change_color(t_fractal *fractal)
 	else
 		fractal->color_pos = 0;
 	fractal->color = colors[fractal->color_pos];
+	free(colors);
 }
