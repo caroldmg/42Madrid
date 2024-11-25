@@ -10,7 +10,7 @@ MAKEFLAGS = --no-print-directory
 GREEN := \033[0;32m
 RED := \033[0;31m
 YELLOW := \033[0;33m
-BLUE := \033[0;34m
+BLUE := \033[0;36m
 RESET := \033[0m
 
 LIBMLX := ./MLX42/
@@ -56,18 +56,25 @@ $(MLX):
 	cmake $(LIBMLX) -B $(LIBMLX)build && make -C $(LIBMLX)build -j4 
 
 $(LIBFT):
-	$(MAKE) -C $(LIBFT_DIR)
+	@$(MAKE) -C $(LIBFT_DIR)
 
 $(PRINTF):
-	$(MAKE) -C $(PRINTF_DIR)
+	@$(MAKE) -C $(PRINTF_DIR)
 
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	$(CC) $(CFLAGS) $(HEADERS) $(MLX_HEADER) -I $(INCL_DIR) -o $@ -c $<
+	@$(CC) $(CFLAGS) $(HEADERS) $(MLX_HEADER) -I $(INCL_DIR) -o $@ -c $<
 
 $(NAME): obj $(OBJS) $(LIBFT) $(PRINTF) $(MLX)
-	$(CC) $(OBJS) $(MLX) $(LIBFT) $(PRINTF) $(MLX_FLAGS) -o $(NAME)
+	@$(CC) $(OBJS) $(MLX) $(LIBFT) $(PRINTF) $(MLX_FLAGS) -o $(NAME)
 	@echo "$(GREEN)Compilación completada con éxito.$(RESET)"
+
+usage:
+	@echo "$(BLUE) Usage: ./fractol <fractal> "
+	@echo "Available fractals: mandel, julia, phoenix \n"
+	@echo "    you can try and use two small floats as parameters to the Julia fractal "
+	@echo "    or a number between 1 and 5 with the phoenix fractal "
+	@echo "    to see some cool fractals!! $(RESET)"
 
 clean:
 	@rm -rf $(OBJ_DIR)

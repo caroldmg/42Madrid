@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 12:34:21 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/11/09 13:45:39 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/11/25 18:03:01 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ void	ft_wrong_arg(void)
 
 void	ft_wrong_usage(void)
 {
-	ft_printf("Usage: ./fractol <fractal> \n \t Available fractals: mandel, julia, phoenix \n");
+	ft_printf("Usage: ./fractol <fractal> \n");
+	ft_printf(" \t you can try and use two small floats as parameters to the Julia fractal \n \
+				\t or a number between 1 an 5 with the phoenix fractal \
+				to see some cool fractals!!");
 	ft_wrong_arg();
 }
 
