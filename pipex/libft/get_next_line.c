@@ -6,11 +6,11 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 14:56:19 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/12/02 19:05:53 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/12/02 19:25:56 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h"
 
 static size_t	len_to_linebreak(char *str)
 {

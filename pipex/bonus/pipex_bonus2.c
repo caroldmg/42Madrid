@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_bonus.c                                      :+:      :+:    :+:   */
+/*   pipex_bonus2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 15:57:50 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/11/10 20:45:03 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/12/02 19:42:09 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	last_child(int file[2], int argc, char **argv, char **envp)
 	path_exec(argv[argc - 1], envp);
 }
 
-void	pipex(int argc, char **argv, char **envp)
+/* void	pipex(int argc, char **argv, char **envp)
 {
 	int 	i;
 	int		status;
@@ -113,4 +113,4 @@ void	pipex(int argc, char **argv, char **envp)
 		close(file[WRITE_E]);
 		i++;
 	}
-}
+} */

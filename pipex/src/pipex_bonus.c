@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 12:05:04 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/12/02 19:02:05 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/12/02 19:51:09 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void	here_doc(char *limit, int argc)
 		close(file[READ_E]);
 		while (get_next_line(READ_E))
 		{
+			ft_putendl_fd("hola", 2);
 			if (ft_strcmp(line, limit) == 0)
 				exit(EXIT_SUCCESS);
 			write(file[1], line, ft_strlen(line));

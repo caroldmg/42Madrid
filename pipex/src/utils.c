@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 12:50:13 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/12/02 17:06:40 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/12/02 19:44:11 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	path_exec(char *argv, char **envp)
 			execve(executable, cmd, envp);
 		free(executable);
 	}
+
 	perror("Error: ");
 	free_all(mypaths);
 	free_all(cmd);

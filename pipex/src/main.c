@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 15:35:28 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/11/25 12:04:26 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/12/02 19:41:10 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ int	main(int argc, char **argv, char **envp)
 	int	i;
 
 	i = 0;
-	while (envp[i])
+	/* while (envp[i])
 	{
 		printf("%d --> %s \n", i, envp[i]);
 		i++;
-	}
+	} */
 
 	if (argc != 5)
 	{
