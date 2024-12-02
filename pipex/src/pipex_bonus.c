@@ -5,117 +5,120 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/25 15:57:50 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/11/10 22:25:51 by cde-migu         ###   ########.fr       */
+/*   Created: 2024/11/25 12:05:04 by cde-migu          #+#    #+#             */
+/*   Updated: 2024/12/02 19:02:05 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	first_child(int file[2], char **argv, char **envp)
+void	ft_error(char *str)
 {
-	int	infile;
+	ft_putendl_fd(str, ERROR_E);
+	exit(EXIT_FAILURE);
+}
 
-	infile = open(argv[1], O_RDONLY, 0666);
-	if (infile < 0)
+void	ft_usage(void)
+{
+	ft_putendl_fd("argumentos no válidos. \n \t Utilización: \t ./pipex \
+			archivo1 comando1 comando2 comando3 ... comandon archivo2", ERROR_E);
+}
+
+/* int	open_file(char *argv, int i)
+{
+	int	file;
+
+	file = 0;
+	if (i == 0)
+		file = open(argv, O_WRONLY | O_CREAT | O_APPEND, 0777);
+	else if (i == 1)
+		file = open(argv, O_WRONLY | O_CREAT | O_TRUNC, 0777);
+	else if (i == 2)
+		file = open(argv, O_RDONLY, 0777);
+	if (file == -1)
+		error();
+	return (file);
+} */
+
+void	process(char *argv, char **envp)
+{
+	pid_t	pid;
+	int		fd[2];
+
+	if (pipe(fd) == -1)
+		perror("pipe: ");
+	pid = fork();
+	if (pid == -1)
+		perror("fork: ");
+	if (pid == 0)
 	{
-		close(file[WRITE_E]);
-		perror("open: ");
-		exit(1);
+		close(fd[0]);
+		dup2(fd[1], STDOUT_FILENO);
+		path_exec(argv, envp);
 	}
-	close(file[READ_E]);
-	if (dup2(infile, STDIN_FILENO) < 0)
-	{
-        close(infile);
-        perror("dup2: ");
-        exit(1);
-    }
-	close(infile);
-	if (dup2(file[WRITE_E], STDOUT_FILENO) < 0)
-	{
-        perror("dup2: ");
-        exit(1);
-    }
-	close(file[WRITE_E]);
-	path_exec(argv[2], envp);
-}
-
-void	middle_child(int file[2], char **argv, char **envp, int i)
-{
-	close(file[READ_E]);
-	if (dup2(file[WRITE_E], STDOUT_FILENO) < 0)
-	{
-        perror("dup2: ");
-        exit(1);
-    }
-	close(file[WRITE_E]);
-	path_exec(argv[i], envp);
-	close(STDOUT_FILENO);
-}
-
-void	last_child(int file[2], int argc, char **argv, char **envp)
-{
-	int	outfile;
-
-	outfile = open(argv[argc - 1], O_WRONLY | O_CREAT | O_TRUNC, 0777);
-	if (outfile < 0)
-	{
-		close(file[READ_E]);
-		perror("open: ");
-		exit(1);
-	}
-	close(file[WRITE_E]);
-	if (dup2(outfile, STDOUT_FILENO) < 0)
-	{
-        perror("dup2: ");
-        exit(1);
-    }
-	close(outfile);
-	if (dup2(file[READ_E], STDIN_FILENO) < 0)
-	{
-        perror("dup2: ");
-        exit(1);
-    }
-	close(file[READ_E]);
-	path_exec(argv[argc - 2], envp);
-}
-
-void	handle_children(int argc, char **argv, char **envp, int file[2], int i)
-{
-	if (i == 1)
-		first_child(file, argv, envp);
-	else if (i == argc)
-		last_child(file, argc, argv, envp);
 	else
-		middle_child(file, argv, envp, i);
+	{
+		close(fd[1]);
+		dup2(fd[0], STDIN_FILENO);
+		waitpid(pid, NULL, 0);
+	}
 }
 
-void	pipex_bonus(int argc, char **argv, char **envp)
+void	here_doc(char *limit, int argc)
 {
-	int 	i;
-	int		status;
+	pid_t	read;
 	int		file[2];
-	pid_t	child;
+	char	*line;
 
-	i = 1;
-	while (i <= argc)
+	if (argc < 6)
+		return (ft_error("Utilización: \t ./pipex here_doc LIMITADOR \
+				comando comando1 archivo"));
+	if (pipe(file) < 0)
+		perror("pipe: ");
+	read = fork();
+	if (read == 0)
 	{
-		if (pipe(file) < 0)
-			return (perror("Pipe: "));
-		child = fork();
-		if (child < 0)
-			return (perror("Fork: "));
-		if (child == 0)
-			handle_children(argc, argv, envp, file, i);
-		waitpid(child, &status, 0);
 		close(file[READ_E]);
-		close(file[WRITE_E]);
-		ft_putendl_fd("en el bucle de pipex_bonus", 2);
-		i++;
+		while (get_next_line(READ_E))
+		{
+			if (ft_strcmp(line, limit) == 0)
+				exit(EXIT_SUCCESS);
+			write(file[1], line, ft_strlen(line));
+		}
 	}
-	  for (int j = 0; j < argc - 1; j++)
-    {
-        wait(NULL);
-    }
-    
+	else
+	{
+		close(file[1]);
+		dup2(file[0], STDIN_FILENO);
+		wait(NULL);
+	}
+}
+
+int	main(int argc, char **argv, char **envp)
+{
+	int	i;
+	int	filein;
+	int	fileout;
+
+	if (argc >= 5)
+	{
+		if (ft_strcmp(argv[1], "here_doc") == 0)
+		{
+			i = 3;
+			fileout = open(argv[argc - 1], O_WRONLY | O_CREAT | O_APPEND, 0777);
+			here_doc(argv[2], argc);
+		}
+		else
+		{
+			i = 2;
+			fileout = open(argv[argc - 1], O_WRONLY | O_CREAT | O_APPEND, 0777);
+			filein = open(argv[1], O_RDONLY, 0777);
+			dup2(filein, STDIN_FILENO);
+		}
+		while (i < argc - 2)
+			process(argv[i++], envp);
+		dup2(fileout, STDOUT_FILENO);
+		path_exec(argv[argc - 2], envp);
+	}
+	ft_usage();
 }

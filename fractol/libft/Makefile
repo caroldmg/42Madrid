@@ -57,7 +57,7 @@ NAME = libft.a
 all: $(NAME)
 
 $(NAME): $(OBJECTS)
-	ar rcs $(NAME) $(OBJECTS)
+	@ar rcs $(NAME) $(OBJECTS)
 
 .PHONY: all bonus clean fclean re
 

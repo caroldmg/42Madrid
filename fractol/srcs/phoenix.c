@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 18:44:45 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/11/07 12:48:17 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/11/29 20:36:56 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,5 +93,5 @@ void	phoenix_render(t_fractal *fractal)
 		}
 		y++;
 	}
-	mlx_image_to_window(fractal->mlx, fractal->image, 0, 0);
+	// mlx_image_to_window(fractal->mlx, fractal->image, 0, 0);
 }

@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 12:49:42 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/11/25 12:22:57 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/12/02 17:07:39 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@
 # include <sys/wait.h>
 # include <stdlib.h>
 # include <stdio.h>
-# include <string.h>
 # include "libft.h"
 # include "ft_printf.h"
+# include "get_next_line.h"
+
 # define ERROR_E 2
 # define WRITE_E 1
 # define READ_E	 0

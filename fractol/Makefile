@@ -1,7 +1,7 @@
 
 CC = cc
 NAME := fractol
-CFLAGS := -g3 -Wextra -Wall -Werror  -Wunreachable-code -Ofast
+CFLAGS := -g3 -Wextra -Wall -Werror  -Wunreachable-code -Ofast -march=native -funroll-loops
 
 MAKEFLAGS = --no-print-directory
 
@@ -23,7 +23,7 @@ OBJ_DIR := ./obj
 
 HEADERS	:=	 \
 			 -I $(LIBFT_DIR) $(OBJ) $(LIBFT) \
-			 -I $(PRINTF_DIR) $(OBJ) $(PRINTF)
+			 -I $(PRINTF_DIR) $(OBJ) $(PRINTF) \
 
 MLX_HEADER := -I $(LIBMLX)include/MLX42 
 
@@ -34,6 +34,7 @@ MLX_FLAGS	:= -ldl -lglfw -pthread -lm
 LIBFT :=	$(LIBFT_DIR)libft.a 
 
 PRINTF :=	$(PRINTF_DIR)libftprintf.a
+
 
 SRCS := 	complex_maths.c \
 			julia_mandel.c \
@@ -50,7 +51,7 @@ SRCS := $(addprefix $(SRC_DIR)/,$(SRCS))
 all: $(NAME)
 
 obj:
-	mkdir -p $(OBJ_DIR)
+	@mkdir -p $(OBJ_DIR)
 
 $(MLX):
 	cmake $(LIBMLX) -B $(LIBMLX)build && make -C $(LIBMLX)build -j4 

@@ -13,6 +13,7 @@ RESET := \033[0m
 
 LIBFT_DIR := ./libft/
 PRINTF_DIR := ./ft_printf/
+GNL_DIR := ./get_next_line/
 
 INCL_DIR := ./incl
 SRC_DIR := ./src
@@ -20,15 +21,18 @@ OBJ_DIR := ./obj
 
 HEADERS :=	\
 			-I $(LIBFT_DIR) $(OBJ) $(LIBFT) \
-			-I $(PRINTF_DIR) $(OBJ) $(PRINTF)
+			-I $(PRINTF_DIR) $(OBJ) $(PRINTF) \
+			-I $(GNL_DIR) $(OBJ) $(GNL) \
 
 LIBFT :=	$(LIBFT_DIR)libft.a 
 
 PRINTF :=	$(PRINTF_DIR)libftprintf.a
 
-SRCS :=		main.c \
-			utils.c \
+GNL := 		$(GNL_DIR)gnl
+
+SRCS :=		utils.c \
 			pipex_bonus.c \
+			
 
 OBJS := $(addprefix $(OBJ_DIR)/,$(SRCS:.c=.o))
 SRCS := $(addprefix $(SRC_DIR)/,$(SRCS))
@@ -49,7 +53,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INCL_DIR)/pipex.h
 	$(CC) $(CFLAGS) $(HEADERS) -I $(INCL_DIR) -o $@ -c $<
 
 $(NAME): obj $(OBJS) $(LIBFT) $(PRINTF)
-	$(CC) $(OBJS) $(LIBFT) $(PRINTF) -o $(NAME)
+	$(CC) $(OBJS) $(LIBFT) $(PRINTF) $(GNL) -o $(NAME)
 	@echo "$(GREEN)Compilación completada con éxito.$(RESET)"
 
 clean:
