@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 12:05:04 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/12/02 19:51:09 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/12/03 16:21:34 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,61 +64,30 @@ void	process(char *argv, char **envp)
 	}
 }
 
-void	here_doc(char *limit, int argc)
-{
-	pid_t	read;
-	int		file[2];
-	char	*line;
-
-	if (argc < 6)
-		return (ft_error("Utilización: \t ./pipex here_doc LIMITADOR \
-				comando comando1 archivo"));
-	if (pipe(file) < 0)
-		perror("pipe: ");
-	read = fork();
-	if (read == 0)
-	{
-		close(file[READ_E]);
-		while (get_next_line(READ_E))
-		{
-			ft_putendl_fd("hola", 2);
-			if (ft_strcmp(line, limit) == 0)
-				exit(EXIT_SUCCESS);
-			write(file[1], line, ft_strlen(line));
-		}
-	}
-	else
-	{
-		close(file[1]);
-		dup2(file[0], STDIN_FILENO);
-		wait(NULL);
-	}
-}
-
 int	main(int argc, char **argv, char **envp)
 {
 	int	i;
-	int	filein;
-	int	fileout;
+	int	infile;
+	int	outfile;
 
 	if (argc >= 5)
 	{
 		if (ft_strcmp(argv[1], "here_doc") == 0)
 		{
 			i = 3;
-			fileout = open(argv[argc - 1], O_WRONLY | O_CREAT | O_APPEND, 0777);
+			outfile = open(argv[argc - 1], O_WRONLY | O_CREAT | O_TRUNC, 0777);
 			here_doc(argv[2], argc);
 		}
 		else
 		{
 			i = 2;
-			fileout = open(argv[argc - 1], O_WRONLY | O_CREAT | O_APPEND, 0777);
-			filein = open(argv[1], O_RDONLY, 0777);
-			dup2(filein, STDIN_FILENO);
+			outfile = open(argv[argc - 1], O_WRONLY | O_CREAT | O_TRUNC, 0777);
+			infile = open(argv[1], O_RDONLY, 0777);
+			dup2(infile, STDIN_FILENO);
 		}
 		while (i < argc - 2)
 			process(argv[i++], envp);
-		dup2(fileout, STDOUT_FILENO);
+		dup2(outfile, STDOUT_FILENO); 
 		path_exec(argv[argc - 2], envp);
 	}
 	ft_usage();

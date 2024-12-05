@@ -31,6 +31,7 @@ PRINTF :=	$(PRINTF_DIR)libftprintf.a
 # 			main.c \
 
 SRCS := pipex_bonus.c \
+		here_doc.c \
 		utils.c \
 
 OBJS := $(addprefix $(OBJ_DIR)/,$(SRCS:.c=.o))
