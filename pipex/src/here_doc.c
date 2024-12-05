@@ -6,34 +6,11 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 16:21:37 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/12/05 12:42:19 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/12/05 18:30:58 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
-/* void	here_doc(char *limit, int argc)
-{
-	char	*line;
-	int		infile;
-	(void)argc;
-
-	infile = open("here_doc", O_WRONLY | O_CREAT | O_TRUNC, 0777);
-	while (1)
-	{
-		line = get_next_line(READ_E);
-		close(infile);
-		close(READ_E);
-		if (ft_strcmp(line, limit) != 0)
-			write(infile, line, ft_strlen(line));
-		else
-		{
-			free(line);
-			exit(EXIT_SUCCESS);
-		}
-		free(line);
-	}
-} */
 
 char	*ft_new_limit(char *limit)
 {
@@ -48,7 +25,7 @@ char	*ft_new_limit(char *limit)
 	return (new_limit);
 }
 
-int	ft_write_heredoc(int infile, char *limit)
+int	ft_write_here_doc(int infile, char *limit)
 {
 	int 	read_bytes;
 	char	buf[1024];
@@ -58,27 +35,47 @@ int	ft_write_heredoc(int infile, char *limit)
 		write(1, ">", 1);
 		read_bytes = read(STDIN_FILENO, buf, 1024);
 		if (read_bytes == 0)
-			break;
+			break ;
 		else if (read_bytes < 0)
 		{
 			close(infile);
 			return (1);
 		}
-		if (!ft_strcmp(ft_new_limit(limit), buf))
-			break;
+		if (ft_strncmp(ft_new_limit(limit), buf, read_bytes) == 0)
+			break ;
 		write(infile, buf, read_bytes);
 	}
+	close(infile);
 	return (0);
 }
 
-int	here_doc(int argc, char *limit)
+void	create_here_doc(char *limit)
 {
-	char	*line;
-	int		infile;
-	(void)argc;
+	if (ft_write_heredoc("here_doc", limit))
+	{
+		perror("Error writing here_doc");
+		exit(EXIT_FAILURE);
+	}
+}
+int	open_here_doc(void)
+{
+	 int infile = open("here_doc", O_RDONLY);
+    if (infile < 0)
+    {
+        perror("open here_doc");
+        exit(EXIT_FAILURE);
+    }
+    return infile;
+}
 
-	infile = open("here_doc", O_RDWR | O_CREAT | O_TRUNC, 0777);
-	if (infile < 0)
-		perror("open: ");
-	ft_write_heredoc(infile, limit);
+void	here_doc(char *limit, int argc)
+{
+	int	infile;
+
+    if (argc < 6)
+        ft_usage();
+    create_here_doc_file(limit);
+    infile = open_here_doc_file();
+    dup2(infile, STDIN_FILENO);
+    close(infile);
 }

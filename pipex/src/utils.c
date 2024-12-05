@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 12:50:13 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/12/02 19:44:11 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/12/05 17:50:57 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,10 @@ void	path_exec(char *argv, char **envp)
 		executable = ft_strjoin(temp, cmd[0]);
 		free(temp);
 		if (access(executable, X_OK) == 0)
+		{
+			ft_putendl_fd("el access da ok", 2);
 			execve(executable, cmd, envp);
+		}
 		free(executable);
 	}
 

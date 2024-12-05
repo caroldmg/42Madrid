@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 12:05:04 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/12/03 16:21:34 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/12/05 18:09:03 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@ void	ft_error(char *str)
 
 void	ft_usage(void)
 {
-	ft_putendl_fd("argumentos no válidos. \n \t Utilización: \t ./pipex \
-			archivo1 comando1 comando2 comando3 ... comandon archivo2", ERROR_E);
+	ft_putstr_fd("\033[31mError: Bad argument\n\e[0m", 2);
+	ft_putstr_fd("Ex: ./pipex <file1> <cmd1> <cmd2> <...> <file2>\n", 1);
+	ft_putstr_fd("\t./pipex \"here_doc\" <LIMITER> <cmd> <cmd1> <...> <file>\n", 1);
+	exit(EXIT_SUCCESS);
 }
 
 /* int	open_file(char *argv, int i)
@@ -77,6 +79,15 @@ int	main(int argc, char **argv, char **envp)
 			i = 3;
 			outfile = open(argv[argc - 1], O_WRONLY | O_CREAT | O_TRUNC, 0777);
 			here_doc(argv[2], argc);
+			infile = open("here_doc", O_RDONLY);
+            if (infile < 0)
+			{
+                perror("open here_doc");
+                exit(EXIT_FAILURE);
+            }
+            dup2(infile, STDIN_FILENO); 
+            close(infile);
+            ft_putendl_fd("he salido de here_doc", 2);
 		}
 		else
 		{
