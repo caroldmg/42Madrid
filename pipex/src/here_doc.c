@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 16:21:37 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/12/05 18:30:58 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/12/05 18:35:30 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,13 @@ char	*ft_new_limit(char *limit)
 	return (new_limit);
 }
 
-int	ft_write_here_doc(int infile, char *limit)
+int	ft_write_here_doc(char *limit)
 {
 	int 	read_bytes;
+	int		infile;
 	char	buf[1024];
 
+	infile = open("here_doc", O_RDWR | O_CREAT | O_TRUNC, 0777);
 	while (1)
 	{
 		write(1, ">", 1);
@@ -51,7 +53,7 @@ int	ft_write_here_doc(int infile, char *limit)
 
 void	create_here_doc(char *limit)
 {
-	if (ft_write_heredoc("here_doc", limit))
+	if (ft_write_here_doc(limit))
 	{
 		perror("Error writing here_doc");
 		exit(EXIT_FAILURE);
@@ -74,8 +76,8 @@ void	here_doc(char *limit, int argc)
 
     if (argc < 6)
         ft_usage();
-    create_here_doc_file(limit);
-    infile = open_here_doc_file();
+    create_here_doc(limit);
+    infile = open_here_doc();
     dup2(infile, STDIN_FILENO);
     close(infile);
 }

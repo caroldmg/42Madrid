@@ -65,6 +65,7 @@ fclean:
 	@echo "$(RED)Limpiando todo...$(RESET)"
 	@rm -rf $(NAME)
 	@rm -rf $(OBJ_DIR)
+	@rm here_doc
 	@$(MAKE) -C $(LIBFT_DIR) fclean
 	@$(MAKE) -C $(PRINTF_DIR) fclean
 	@echo "$(GREEN) ¡Todo limpio! $(RESET)"

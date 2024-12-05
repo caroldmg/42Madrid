@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 12:05:04 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/12/05 18:09:03 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/12/05 18:32:02 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,15 +79,6 @@ int	main(int argc, char **argv, char **envp)
 			i = 3;
 			outfile = open(argv[argc - 1], O_WRONLY | O_CREAT | O_TRUNC, 0777);
 			here_doc(argv[2], argc);
-			infile = open("here_doc", O_RDONLY);
-            if (infile < 0)
-			{
-                perror("open here_doc");
-                exit(EXIT_FAILURE);
-            }
-            dup2(infile, STDIN_FILENO); 
-            close(infile);
-            ft_putendl_fd("he salido de here_doc", 2);
 		}
 		else
 		{
