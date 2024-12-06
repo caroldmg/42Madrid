@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   here_doc.c                                         :+:      :+:    :+:   */
+/*   here_doc_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 16:21:37 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/12/05 18:35:30 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/12/06 15:16:17 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ void	here_doc(char *limit, int argc)
 {
 	int	infile;
 
-    if (argc < 6)
-        ft_usage();
+	if (argc < 6)
+		ft_usage();
     create_here_doc(limit);
     infile = open_here_doc();
     dup2(infile, STDIN_FILENO);

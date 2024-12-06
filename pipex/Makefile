@@ -1,5 +1,6 @@
 CC = cc
 NAME := pipex
+NAME_BONUS := pipex_bonus
 CFLAGS := -g3 -Wextra -Werror -Wall
 
 MAKEFLAGS = --no-print-directory
@@ -16,6 +17,7 @@ PRINTF_DIR := ./ft_printf/
 
 INCL_DIR := ./incl
 SRC_DIR := ./src
+BONUS_DIR := ./src_bonus
 OBJ_DIR := ./obj
 
 HEADERS :=	\
@@ -26,16 +28,20 @@ LIBFT :=	$(LIBFT_DIR)libft.a
 
 PRINTF :=	$(PRINTF_DIR)libftprintf.a
 
-# SRCS :=		utils.c \
-# 			pipex.c \
-# 			main.c \
+SRCS :=		utils.c \
+			pipex.c \
+			main.c \
 
-SRCS := pipex_bonus.c \
-		here_doc.c \
-		utils.c \
+SRC_BONUS := main_bonus.c \
+			pipex_bonus.c \
+			utils_bonus.c \
+			here_doc_bonus.c \
+
 
 OBJS := $(addprefix $(OBJ_DIR)/,$(SRCS:.c=.o))
 SRCS := $(addprefix $(SRC_DIR)/,$(SRCS))
+BONUS := $(addprefix $(BONUS_DIR)/,$(SRC_BONUS))
+BONUS_OBJ := $(addprefix $(OBJ_DIR)/,$(SRC_BONUS:.c=.o))
 
 all: $(NAME)
 
@@ -56,6 +62,17 @@ $(NAME): obj $(OBJS) $(LIBFT) $(PRINTF)
 	$(CC) $(OBJS) $(LIBFT) $(PRINTF) -o $(NAME)
 	@echo "$(GREEN)Compilación completada con éxito.$(RESET)"
 
+test:
+	echo $(BONUS)
+
+$(OBJ_DIR)/%.o: $(BONUS_DIR)/%.c $(INCL_DIR)/pipex.h
+	$(CC) $(CFLAGS) $(HEADERS) -I $(INCL_DIR) -o $@ -c $<
+
+bonus: obj $(OBJS) $(BONUS_OBJ) $(LIBFT) $(PRINTF)
+	$(CC) $(BONUS_OBJ) $(LIBFT) $(PRINTF) -o $(NAME_BONUS)
+	@rm -f pipex
+	@echo "$(GREEN)Compilación completada con éxito.$(RESET)"
+
 clean:
 	@rm -rf $(OBJ_DIR)
 	@$(MAKE) -C $(LIBFT_DIR) clean
@@ -65,7 +82,7 @@ fclean:
 	@echo "$(RED)Limpiando todo...$(RESET)"
 	@rm -rf $(NAME)
 	@rm -rf $(OBJ_DIR)
-	@rm here_doc
+	@rm -f here_doc
 	@$(MAKE) -C $(LIBFT_DIR) fclean
 	@$(MAKE) -C $(PRINTF_DIR) fclean
 	@echo "$(GREEN) ¡Todo limpio! $(RESET)"
