@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 14:18:35 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/12/10 17:19:56 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/12/10 18:28:21 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ int	main(int argc, char **argv, char **envp)
 		if (ft_strcmp(argv[1], "here_doc") == 0)
 		{
 			i = 3;
-			here_doc(argv[2], argc);
 			outfile = open(argv[argc - 1], O_WRONLY | O_CREAT | O_APPEND);
 			if (outfile < 0)
 			{
 				perror("open");
 				exit(EXIT_FAILURE);
 			}
+			here_doc(argv[2], argc);
 		}
 		else
 		{
