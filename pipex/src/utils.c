@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 12:50:13 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/12/06 12:55:07 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/12/10 17:06:38 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	path_exec(char *argv, char **envp)
 			execve(executable, cmd, envp);
 		free(executable);
 	}
-	perror("Error: ");
+	perror("Command not found");
 	free_all(mypaths);
 	free_all(cmd);
 	exit(EXIT_FAILURE);
@@ -83,4 +83,11 @@ void	free_all(char **arr)
 		i++;
 	}
 	free(arr);
+}
+
+int	ft_error(char *str)
+{
+	if (str != NULL)
+		perror(str);
+	return (EXIT_FAILURE);
 }

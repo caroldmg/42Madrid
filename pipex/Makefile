@@ -1,6 +1,6 @@
 CC = cc
 NAME := pipex
-NAME_BONUS := pipex_bonus
+NAME_BONUS := pipex
 CFLAGS := -g3 -Wextra -Werror -Wall
 
 MAKEFLAGS = --no-print-directory
@@ -70,8 +70,8 @@ $(OBJ_DIR)/%.o: $(BONUS_DIR)/%.c $(INCL_DIR)/pipex.h
 
 bonus: obj $(OBJS) $(BONUS_OBJ) $(LIBFT) $(PRINTF)
 	$(CC) $(BONUS_OBJ) $(LIBFT) $(PRINTF) -o $(NAME_BONUS)
-	@rm -f pipex
 	@echo "$(GREEN)Compilación completada con éxito.$(RESET)"
+# @rm -f pipex
 
 clean:
 	@rm -rf $(OBJ_DIR)
@@ -81,6 +81,7 @@ clean:
 fclean:
 	@echo "$(RED)Limpiando todo...$(RESET)"
 	@rm -rf $(NAME)
+	@rm -rf $(NAME_BONUS)
 	@rm -rf $(OBJ_DIR)
 	@rm -f here_doc
 	@$(MAKE) -C $(LIBFT_DIR) fclean

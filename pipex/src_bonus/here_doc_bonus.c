@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 16:21:37 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/12/06 15:16:17 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/12/10 17:25:10 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*ft_new_limit(char *limit)
 
 int	ft_write_here_doc(char *limit)
 {
-	int 	read_bytes;
+	int		read_bytes;
 	int		infile;
 	char	buf[1024];
 
@@ -59,15 +59,18 @@ void	create_here_doc(char *limit)
 		exit(EXIT_FAILURE);
 	}
 }
+
 int	open_here_doc(void)
 {
-	 int infile = open("here_doc", O_RDONLY);
-    if (infile < 0)
-    {
-        perror("open here_doc");
-        exit(EXIT_FAILURE);
-    }
-    return infile;
+	int	infile;
+
+	infile = open("here_doc", O_RDONLY);
+	if (infile < 0)
+	{
+		perror("open here_doc");
+		exit(EXIT_FAILURE);
+	}
+	return (infile);
 }
 
 void	here_doc(char *limit, int argc)
@@ -76,8 +79,8 @@ void	here_doc(char *limit, int argc)
 
 	if (argc < 6)
 		ft_usage();
-    create_here_doc(limit);
-    infile = open_here_doc();
-    dup2(infile, STDIN_FILENO);
-    close(infile);
+	create_here_doc(limit);
+	infile = open_here_doc();
+	dup2(infile, STDIN_FILENO);
+	close(infile);
 }

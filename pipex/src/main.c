@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 15:35:28 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/12/06 12:46:03 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/12/10 16:49:55 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@ int	main(int argc, char **argv, char **envp)
 {
 	int	file[2];
 	int	i;
+	int	err;
 
 	i = 0;
-
+	err = 0;
 	if (argc != 5)
 	{
 		printf("Para utilizar correctamente el programa: \n \t \
@@ -27,5 +28,8 @@ int	main(int argc, char **argv, char **envp)
 	}
 	if (pipe(file) < 0)
 		return (EXIT_FAILURE);
-	pipex(argv, envp, file);
+	return pipex(argv, envp, file);
+	// if (err == 0)
+	// 	err = i;
+	// return (err);
 }

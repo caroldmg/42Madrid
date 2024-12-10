@@ -6,36 +6,31 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 12:05:04 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/12/06 15:07:38 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/12/10 17:11:59 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	ft_error(char *str)
+int	ft_error(char *str)
 {
-	ft_putendl_fd(str, ERROR_E);
-	exit(EXIT_FAILURE);
+	if (str != NULL)
+		perror(str);
+	return (EXIT_FAILURE);
 }
 
-void	ft_usage(void)
-{
-	ft_putstr_fd("\033[31mError: Bad argument\n\e[0m", 2);
-	ft_putstr_fd("Ex: ./pipex_bonus <file1> <cmd1> <cmd2> <...> <file2>\n", 1);
-	ft_putstr_fd("\t./pipex_bonus \"here_doc\" <LIMITER> <cmd> <cmd1> <...> <file>\n", 1);
-	exit(EXIT_SUCCESS);
-}
-
-void	process(char *argv, char **envp)
+int	pipex_bonus(char *argv, char **envp)
 {
 	pid_t	pid;
 	int		fd[2];
+	int		status;
 
+	status = 0;
 	if (pipe(fd) == -1)
-		perror("pipe: ");
+		return (ft_error("pipe: "));
 	pid = fork();
 	if (pid == -1)
-		perror("fork: ");
+		return (ft_error("Fork: "));
 	if (pid == 0)
 	{
 		close(fd[0]);
@@ -46,6 +41,9 @@ void	process(char *argv, char **envp)
 	{
 		close(fd[1]);
 		dup2(fd[0], STDIN_FILENO);
-		waitpid(pid, NULL, 0);
+		waitpid(pid, &status, 0);
 	}
+	if (status && WIFEXITED(status))
+		return (WEXITSTATUS(status));
+	return (EXIT_FAILURE);
 }

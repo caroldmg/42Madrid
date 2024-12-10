@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 12:49:42 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/12/06 15:15:24 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/12/10 17:12:18 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,19 @@
 	path_error = 4,
 }	t_error; */
 
-void	pipex(char **argv, char **envp, int file[2]);
+int		pipex(char **argv, char **envp, int file[2]);
 
 // BONUS
-
 void	ft_usage(void);
 void	here_doc(char *limit, int argc);
-void	pipex_bonus(int argc, char **argv, char **envp);
-void	process(char *argv, char **envp);
+// int		pipex_bonus(int argc, char **argv, char **envp);
+int		pipex_bonus(char *argv, char **envp);
 
 // UTILS
 
 void	path_exec(char *argv, char **envp);
 char	**get_paths(char **envp);
 void	free_all(char **arr);
-
+int		ft_error(char *str);
 
 #endif
