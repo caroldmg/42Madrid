@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_bonus.c                                      :+:      :+:    :+:   */
+/*   paths_usage_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 12:50:13 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/12/10 17:10:15 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/12/12 19:01:41 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,9 @@ void	free_all(char **arr)
 
 void	ft_usage(void)
 {
-	ft_putstr_fd("\033[31mError: Bad argument\n\e[0m", 2);
-	ft_putstr_fd("Ex: ./pipex_bonus <file1> <cmd1> <cmd2> <...> <file2>\n", 1);
-	ft_putstr_fd("\t./pipex_bonus \"here_doc\" <LIMITER> <cmd> \
-					<cmd1> <...> <file>\n", 1);
+	ft_printf("\033[31mError: Bad argument\n\e[0m");
+	ft_printf("Ex: ./pipex_bonus <file1> <cmd1> <cmd2> <...> <file2>\n");
+	ft_printf("\t./pipex_bonus \"here_doc\" <LIMITER> <cmd> \
+					<cmd1> <...> <file>\n");
 	exit(EXIT_SUCCESS);
 }

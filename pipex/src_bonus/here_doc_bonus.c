@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 16:21:37 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/12/10 18:28:09 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/12/13 02:47:52 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	create_here_doc(char *limit)
 	}
 }
 
-int	open_here_doc(void)
+int	ft_open_here_doc(void)
 {
 	int	infile;
 
@@ -80,7 +80,7 @@ void	here_doc(char *limit, int argc)
 	if (argc < 6)
 		ft_usage();
 	create_here_doc(limit);
-	infile = open_here_doc();
+	infile = ft_open_here_doc();
 	dup2(infile, STDIN_FILENO);
 	close(infile);
 }
