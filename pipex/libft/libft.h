@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 19:26:59 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/12/02 19:20:15 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/12/13 03:19:09 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,14 +73,4 @@ void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
-// gnl
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10
-# endif
-char	*get_next_line(int fd);
-int		ft_findnchar(char *read_buf);
-char	*ft_gnljoin(char *buf, char *content);
-char	*ft_gnlstrlcpy(char *dst, const char *src, size_t dstsize);
-size_t	ft_strlen_gnl(const char *s);
-char	*free_null(char **s);
 #endif

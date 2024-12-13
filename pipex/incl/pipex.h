@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 12:49:42 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/12/13 02:26:15 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/12/13 03:17:13 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,11 @@
 # define EXIT_DEFAULT_O 2
 # define EXIT_HEREDOC_O 3
 
-typedef	struct s_files
+typedef struct s_files
 {
 	int	infile;
 	int	outfile;
 }	t_files;
-
 
 int		pipex(char **argv, char **envp, int file[2]);
 
