@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 12:49:42 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/12/13 03:17:13 by cde-migu         ###   ########.fr       */
+/*   Updated: 2024/12/16 12:01:57 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ void	ft_usage(void);
 void	here_doc(char *limit, int argc);
 int		pipex_bonus(char *argv, char **envp);
 
-int		redirect_pipex(char **argv, char **envp);
+// MAIN PROCCESS IN BONUS
+int		proccess(char **argv, int argc, char **envp, t_files *files);
 
 // PATH & ERRORS
 void	path_exec(char *argv, char **envp);

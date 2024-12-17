@@ -8,7 +8,9 @@ MAKEFLAGS = --no-print-directory
 GREEN := \033[0;32m
 RED := \033[0;31m
 YELLOW := \033[0;33m
+PURPLE := \033[0;35m
 BLUE := \033[0;36m
+CYAN := \033[1;36m
 RESET := \033[0m
 
 LIBFT_DIR := ./libft/
@@ -35,6 +37,7 @@ SRCS := utils.c \
 SRC_BONUS := main_bonus.c \
             pipex_bonus.c \
             utils_bonus.c \
+			proccess_bonus.c \
             here_doc_bonus.c \
 
 OBJS := $(addprefix $(OBJ_DIR)/,$(SRCS:.c=.o))
@@ -52,19 +55,21 @@ obj_bonus:
 	mkdir -p $(OBJ_BONUS_DIR)
 
 $(LIBFT):
+	@echo "$(CYAN)Compilando libft $(RESET)"
 	$(MAKE) -C $(LIBFT_DIR)
 
 $(PRINTF):
-	$(MAKE) -C $(PRINTF_DIR)
+	@echo "$(PURPLE)Compilando ft_printf $(RESET)"
+	@$(MAKE) -C $(PRINTF_DIR)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INCL_DIR)/pipex.h
-	$(CC) $(CFLAGS) $(HEADERS) -o $@ -c $<
+	@$(CC) $(CFLAGS) $(HEADERS) -o $@ -c $<
 
 $(OBJ_BONUS_DIR)/%.o: $(BONUS_DIR)/%.c $(INCL_DIR)/pipex.h
-	$(CC) $(CFLAGS) $(HEADERS) -o $@ -c $<
+	@$(CC) $(CFLAGS) $(HEADERS) -o $@ -c $<
 
 $(NAME): obj $(OBJS) $(LIBFT) $(PRINTF)
-	$(CC) $(OBJS) $(LIBFT) $(PRINTF) -o $(NAME)
+	@$(CC) $(OBJS) $(LIBFT) $(PRINTF) -o $(NAME)
 	@echo "$(GREEN)Compilación completada con éxito.$(RESET)"
 
 $(BONUS_EXEC): $(BONUS_OBJS) $(LIBFT) $(PRINTF)

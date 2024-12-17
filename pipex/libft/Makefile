@@ -56,22 +56,22 @@ NAME = libft.a
 all: $(NAME)
 
 $(NAME): $(OBJECTS)
-	ar rcs $(NAME) $(OBJECTS)
+	@ar rcs $(NAME) $(OBJECTS)
 
 bonus: $(BOBJECTS)
 	ar rcs $(NAME) $(BOBJECTS)
 
 $(OBJECTS): %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(BOBJECTS): %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJECTS) $(BOBJECTS)
+	@rm -f $(OBJECTS) $(BOBJECTS)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
 

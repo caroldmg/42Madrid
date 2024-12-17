@@ -6,7 +6,7 @@
 #    By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/22 13:00:50 by cde-migu          #+#    #+#              #
-#    Updated: 2024/04/22 13:00:53 by cde-migu         ###   ########.fr        #
+#    Updated: 2024/12/16 11:59:43 by cde-migu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,20 +18,13 @@ SOURCE = ft_printf.c \
 OBJECTS = $(SOURCE:.c=.o)
 NAME = libftprintf.a
 
-#LIBFT = ./libft/libft.a
 
 all: $(NAME)
 
 $(NAME): $(OBJECTS)
-#$(NAME): $(LIBFT) $(OBJECTS)
-#	cp $(LIBFT) ./$(NAME)
-	ar rcs $(NAME) $(OBJECTS)
-
-#$(LIBFT):
-#	@make -C ./libft
+	@ar rcs $(NAME) $(OBJECTS)
 
 clean:
-#	@make fclean -C ./libft
 	@rm -f $(OBJECTS)
 
 fclean: clean
