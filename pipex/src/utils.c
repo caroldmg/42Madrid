@@ -6,45 +6,25 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 12:50:13 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/12/10 17:06:38 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/01/02 14:21:50 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	command_path(char **cmd, char **envp)
+char	**get_paths()
 {
-	char	*temp;
-
-	temp = ft_strdup(cmd[0]);
-	if (access(temp, 0) == 0)
-	{
-		execve(temp, cmd, envp);
-		free(temp);
-		perror("Error: failed execution");
-		exit(EXIT_FAILURE);
-	}
-	else
-	{
-		free(temp);
-		perror("Error command not found");
-		exit(EXIT_FAILURE);
-	}
-}
-
-char	**get_paths(char **envp)
-{
-	int		i;
+	char	*env_paths;
 	char	**my_paths;
 
-	i = 0;
-	while (envp[i] && ft_strncmp(envp[i], "PATH=", 5))
-		i++;
-	my_paths = ft_split(envp[i], ':');
+	my_paths = NULL;
+	env_paths = getenv("PATH");
+	if (env_paths != NULL)
+		my_paths = ft_split(env_paths, ':');
 	return (my_paths);
 }
 
-void	path_exec(char *argv, char **envp)
+void	path_exec(char *argv)
 {
 	int		i;
 	char	**cmd;
@@ -54,16 +34,14 @@ void	path_exec(char *argv, char **envp)
 
 	i = 0;
 	cmd = ft_split(argv, ' ');
-	mypaths = get_paths(envp);
-	if (mypaths == NULL)
-		command_path(cmd, envp);
+	mypaths = get_paths();
 	while (mypaths[++i])
 	{
 		temp = ft_strjoin(mypaths[i], "/");
 		executable = ft_strjoin(temp, cmd[0]);
 		free(temp);
 		if (access(executable, X_OK) == 0)
-			execve(executable, cmd, envp);
+			execve(executable, cmd, mypaths);
 		free(executable);
 	}
 	perror("Command not found");

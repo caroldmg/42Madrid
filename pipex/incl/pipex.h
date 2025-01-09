@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 12:49:42 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/12/16 12:01:57 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/01/09 17:20:36 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,19 +39,19 @@ typedef struct s_files
 	int	outfile;
 }	t_files;
 
-int		pipex(char **argv, char **envp, int file[2]);
+int		pipex(char **argv, int file[2]);
 
 // BONUS
 void	ft_usage(void);
 void	here_doc(char *limit, int argc);
-int		pipex_bonus(char *argv, char **envp);
+int		pipex_bonus(char *argv);
 
 // MAIN PROCCESS IN BONUS
-int		proccess(char **argv, int argc, char **envp, t_files *files);
+int		proccess(char **argv, int argc, t_files *files);
 
 // PATH & ERRORS
-void	path_exec(char *argv, char **envp);
-char	**get_paths(char **envp);
+void	path_exec(char *argv);
+char	**get_paths(void);
 void	free_all(char **arr);
 int		ft_error(char *str);
 

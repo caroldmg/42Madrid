@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 12:05:04 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/12/12 18:23:03 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/01/09 17:19:24 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_error(char *str)
 	return (EXIT_FAILURE);
 }
 
-int	pipex_bonus(char *argv, char **envp)
+int	pipex_bonus(char *argv)
 {
 	pid_t	pid;
 	int		fd[2];
@@ -35,7 +35,7 @@ int	pipex_bonus(char *argv, char **envp)
 	{
 		close(fd[0]);
 		dup2(fd[1], STDOUT_FILENO);
-		path_exec(argv, envp);
+		path_exec(argv);
 	}
 	else
 	{

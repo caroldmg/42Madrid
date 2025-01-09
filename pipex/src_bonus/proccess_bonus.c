@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 11:45:46 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/12/17 17:03:16 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/01/09 17:20:53 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	open_here_doc(char **argv, int argc, t_files *files)
 	return (EXIT_HEREDOC_O);
 }
 
-int	proccess(char **argv, int argc, char **envp, t_files *files)
+int	proccess(char **argv, int argc, t_files *files)
 {
 	int	i;
 	int	output;
@@ -55,10 +55,10 @@ int	proccess(char **argv, int argc, char **envp, t_files *files)
 		i = open_default(argv, argc, files);
 	while (i < argc - 2)
 	{
-		output = pipex_bonus(argv[i], envp);
+		output = pipex_bonus(argv[i]);
 		i++;
 	}
 	dup2(files->outfile, STDOUT_FILENO);
-	path_exec(argv[argc - 2], envp);
+	path_exec(argv[argc - 2]);
 	return (output);
 }

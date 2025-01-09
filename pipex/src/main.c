@@ -6,13 +6,13 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 15:35:28 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/12/13 03:16:23 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/01/02 14:19:28 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int	main(int argc, char **argv, char **envp)
+int	main(int argc, char **argv)
 {
 	int	file[2];
 	int	i;
@@ -28,5 +28,5 @@ int	main(int argc, char **argv, char **envp)
 	}
 	if (pipe(file) < 0)
 		return (EXIT_FAILURE);
-	return (pipex(argv, envp, file));
+	return (pipex(argv, file));
 }

@@ -6,13 +6,13 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 14:18:35 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/12/16 11:46:14 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/01/09 17:21:32 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int	main(int argc, char **argv, char **envp)
+int	main(int argc, char **argv)
 {
 	int		output;
 	t_files	files;
@@ -21,7 +21,7 @@ int	main(int argc, char **argv, char **envp)
 	files.outfile = -1;
 	output = 0;
 	if (argc >= 5)
-		output = proccess(argv, argc, envp, &files);
+		output = proccess(argv, argc, &files);
 	else
 		ft_usage();
 	return (output);
