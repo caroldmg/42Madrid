@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 12:05:04 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/01/09 17:36:07 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/02/01 13:11:48 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@ int	pipex_bonus(char *argv)
 		return (ft_error("Fork: "));
 	if (pid == 0)
 	{
-		close(fd[0]);
-		dup2(fd[1], STDOUT_FILENO);
+		close(fd[READ_E]);
+		dup2(fd[WRITE_E], STDOUT_FILENO);
 		path_exec(argv);
 	}
 	else
 	{
-		close(fd[1]);
-		dup2(fd[0], STDIN_FILENO);
+		close(fd[WRITE_E]);
+		dup2(fd[READ_E], STDIN_FILENO);
 		waitpid(pid, &status, 0);
 	}
 	if (status && WIFEXITED(status))
