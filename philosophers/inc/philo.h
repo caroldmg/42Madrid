@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 20:12:24 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/06/11 17:30:41 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/06/11 17:40:17 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 typedef struct s_philo
 {
 	// info que te dan los args
+	pthread_t		thread;
 	int				id;
 	size_t			time_to_die;
 	size_t			time_to_sleep;
@@ -34,22 +35,31 @@ typedef struct s_philo
 	size_t			time_to_sleep;
 	int				nb_meals_to_eat;
 	int				num_of_philo;
-
-	// 
-	int				eating; //bool?
-	int				meals_eaten;
-	int				dead; //bool
 	// time
 	size_t			start_time;
 	size_t			last_meal;
 
+	// 
+	int				eating; //bool?
+	int				meals_eaten;
+	int				*dead; //bool
+
 	// locks
-	pthread_mutex_t	*r_fork;
+	pthread_mutex_t	*r_fork; //estos son los enganches con el anterior y el siguiente
 	pthread_mutex_t	*l_fork;
 	pthread_mutex_t *write_lock;
 	pthread_mutex_t	*dead_lock;
 	pthread_mutex_t	*meal_lock;
 }	t_philo;
+
+typedef struct s_philo_table
+{
+	int				dead_flag;
+	pthread_mutex_t	dead_lock;
+	pthread_mutex_t	meal_lock;
+	pthread_mutex_t	write_lock;
+	t_philo			*philos;
+}	t_philo_table;
 
 int		check_valid_args(int argc, char **argv);
 int		error_msg(int value);
