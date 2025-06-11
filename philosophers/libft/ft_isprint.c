@@ -6,13 +6,13 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:35:22 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/02/13 10:59:20 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/06/06 12:29:15 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isprint(int c)
+bool	ft_isprint(int c)
 {
 	return (c >= ' ' && c <= '~');
 }

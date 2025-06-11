@@ -6,20 +6,15 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 12:20:05 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/02/13 10:58:35 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/06/06 12:28:33 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isalpha(int c)
+bool	ft_isalpha(int c)
 {
-	int	isalpha;
-
-	isalpha = 0;
-	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
-		isalpha = 1;
-	return (isalpha);
+	return ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'));
 }
 
 /*

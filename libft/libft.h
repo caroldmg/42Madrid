@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 19:26:59 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/02/11 18:25:39 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/06/06 12:29:46 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
+# include <stdbool.h>
 
 // typedefs
 typedef struct s_list
@@ -24,11 +25,11 @@ typedef struct s_list
 }	t_list;
 
 // prototipos de funciones o procedimientos
-int		ft_isalpha(int c);
-int		ft_isdigit(int c);
-int		ft_isalnum(int c);
-int		ft_isascii(int c);
-int		ft_isprint(int c);
+bool	ft_isalpha(int c);
+bool	ft_isdigit(int c);
+bool	ft_isalnum(int c);
+bool	ft_isascii(int c);
+bool	ft_isprint(int c);
 size_t	ft_strlen(const char *s);
 void	*ft_memset(void *b, int c, size_t len);
 void	ft_bzero(void *s, size_t n);
