@@ -1,41 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/03 17:17:38 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/02/03 17:50:36 by cde-migu         ###   ########.fr       */
+/*   Created: 2025/06/13 17:15:53 by cde-migu          #+#    #+#             */
+/*   Updated: 2025/06/13 17:18:05 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "philo.h"
 
-void	ft_putnbr_fd(int n, int fd)
+long long	ft_get_time_ms(void)
 {
-	if (n == -2147483648)
-	{
-		ft_putstr_fd("-2147483648", fd);
-	}
-	else
-	{
-		if (n < 0)
-		{
-			ft_putchar_fd('-', fd);
-			n = n * -1;
-		}
-		if (n > 9)
-		{
-			ft_putnbr_fd(n / 10, fd);
-		}
-		ft_putchar_fd(n % 10 + '0', fd);
-	}
+	struct timeval	current_time;
+	long long		miliseconds;
+
+	if (gettimeofday(&current_time, NULL) == -1)
+		return (1);
+	miliseconds = (current_time.tv_sec * 1000) + (current_time.tv_usec / 1000);
+	return (miliseconds);
 }
-/*
-int main(void)
-{
-	ft_putnbr_fd("-2147483648", 1);
-	return (0);
-}
-*/
+

@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_check.c                                      :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/11 17:13:36 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/06/11 17:28:57 by cde-migu         ###   ########.fr       */
+/*   Created: 2025/06/02 19:54:08 by cde-migu          #+#    #+#             */
+/*   Updated: 2025/06/13 19:52:15 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	error_msg(int value)
+int	main(int argc, char *argv[])
 {
-	if (value == BAD_ARGS)
-		ft_putendl_fd(ARG_ER_MSG, 2);
-	else if (value == ERROR_MALLOC)
-		ft_putendl_fd("Malloc error :/", 2);
-	return (value);
+	t_philo *philosophers;
+	t_philo	*monitor;
+
+	if (check_valid_args(argc, argv) != NO_ERROR)
+		return (error_msg(BAD_ARGS));
+	// aqui es donde inicializo la mesa de filosofos y cada uno de los filosofos
+	philosophers = create_program(argv);
+	// gestion de errores
+	monitor = init_monitor(philosophers);
+	// si no funciona, limpieza y mensaje de error
+	link_philo_monitor(philosophers, monitor);
+	
 }

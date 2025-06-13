@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   error_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/11 12:02:02 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/01/14 19:53:52 by cde-migu         ###   ########.fr       */
+/*   Created: 2025/06/11 17:13:36 by cde-migu          #+#    #+#             */
+/*   Updated: 2025/06/12 12:53:33 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "philo.h"
 
-int	ft_toupper(int c)
+int	error_msg(int value)
 {
-	if (c >= 97 && c <= 122)
-		return (c - 32);
-	else
-		return (c);
+	if (value == BAD_ARGS)
+		ft_putendl_fd(ARG_ER_MSG, 2);
+	else if (value == ERROR_MALLOC)
+		ft_putendl_fd("Malloc error :/", 2);
+	return (value);
 }
 
-/*
-#include <ctype.h>
-#include <stdio.h>
-int	main(void)
-{
-	printf("%d \n", toupper(98));
-	printf("%d \n", ft_toupper(98));
-}
-*/
+// TODO: funcion exit para liberar las estructuras
+// TODO: funcion error que suelte el mensaje y que si me pasan la estructura me la libere
+// TODO: funcion gettime
+// TODO: funcion usleep

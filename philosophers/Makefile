@@ -9,55 +9,65 @@ RESET := \033[0m
 
 CC = cc
 NAME := philo
-CFLAGS := -g3 -Wextra -Wall -Werror -pthread #-fsanitize=address
+CFLAGS := -Wextra -Wall -Werror -pthread #-fsanitize=address -g3
 
-INCL_DIR := ./inc
-SRC_DIR := ./srcs
-OBJ_DIR := ./obj
-LIBFT_DIR := ./libft
-
-HEADERS	:=	-I $(LIBFT_DIR) $(OBJ) $(LIBFT) \
-
-LIBFT :=	$(LIBFT_DIR)libft.a
+OBJS = $(SRC:.c=.o)
 
 SRCS := main.c \
 		check_input.c \
-
-OBJS := $(addprefix $(OBJ_DIR)/,$(SRCS:.c=.o))
-SRCS := $(addprefix $(SRC_DIR)/,$(SRCS))
 
 all: $(NAME)
 
 obj:
 	@mkdir -p $(OBJ_DIR)
 
-$(LIBFT):
-	@$(MAKE) -C $(LIBFT_DIR)
+
+%.o: %.c
+	@$(CC) $(CFLAGS) -o $@ -c $<
 
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	@$(CC) $(CFLAGS) $(HEADERS) -I $(INCL_DIR) -o $@ -c $<
-
-
-$(NAME): obj $(OBJS) $(LIBFT)
-	@$(CC) $(OBJS) $(LIBFT) -o $(NAME)
+$(NAME): $(OBJS)
+	@$(CC) $(OBJS) -o $(NAME)
 	@echo "$(GREEN)Compilación completada con éxito.$(RESET)"
 
 
 clean:
-	@rm -rf $(OBJ_DIR)
-	@$(MAKE) -C $(LIBFT_DIR) clean
+	@rm -rf $(OBJS)
+	@echo "$(GREEN) Todo limpito!!! $(RESET)"
 
 fclean:
 	@echo "$(RED)Limpiando todo...$(RESET)"
 	@rm -rf $(NAME)
 	@rm -rf $(OBJ_DIR)
-	@$(MAKE) -C $(LIBFT_DIR) fclean
 	@echo "$(GREEN) ¡Todo limpio! $(RESET)"
 
-norma: 
-	norminette $(SRCS) $(INCL_DIR)
+exec:
+	./$(NAME)
 
-re: clean all
+norma: 
+	@echo "$(CIAN)SCRIPTS\n$(COLOREND)"
+	@for file in $(SRC); do \
+		norminette $$file | grep "OK!" > /dev/null; \
+		if [ $$? -eq 0 ]; then \
+			echo "$(GREEN)$$file: OK!$(COLOREND)"; \
+		else \
+			echo "$(RED)"; \
+			norminette $$file; \
+			echo "$(COLOREND)"; \
+		fi \
+	done
+	@echo "$(CIAN)\nHEADERS\n$(COLOREND)"
+	@for header in $(HEADERS); do \
+		norminette $$header | grep "OK!" > /dev/null; \
+		if [ $$? -eq 0 ]; then \
+			echo "$(GREEN)$$header: OK!$(COLOREND)"; \
+		else \
+			echo "$(RED)"; \
+			norminette $$header; \
+			echo "$(COLOREND)"; \
+		fi \
+	done
+
+re: fclean all
 
 .PHONY: all, clean, fclean, re
