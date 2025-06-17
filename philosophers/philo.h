@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 20:12:24 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/06/13 19:51:16 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/06/17 17:34:37 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ void	*ft_calloc(size_t count, size_t size);
 
 t_philo	*create_program(char **argv);
 t_philo	*init_monitor(t_philo *philo);
+void	link_philo_monitor(t_philo *philo, t_philo *monitor);
 
 // utils
 long long	ft_get_time_ms(void);
