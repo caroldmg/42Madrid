@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 17:13:41 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/06/18 17:57:54 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/06/18 19:48:17 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,22 @@ void	*check_philo_death(t_philo *philo)
 	monitor = philo;
 	while (i < monitor->num_philo && check_meals_eaten(monitor))
 	{
+		pthread_mutex_lock(monitor->lock);
+		time = ft_get_time_ms() - monitor->last_meal[i];
+		pthread_mutex_unlock(monitor->lock);
+		if (time >= monitor->time_to_die)
+		{
+			pthread_mutex_lock(monitor->lock);
+			// kill_philo();
+			return (NULL);
+		}
 		
 	}
 }
 
-int	kill_philo(t_philo *philo)
-{
-	
-}
 
-void	check_deaths(void *arg)
+
+int	kill_philo(t_philo *philo)
 {
 	
 }
