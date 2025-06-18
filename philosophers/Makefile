@@ -15,6 +15,12 @@ OBJS = $(SRC:.c=.o)
 
 SRCS := main.c \
 		check_input.c \
+		monitor.c \
+		utils.c \
+		routine.c \
+		philo_death.c \
+		libft_utils.c \
+		init_v2.c \ #cambiar nombre
 
 all: $(NAME)
 

@@ -67,8 +67,10 @@ void	init_philo(t_philo *data, t_philo *philosophers, pthread_mutex_t *forks, si
 		philosophers[i].num_forks = data->num_philo;
 		philosophers[i].num_philo = data->num_philo;
 		philosophers[i].fork_mutex = forks;
-		philosophers[i].dead_flag = false;
 		philosophers[i].meals_eaten = 0;
+		philosophers[i].dead_flag = false;
+		philosophers[i].m_dead = ft_calloc(1, sizeof(pthread_mutex_t));
+		pthread_mutex_init(philosophers[i].m_dead, NULL);
 		i++;
 	}
 	free(data);

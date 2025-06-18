@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 20:12:24 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/06/17 17:34:37 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/06/18 17:29:22 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,54 +25,21 @@
 # define ERROR_MALLOC 1
 # define BAD_ARGS -1
 # define ERROR_THREAD -2
+
+// mensajes
 # define ARG_ER_MSG "Philo: argumentos no válidos. La estructura correcta es: \n \t./philo number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]"
-
-/* typedef struct s_philo
-{
-	// info que te dan los args
-	pthread_t		thread;
-	int				id;
-
-	// time
-	size_t			start_time;
-	size_t			last_meal;
-
-	// 
-	int				eating; //bool?
-	int				meals_eaten;
-	int				*dead; //bool
-
-	// locks
-	pthread_mutex_t	*r_fork; //estos son los enganches con el anterior y el siguiente
-	pthread_mutex_t	*l_fork;
-	pthread_mutex_t *write_lock;
-	pthread_mutex_t	*dead_lock;
-	pthread_mutex_t	*meal_lock;
-}	t_philo;
-
-typedef struct s_philo_table
-{
-	bool			dead_flag;
-	pthread_mutex_t	dead_lock;
-	pthread_mutex_t	meal_lock;
-	pthread_mutex_t	write_lock;
-	size_t			time_to_die;
-	size_t			time_to_eat;
-	size_t			time_to_sleep;
-	int				nb_meals_to_eat;
-	int				num_of_philo;
-	long			start_time;
-	
-	t_philo			*philos;
-}	t_philo_table; */
-
+# define TAKE_FORK_MSG "has taken a fork"
+# define EAT_MSG "is eating"
+# define SLEEP_MSG "is sleeping"
+# define THINK_MSG "is thinking"
+# define DEATH_MSG "died"
 
 // estructura de https://github.com/zelhajou/ft_unix_philosophers/
 typedef struct	s_philo
 {
 	int	id;
 	// int	*meals_eaten;
-	int				meals_eaten;
+	int				*meals_eaten;
 	int				nb_meals_to_eat;
 	size_t			time_to_die;
 	size_t			time_to_eat;
@@ -84,6 +51,7 @@ typedef struct	s_philo
 	pthread_mutex_t	*fork_mutex;
 	pthread_mutex_t	*lock;
 	long			start_time;
+	pthread_mutex_t *m_dead;
 	bool			dead_flag;
 }	t_philo;
 
@@ -101,8 +69,18 @@ t_philo	*create_program(char **argv);
 t_philo	*init_monitor(t_philo *philo);
 void	link_philo_monitor(t_philo *philo, t_philo *monitor);
 
+// routine
+void	philo_routine(void *arg);
+void	pick_forks(t_philo *philo);
+void	leave_forks(t_philo *philo);
+void	philo_eat(t_philo *philo);
+void	philo_sleep(t_philo *philo);
+void	philo_think(t_philo *philo);
+
 // utils
 long long	ft_get_time_ms(void);
+void		ft_write_state(char *str, t_philo *philo);
+void		ft_usleep(long long miliseconds);
 
 int		error_msg(int value);
 

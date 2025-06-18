@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 17:15:53 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/06/13 17:18:05 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/06/18 16:22:09 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,3 +23,23 @@ long long	ft_get_time_ms(void)
 	return (miliseconds);
 }
 
+void	ft_write_state(char *str, t_philo *philo)
+{
+	long	time;
+	
+	time = ft_get_time_ms() - philo->start_time;
+	pthread_mutex_lock(philo->lock);
+	if (!is_dead(philo))
+		printf("%09ld %d %s", time, philo->id, str);
+	pthread_mutex_unlock(philo->lock);
+}
+
+void	ft_usleep(long long miliseconds)
+{
+	long long	start;
+
+	start = 0;
+	start = ft_get_time_ms();
+	while ((ft_get_time_ms() - start) < miliseconds)
+		usleep(100);
+}
