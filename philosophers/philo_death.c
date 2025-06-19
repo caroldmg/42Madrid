@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 17:13:41 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/06/19 13:12:30 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/06/19 17:17:35 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,29 @@ bool	check_meals_eaten(t_philo *monitor)
 	return (false);
 }
 
+void	free_monitor(t_philo *monitor)
+{
+	pthread_mutex_destroy(monitor->lock);
+	free(monitor->lock);
+	free(monitor);
+}
+
+void	free_philo(t_philo *philo)
+{
+	pthread_mutex_destroy(philo->fork_mutex);
+	free(philo->fork_mutex);
+	free(philo->last_meal);
+	pthread_mutex_destroy(philo->m_dead);
+	free(philo->m_dead);
+	free(philo);
+}
+
 void	clean_everything(t_philo *philo, t_philo *monitor)
 {
 	int i;
 
 	i = 0;
-	ft_usleep(philo->time_to_die + philo.)
+	ft_usleep(philo->time_to_die + philo->time_to_eat + philo->time_to_sleep + 10); //darle tiempo para que acabe todo finiquitao
+	// free lo del monitor por un lado y lo del philo por otro
+	
 }
