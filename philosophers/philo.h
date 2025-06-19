@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 20:12:24 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/06/18 17:29:22 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/06/19 13:09:00 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,16 +71,27 @@ void	link_philo_monitor(t_philo *philo, t_philo *monitor);
 
 // routine
 void	philo_routine(void *arg);
+int		wait_threads(t_philo **philosophers, t_philo *monitor);
+int		start_philo_life(t_philo *philo);
+
+// status
 void	pick_forks(t_philo *philo);
 void	leave_forks(t_philo *philo);
 void	philo_eat(t_philo *philo);
 void	philo_sleep(t_philo *philo);
 void	philo_think(t_philo *philo);
 
+// death
+bool	is_dead(t_philo *philo);
+void	*check_philo_death(t_philo *philo);
+
+
 // utils
 long long	ft_get_time_ms(void);
 void		ft_write_state(char *str, t_philo *philo);
 void		ft_usleep(long long miliseconds);
+void	ft_print_dead(int id, long long start);
+
 
 int		error_msg(int value);
 

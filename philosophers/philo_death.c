@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 17:13:41 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/06/18 19:48:17 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/06/19 13:12:30 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,14 @@ void	*check_philo_death(t_philo *philo)
 		pthread_mutex_unlock(monitor->lock);
 		if (time >= monitor->time_to_die)
 		{
-			pthread_mutex_lock(monitor->lock);
-			// kill_philo();
+			ft_write_state(DEATH_MSG, &philo[i + 1]); //si esto funciona no tengo que hacer el ftprintdeath
 			return (NULL);
 		}
-		
+		if (i + 1 == monitor->num_philo)
+			i = -1;
+		i++;
 	}
-}
-
-
-
-int	kill_philo(t_philo *philo)
-{
-	
+	return (NULL);
 }
 
 /// @brief la funciñon "check_meals_eaten" comprueba si los filósofos han realizado todas las comidas(número de ciclos) esperadas, revisando uno a uno todos los filósofos. Además, antes de retornar deja el mutex bloqueado para asegurarnos que nadie más escribe en la terminal
@@ -73,4 +68,12 @@ bool	check_meals_eaten(t_philo *monitor)
 		i++;
 	}
 	return (false);
+}
+
+void	clean_everything(t_philo *philo, t_philo *monitor)
+{
+	int i;
+
+	i = 0;
+	ft_usleep(philo->time_to_die + philo.)
 }

@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 19:42:28 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/06/17 20:33:36 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/06/19 13:09:08 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,20 +44,4 @@ void	link_philo_monitor(t_philo *philo, t_philo *monitor)
 		i++;
 	}
 	monitor->start_time = ft_get_time_ms();
-}
-
-void	start_threads(t_philo *philo)
-{
-	int	i;
-	int	num_philo;
-
-	i = 0;
-	num_philo = philo->num_philo;
-	while (i < num_philo)
-	{
-		philo[i].start_time = ft_get_time_ms();
-		pthread_create(&philo[i], NULL, philo_routine, &philo[i]);
-		// detach???
-		i++;
-	}
 }

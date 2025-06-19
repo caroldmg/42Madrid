@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 17:55:33 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/06/18 17:12:45 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/06/19 13:09:13 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,40 +29,42 @@ void	philo_routine(void *arg)
 	}
 }
 
-void	pick_forks(t_philo *philo)
+int	wait_threads(t_philo **philosophers, t_philo *monitor)
 {
-	pthread_mutex_lock(&philo->fork_mutex[philo->id - 1]);
-	if (philo->id == 1)
-		pthread_mutex_lock(&philo->fork_mutex[philo->num_philo - 1]);
-	else
-		pthread_mutex_lock(&philo->fork_mutex[philo->id - 2]);
-	ft_write_state(TAKE_FORK_MSG, philo);
+	int	i;
+	int	nb;
+	int	ret_code;
+	
+	i = 0;
+	ret_code = 1;
+	nb = (*philosophers)->num_philo;
+	while (i < nb)
+	{
+		if (pthread_join(philosophers[i]->philo_th, NULL) != NO_ERROR)
+			ret_code = 0;
+		i++;
+	}
+	if (pthread_join(monitor->philo_th, NULL) != NO_ERROR)
+		ret_code = 0;
+	return (ret_code);
 }
 
-void	leave_forks(t_philo *philo)
+int	start_philo_life(t_philo *philo)
 {
-	pthread_mutex_unlock(&philo->fork_mutex[philo->id - 1]);
-	if (philo->id == 1)
-		pthread_mutex_unlock(&philo->fork_mutex[philo->num_philo - 1]);
-	else
-		pthread_mutex_unlock(&philo->fork_mutex[philo->id - 2]);
-}
+	int	i;
+	int	num_philo;
+	int	ret_code;
 
-void	philo_eat(t_philo *philo)
-{
-	ft_write_state(EAT_MSG, philo);
-	philo->last_meal[philo->id - 1] = ft_get_time_ms();
-	philo->meals_eaten[philo->id - 1]++;
-	ft_usleep(philo->time_to_eat);
-}
-
-void	philo_sleep(t_philo *philo)
-{
-	ft_write_state(SLEEP_MSG, philo);
-	ft_usleep(philo->time_to_sleep);
-}
-
-void	philo_think(t_philo *philo)
-{
-	ft_write_state(THINK_MSG, philo);
+	i = 0;
+	ret_code = 1;
+	num_philo = philo->num_philo;
+	while (i < num_philo)
+	{
+		philo[i].start_time = ft_get_time_ms();
+		if (pthread_create(&philo[i].philo_th, NULL, philo_routine, &philo[i]) != NO_ERROR)
+			ret_code = 0;
+		// detach???
+		i++;
+	}
+	return (ret_code);
 }
