@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 17:15:53 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/06/19 11:41:39 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/06/23 21:13:38 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,17 @@ long long	ft_get_time_ms(void)
 void	ft_write_state(char *str, t_philo *philo)
 {
 	long	time;
+	char	*color[3];
+
+	color[0] = RED;
+	color[1] = PURPLE;
+	color[2] = YELLOW;
 	
 	time = ft_get_time_ms() - philo->start_time;
 	pthread_mutex_lock(philo->lock);
-	// if (!is_dead(philo))
-		printf("%09ld %d %s", time, philo->id, str);
+	write(1, color[philo->id % 3], ft_strlen(color[philo->id % 3]));
+	printf("%04ld \t %d \t %s \n", time, philo->id, str);
+	write(1, RESET, ft_strlen(RESET));
 	pthread_mutex_unlock(philo->lock);
 }
 
@@ -39,15 +45,24 @@ void	ft_print_dead(int id, long long start)
 	long long curr_time;
 	
 	curr_time = ft_get_time_ms() - start;
-	printf("%d died \n", id);
+	printf("%09lld \t %d died \n",start, id);
 }
 
 void	ft_usleep(long long miliseconds)
 {
 	long long	start;
 
-	start = 0;
 	start = ft_get_time_ms();
 	while ((ft_get_time_ms() - start) < miliseconds)
 		usleep(100);
+}
+
+int	ft_strlen(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }

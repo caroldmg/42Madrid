@@ -6,40 +6,35 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 17:13:41 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/06/19 17:17:35 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/06/23 20:48:19 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-bool	is_dead(t_philo *philo)
+void	*check_philo_death(void *philo)
 {
-	bool is_dead;
-	pthread_mutex_lock(&philo->m_dead);
-	is_dead = philo->dead_flag;
-	pthread_mutex_unlock(&philo->m_dead);
-	return (is_dead);
-}
-
-void	*check_philo_death(t_philo *philo)
-{
-	t_philo		*monitor;
 	int 		i;
+	int			num;
 	long long	time;
+	t_philo		*monitor;
 
 	i = 0;
-	monitor = philo;
-	while (i < monitor->num_philo && check_meals_eaten(monitor))
+	monitor = (t_philo *)philo;
+	num = monitor->num_philo;
+	ft_usleep(10);
+	while (i < num && check_meals_eaten(monitor))
 	{
 		pthread_mutex_lock(monitor->lock);
 		time = ft_get_time_ms() - monitor->last_meal[i];
 		pthread_mutex_unlock(monitor->lock);
 		if (time >= monitor->time_to_die)
 		{
-			ft_write_state(DEATH_MSG, &philo[i + 1]); //si esto funciona no tengo que hacer el ftprintdeath
+			pthread_mutex_lock(monitor->lock);
+			ft_print_dead(i + 1, monitor->start_time);
 			return (NULL);
 		}
-		if (i + 1 == monitor->num_philo)
+		if (i + 1 == num)
 			i = -1;
 		i++;
 	}
@@ -80,11 +75,10 @@ void	free_monitor(t_philo *monitor)
 void	free_philo(t_philo *philo)
 {
 	pthread_mutex_destroy(philo->fork_mutex);
-	free(philo->fork_mutex);
-	free(philo->last_meal);
-	pthread_mutex_destroy(philo->m_dead);
-	free(philo->m_dead);
-	free(philo);
+	// free(philo->fork_mutex);
+	// free(philo->last_meal);
+	pthread_mutex_destroy(philo->lock);
+	// free(philo);
 }
 
 void	clean_everything(t_philo *philo, t_philo *monitor)
@@ -94,5 +88,17 @@ void	clean_everything(t_philo *philo, t_philo *monitor)
 	i = 0;
 	ft_usleep(philo->time_to_die + philo->time_to_eat + philo->time_to_sleep + 10); //darle tiempo para que acabe todo finiquitao
 	// free lo del monitor por un lado y lo del philo por otro
-	
+	while (i < monitor->num_philo)
+	{
+		free_philo(&philo[i]);
+		i++;
+	}
+	// free_monitor(monitor);
+	free(philo->fork_mutex);
+	free(philo->last_meal);
+	free(philo->meals_eaten);
+	free(philo->lock);
+	free(philo);
+	philo = NULL;
+	free(monitor);
 }

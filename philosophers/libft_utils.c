@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:04:07 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/06/13 12:07:05 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/06/23 12:46:17 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,18 @@ void	*ft_calloc(size_t count, size_t size)
 	ptr = malloc(count * size);
 	if (ptr)
 	{
-		ft_memset(ptr, 0, count * size);
+		memset(ptr, 0, count * size);
 		return (ptr);
 	}
 	return (0);
+}
+
+void	ft_putendl_fd(char *s, int fd)
+{
+	while (*s)
+	{
+		write(fd, s, 1);
+		s++;
+	}
+	write(fd, "\n", 1);
 }

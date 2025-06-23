@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 19:58:00 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/06/11 17:11:58 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/06/23 12:00:59 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ bool	check_is_num(char **arg)
 		j = 0;
 		while(arg[i][j])
 		{
-			if (ft_isdigit(arg[i][j]) == false);
+			if (ft_isdigit(arg[i][j]) == false)
 				return (false);
 			j++;
 		}
@@ -49,7 +49,7 @@ bool	check_values(char **arg)
 	int	i;
 	
 	i = 1;
-	if (arg[i] > 200)
+	if (ft_atoi(arg[i]) > 200 && ft_atoi(arg[i]) <= 0)
 		return (false);
 	else
 		i++;

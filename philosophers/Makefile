@@ -9,9 +9,9 @@ RESET := \033[0m
 
 CC = cc
 NAME := philo
-CFLAGS := -Wextra -Wall -Werror -pthread #-fsanitize=address -g3
+CFLAGS := -Wextra -Wall -Werror -pthread -g3 #-fsanitize=address 
 
-OBJS = $(SRC:.c=.o)
+OBJ_DIR = obj
 
 SRCS := main.c \
 		check_input.c \
@@ -20,13 +20,20 @@ SRCS := main.c \
 		routine.c \
 		philo_death.c \
 		libft_utils.c \
-		init_v2.c \ #cambiar nombre
+		init_philo.c \
+		philo_states.c \
+		error_check.c \
+
+OBJ_NAMES = $(SRCS:.c=.o)
+OBJS = $(addprefix $(OBJ_DIR)/, $(OBJ_NAMES))
 
 all: $(NAME)
 
-obj:
+$(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
 
+$(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -o $@ -c $<
@@ -38,13 +45,12 @@ $(NAME): $(OBJS)
 
 
 clean:
-	@rm -rf $(OBJS)
+	@rm -rf $(OBJ_DIR)
 	@echo "$(GREEN) Todo limpito!!! $(RESET)"
 
-fclean:
+fclean: clean
 	@echo "$(RED)Limpiando todo...$(RESET)"
 	@rm -rf $(NAME)
-	@rm -rf $(OBJ_DIR)
 	@echo "$(GREEN) ¡Todo limpio! $(RESET)"
 
 exec:
@@ -76,4 +82,4 @@ norma:
 
 re: fclean all
 
-.PHONY: all, clean, fclean, re
+.PHONY: all, clean, fclean, re, exec

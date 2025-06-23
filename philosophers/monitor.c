@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 19:42:28 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/06/19 13:09:08 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/06/23 18:15:27 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,15 @@ t_philo	*init_monitor(t_philo *philo)
 	
 	monitor = ft_calloc(1, sizeof(t_philo));
 	if (!monitor)
-		return (ERROR_MALLOC);
+		return (NULL);
 	monitor->id = 0;
 	monitor->nb_meals_to_eat = philo->nb_meals_to_eat;
 	monitor->time_to_die = philo->time_to_die;
 	monitor->time_to_eat = philo->time_to_die;
 	monitor->time_to_sleep = philo->time_to_sleep;
 	monitor->meals_eaten = philo->meals_eaten;
-	monitor->num_forks = philo->num_philo;
+	monitor->last_meal = philo->last_meal;
+	// monitor->num_forks = philo->num_philo;
 	monitor->num_philo = philo->num_philo;
 	monitor->fork_mutex = NULL;
 	monitor->lock = ft_calloc(1, sizeof(pthread_mutex_t));
