@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 17:13:36 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/06/23 21:54:13 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/06/23 22:02:44 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	error_msg(int value)
 		ft_putendl_fd(ARG_ER_MSG, 2);
 	else if (value == ERROR_MALLOC)
 		ft_putendl_fd("Malloc error :/", 2);
-	else if  (value == UNKNOWN_ERROR)
+	else if (value == UNKNOWN_ERROR)
 		ft_putendl_fd("Unknown error :/", 2);
 	else if (value == INIT_ERROR)
 		error_monitor();

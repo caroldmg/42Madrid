@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 19:58:00 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/06/23 12:00:59 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/06/23 22:04:28 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 int	check_valid_args(int argc, char **argv)
 {
 	if (argc < 5 || argc > 6)
-		return (BAD_ARGS); //cambiar a codigo de error
-	// funcion para chequear que lo que me pasan son numeros y que no tienen letras ni cosas raras
+		return (BAD_ARGS);
 	if (check_is_num(argv) == false)
 		return (BAD_ARGS);
 	else if (check_values(argv) == false)
@@ -33,7 +32,7 @@ bool	check_is_num(char **arg)
 	while (arg[i])
 	{
 		j = 0;
-		while(arg[i][j])
+		while (arg[i][j])
 		{
 			if (ft_isdigit(arg[i][j]) == false)
 				return (false);
@@ -47,7 +46,7 @@ bool	check_is_num(char **arg)
 bool	check_values(char **arg)
 {
 	int	i;
-	
+
 	i = 1;
 	if (ft_atoi(arg[i]) > 200 && ft_atoi(arg[i]) <= 0)
 		return (false);

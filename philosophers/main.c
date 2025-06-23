@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 19:54:08 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/06/23 21:56:02 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/06/23 22:02:33 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 int	main(int argc, char *argv[])
 {
-	// int		ret_code;
-	t_philo *philosophers;
+	t_philo	*philosophers;
 	t_philo	*monitor;
 
 	if (check_valid_args(argc, argv) != NO_ERROR)
@@ -31,7 +30,7 @@ int	main(int argc, char *argv[])
 	}
 	link_philo_monitor(philosophers, monitor);
 	if (start_philo_life(philosophers) != 0)
-		return (error_msg(UNKNOWN_ERROR)); 
+		return (error_msg(UNKNOWN_ERROR));
 	pthread_create(&monitor->philo_th, NULL, check_philo_death, monitor);
 	pthread_join(monitor->philo_th, NULL);
 	clean_everything(philosophers, monitor);
