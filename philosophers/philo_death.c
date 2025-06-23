@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 17:13:41 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/06/23 20:48:19 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/06/23 21:35:39 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	*check_philo_death(void *philo)
 			i = -1;
 		i++;
 	}
+	printf("monitor meals eaten SLIENDO DE CHECK DEATH --> %d, meals to eat --> %d \n ", monitor->meals_eaten[i], monitor->nb_meals_to_eat);
+
 	return (NULL);
 }
 
@@ -59,6 +61,7 @@ bool	check_meals_eaten(t_philo *monitor)
 			pthread_mutex_unlock(monitor->lock);
 			return (true);
 		}
+		printf("monitor meals eaten en check meals --> %d, meals to eat --> %d \n ", monitor->meals_eaten[i], monitor->nb_meals_to_eat);
 		pthread_mutex_unlock(monitor->lock);
 		i++;
 	}
