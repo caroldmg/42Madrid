@@ -56,30 +56,6 @@ fclean: clean
 exec:
 	./$(NAME)
 
-norma: 
-	@echo "$(CIAN)SCRIPTS\n$(COLOREND)"
-	@for file in $(SRC); do \
-		norminette $$file | grep "OK!" > /dev/null; \
-		if [ $$? -eq 0 ]; then \
-			echo "$(GREEN)$$file: OK!$(COLOREND)"; \
-		else \
-			echo "$(RED)"; \
-			norminette $$file; \
-			echo "$(COLOREND)"; \
-		fi \
-	done
-	@echo "$(CIAN)\nHEADERS\n$(COLOREND)"
-	@for header in $(HEADERS); do \
-		norminette $$header | grep "OK!" > /dev/null; \
-		if [ $$? -eq 0 ]; then \
-			echo "$(GREEN)$$header: OK!$(COLOREND)"; \
-		else \
-			echo "$(RED)"; \
-			norminette $$header; \
-			echo "$(COLOREND)"; \
-		fi \
-	done
-
 re: fclean all
 
 .PHONY: all, clean, fclean, re, exec

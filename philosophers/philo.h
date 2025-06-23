@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 20:12:24 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/06/23 18:20:08 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/06/23 21:56:43 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@
 # define ERROR_MALLOC 1
 # define BAD_ARGS -1
 # define ERROR_THREAD -2
-
+# define UNKNOWN_ERROR -3
+# define INIT_ERROR -4
 
 // COLORS
 # define RED "\033[0;31m"
@@ -36,7 +37,7 @@
 # define RESET "\033[0m"
 
 // mensajes
-# define ARG_ER_MSG "Philo: argumentos no válidos. La estructura correcta es: \n \t./philo number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]"
+# define ARG_ER_MSG "Philo: argumentos no válidos. La estructura correcta es: \n ./philo number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]"
 # define TAKE_FORK_MSG "has taken a fork"
 # define EAT_MSG "is eating"
 # define SLEEP_MSG "is sleeping"
@@ -53,14 +54,11 @@ typedef struct	s_philo
 	int				time_to_eat;
 	int				time_to_sleep;
 	long long		*last_meal;
-	// int				num_forks; //??
 	int				num_philo;
 	pthread_t		philo_th;
 	pthread_mutex_t	*fork_mutex;
 	pthread_mutex_t	*lock;
 	long			start_time;
-	// pthread_mutex_t *m_dead;
-	// bool			dead_flag;
 }	t_philo;
 
 
@@ -84,7 +82,6 @@ void	link_philo_monitor(t_philo *philo, t_philo *monitor);
 
 // routine.c
 void	*philo_routine(void *arg);
-int		wait_threads(t_philo **philosophers, t_philo *monitor);
 int		start_philo_life(t_philo *philo);
 
 // philo_states.c
@@ -95,7 +92,6 @@ void	philo_sleep(t_philo *philo);
 void	philo_think(t_philo *philo);
 
 // philo_death.c
-bool	is_dead(t_philo *philo);
 void	*check_philo_death(void *philo);
 void	clean_everything(t_philo *philo, t_philo *monitor);
 bool	check_meals_eaten(t_philo *monitor);
@@ -108,9 +104,9 @@ void		ft_usleep(long long miliseconds);
 void		ft_print_dead(int id, long long start);
 int			ft_strlen(char *str);
 
-
+// error_check.c
+void	error_monitor(void);
 int		error_msg(int value);
-
 
 #endif
 

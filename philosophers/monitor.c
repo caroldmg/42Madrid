@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 19:42:28 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/06/23 18:15:27 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/06/23 21:47:17 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ t_philo	*init_monitor(t_philo *philo)
 	monitor->time_to_sleep = philo->time_to_sleep;
 	monitor->meals_eaten = philo->meals_eaten;
 	monitor->last_meal = philo->last_meal;
-	// monitor->num_forks = philo->num_philo;
 	monitor->num_philo = philo->num_philo;
 	monitor->fork_mutex = NULL;
 	monitor->lock = ft_calloc(1, sizeof(pthread_mutex_t));

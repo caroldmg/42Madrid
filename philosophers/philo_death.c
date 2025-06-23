@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 17:13:41 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/06/23 21:35:39 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/06/23 22:00:59 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ void	*check_philo_death(void *philo)
 			i = -1;
 		i++;
 	}
-	printf("monitor meals eaten SLIENDO DE CHECK DEATH --> %d, meals to eat --> %d \n ", monitor->meals_eaten[i], monitor->nb_meals_to_eat);
-
 	return (NULL);
 }
 
@@ -61,8 +59,6 @@ bool	check_meals_eaten(t_philo *monitor)
 			pthread_mutex_unlock(monitor->lock);
 			return (true);
 		}
-		printf("monitor meals eaten en check meals --> %d, meals to eat --> %d \n ", monitor->meals_eaten[i], monitor->nb_meals_to_eat);
-		pthread_mutex_unlock(monitor->lock);
 		i++;
 	}
 	return (false);
@@ -89,7 +85,7 @@ void	clean_everything(t_philo *philo, t_philo *monitor)
 	int i;
 
 	i = 0;
-	ft_usleep(philo->time_to_die + philo->time_to_eat + philo->time_to_sleep + 10); //darle tiempo para que acabe todo finiquitao
+	ft_usleep(philo->time_to_die + philo->time_to_eat + philo->time_to_sleep + 10);
 	// free lo del monitor por un lado y lo del philo por otro
 	while (i < monitor->num_philo)
 	{
@@ -101,7 +97,7 @@ void	clean_everything(t_philo *philo, t_philo *monitor)
 	free(philo->last_meal);
 	free(philo->meals_eaten);
 	free(philo->lock);
-	free(philo);
+	// free(philo);
 	philo = NULL;
 	free(monitor);
 }
