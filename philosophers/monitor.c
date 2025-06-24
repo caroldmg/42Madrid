@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 19:42:28 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/06/24 19:00:34 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/06/24 20:06:23 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,40 @@ void	link_philo_monitor(t_all *all)
 		i++;
 	}
 	monitor->start_time = ft_get_time_ms();
+}
+
+void	free_monitor(t_philo *monitor)
+{
+	pthread_mutex_destroy(monitor->lock);
+	free(monitor->lock);
+	free(monitor);
+}
+
+void	free_philo(t_philo *philo)
+{
+	pthread_mutex_destroy(philo->fork_mutex);
+	pthread_mutex_destroy(philo->lock);
+}
+
+void	clean_everything(t_all *all)
+{
+	int 	i;
+	t_philo	*philo;
+	t_philo	*monitor;
+
+	i = 0;
+	monitor = all->monitor;
+	philo  = all->philosophers;
+	while (i < monitor->num_philo)
+	{
+		free_philo(&philo[i]);
+		i++;
+	}
+	free(philo->fork_mutex);
+	free(philo->last_meal);
+	free(philo->meals_eaten);
+	free(philo->lock);
+	philo = NULL;
+	free(monitor);
+	free(all);
 }

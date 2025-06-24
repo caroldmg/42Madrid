@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 12:20:33 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/06/24 19:29:32 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/06/24 19:52:12 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,13 @@ void	philo_eat(t_philo *philo)
 	philo->last_meal[philo->id - 1] = ft_get_time_ms();
 	philo->meals_eaten[philo->id - 1]++;
 	pthread_mutex_unlock(philo->lock);
-	ft_usleep(philo->time_to_eat);
+	ft_usleep(philo->time_to_eat, philo);
 }
 
 void	philo_sleep(t_philo *philo)
 {
 	ft_write_state(SLEEP_MSG, philo);
-	ft_usleep(philo->time_to_sleep);
+	ft_usleep(philo->time_to_sleep, philo);
 }
 
 void	philo_think(t_philo *philo)

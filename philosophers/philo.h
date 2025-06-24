@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 20:12:24 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/06/24 19:37:00 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/06/24 19:52:25 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ bool	still_eating(t_philo *monitor);
 // utils.c
 long long	ft_get_time_ms(void);
 void		ft_write_state(char *str, t_philo *philo);
-void		ft_usleep(long long miliseconds);
+void		ft_usleep(long long miliseconds, t_philo *philo);
 void		ft_print_dead(int id, long long start);
 int			ft_strlen(char *str);
 

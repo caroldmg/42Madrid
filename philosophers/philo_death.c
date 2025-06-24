@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 17:13:41 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/06/24 19:37:28 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/06/24 20:06:09 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	*check_philo_death(void *all)
 	monitor = ((t_all *)all)->monitor;
 	philos = ((t_all *)all)->philosophers;
 	num = monitor->num_philo;
-	ft_usleep(10);
+	// ft_usleep(10);
 	while (i < num && still_eating(monitor))
 	{
 		pthread_mutex_lock(monitor->lock);
@@ -35,6 +35,7 @@ void	*check_philo_death(void *all)
 			pthread_mutex_lock(monitor->lock);
 			ft_print_dead(i + 1, monitor->start_time);
 			kill_philos(philos);
+			pthread_mutex_unlock(monitor->lock);
 			return (NULL);
 		}
 		if (i + 1 == num)
@@ -69,42 +70,18 @@ bool	still_eating(t_philo *monitor)
 	return (false);
 }
 
-void	free_monitor(t_philo *monitor)
+void	ft_print_dead(int id, long long start)
 {
-	pthread_mutex_destroy(monitor->lock);
-	free(monitor->lock);
-	free(monitor);
+	long curr_time;
+	
+	curr_time = ft_get_time_ms() - start;
+	printf("%04ld \t %d died \n",curr_time, id);
 }
 
-void	free_philo(t_philo *philo)
+void	ft_finish_eating(long long start)
 {
-	pthread_mutex_destroy(philo->fork_mutex);
-	// free(philo->fork_mutex);
-	// free(philo->last_meal);
-	pthread_mutex_destroy(philo->lock);
-	// free(philo);
-}
-
-void	clean_everything(t_all *all)
-{
-	int 	i;
-	t_philo	*philo;
-	t_philo	*monitor;
-
-	i = 0;
-	monitor = all->monitor;
-	philo  = all->philosophers;
-	ft_usleep(philo->time_to_die + philo->time_to_eat + philo->time_to_sleep + 10);
-	while (i < monitor->num_philo)
-	{
-		free_philo(&philo[i]);
-		i++;
-	}
-	free(philo->fork_mutex);
-	free(philo->last_meal);
-	free(philo->meals_eaten);
-	free(philo->lock);
-	philo = NULL;
-	free(monitor);
-	free(all);
+	long curr_time;
+	
+	curr_time = ft_get_time_ms() - start;
+	printf("%04ld \t they have finished eating \n",curr_time, id);
 }
