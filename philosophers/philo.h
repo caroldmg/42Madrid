@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 20:12:24 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/06/23 21:56:43 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/06/24 19:37:00 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,14 @@ typedef struct	s_philo
 	pthread_mutex_t	*fork_mutex;
 	pthread_mutex_t	*lock;
 	long			start_time;
+	bool			dead_flag;
 }	t_philo;
 
+typedef struct s_all
+{
+	t_philo *philosophers;
+	t_philo *monitor;
+}	t_all;
 
 // check_input.c
 int		check_valid_args(int argc, char **argv);
@@ -78,11 +84,14 @@ t_philo	*create_program(char **argv);
 
 // monitor.c
 t_philo	*init_monitor(t_philo *philo);
-void	link_philo_monitor(t_philo *philo, t_philo *monitor);
+void	link_philo_monitor(t_all *all);
 
 // routine.c
 void	*philo_routine(void *arg);
 int		start_philo_life(t_philo *philo);
+int		join_threads(t_philo *philo, t_philo *monitor);
+void	kill_philos(t_philo *philosophers);
+bool	is_dead(t_philo *philo);
 
 // philo_states.c
 void	pick_forks(t_philo *philo);
@@ -93,9 +102,8 @@ void	philo_think(t_philo *philo);
 
 // philo_death.c
 void	*check_philo_death(void *philo);
-void	clean_everything(t_philo *philo, t_philo *monitor);
-bool	check_meals_eaten(t_philo *monitor);
-
+void	clean_everything(t_all *all);
+bool	still_eating(t_philo *monitor);
 
 // utils.c
 long long	ft_get_time_ms(void);
@@ -109,4 +117,3 @@ void	error_monitor(void);
 int		error_msg(int value);
 
 #endif
-

@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 17:15:53 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/06/23 22:04:40 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/06/24 15:38:10 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ void	ft_write_state(char *str, t_philo *philo)
 
 void	ft_print_dead(int id, long long start)
 {
-	long long curr_time;
+	long curr_time;
 	
 	curr_time = ft_get_time_ms() - start;
-	printf("%09lld \t %d died \n",start, id);
+	printf("%04ld \t %d died \n",curr_time, id);
 }
 
 void	ft_usleep(long long miliseconds)

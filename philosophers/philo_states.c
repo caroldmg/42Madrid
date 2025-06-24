@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 12:20:33 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/06/23 21:14:15 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/06/24 19:29:32 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,27 @@
 
 void	pick_forks(t_philo *philo)
 {
-	// printf("pick forks philo id ---> %d \n", philo->id);
-	pthread_mutex_lock(&philo->fork_mutex[philo->id - 1]);
-	if (philo->id == 1)
-		pthread_mutex_lock(&philo->fork_mutex[philo->num_philo - 1]);
+	if (philo->id % 2 == 0)
+	{
+		pthread_mutex_lock(&philo->fork_mutex[philo->id - 1]);
+		// if (philo->id == 1)
+		// 	pthread_mutex_lock(&philo->fork_mutex[philo->num_philo - 1]);
+		// else
+			pthread_mutex_lock(&philo->fork_mutex[philo->id - 2]);
+	}
 	else
-		pthread_mutex_lock(&philo->fork_mutex[philo->id - 2]);
+	{
+		if (philo->id == 1)
+			pthread_mutex_lock(&philo->fork_mutex[philo->num_philo - 1]);
+		else
+			pthread_mutex_lock(&philo->fork_mutex[philo->id - 2]);
+		pthread_mutex_lock(&philo->fork_mutex[philo->id - 1]);
+	}
 	ft_write_state(TAKE_FORK_MSG, philo);
 }
 
 void	leave_forks(t_philo *philo)
 {
-	// printf("leave forks philo id ---> %d \n", philo->id);
 	pthread_mutex_unlock(&philo->fork_mutex[philo->id - 1]);
 	if (philo->id == 1)
 		pthread_mutex_unlock(&philo->fork_mutex[philo->num_philo - 1]);

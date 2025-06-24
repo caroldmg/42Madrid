@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 12:32:26 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/06/23 21:14:02 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/06/24 19:41:06 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	init_philo(t_philo *data, t_philo *philosophers, pthread_mutex_t *forks, lo
 		philosophers[i].time_to_sleep = data->time_to_sleep;
 		philosophers[i].nb_meals_to_eat = data->nb_meals_to_eat;
 		philosophers[i].last_meal = last_meal;
-		// philosophers[i].num_forks = data->num_philo;
+		philosophers[i].dead_flag = false;
 		philosophers[i].num_philo = data->num_philo;
 		philosophers[i].fork_mutex = forks;
 		i++;
@@ -110,10 +110,9 @@ t_philo	*create_program(char **argv)
 	if (!program)
 		return (NULL); //error msg
 	init_prgm_data(argv, program);
-	// printf("program --> num_philo --> %d \n", program->num_philo);
 	philosophers = get_philo_data(program);
 	if (!philosophers)
-	{ //revisar esta gestion, que es que lo que hace es ir retornando null y creo que yo retorno otro valor cuando gestiono con error_msg
+	{
 		free(program);
 		return (NULL);
 	}
