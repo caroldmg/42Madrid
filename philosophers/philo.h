@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 20:12:24 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/06/24 19:52:25 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/06/25 12:40:14 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # include <stdbool.h>
 # include <sys/time.h>
 # include <unistd.h>
-// # include <limits.h>
 
 // DEFINES
 # define NO_ERROR 0
@@ -37,17 +36,18 @@
 # define RESET "\033[0m"
 
 // mensajes
-# define ARG_ER_MSG "Philo: argumentos no válidos. La estructura correcta es: \n ./philo number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]"
+# define ARG_ER_MSG "Philo: argumentos no válidos. La estructura correcta es: \n \
+		./philo number_of_philosophers time_to_die time_to_eat time_to_sleep \
+		[number_of_times_each_philosopher_must_eat]"
 # define TAKE_FORK_MSG "has taken a fork"
 # define EAT_MSG "is eating"
 # define SLEEP_MSG "is sleeping"
 # define THINK_MSG "is thinking"
 # define DEATH_MSG "died"
 
-// estructura de https://github.com/zelhajou/ft_unix_philosophers/
-typedef struct	s_philo
+typedef struct s_philo
 {
-	int	id;
+	int				id;
 	int				*meals_eaten;
 	int				nb_meals_to_eat;
 	int				time_to_die;
@@ -64,46 +64,48 @@ typedef struct	s_philo
 
 typedef struct s_all
 {
-	t_philo *philosophers;
-	t_philo *monitor;
+	t_philo	*philosophers;
+	t_philo	*monitor;
 }	t_all;
 
 // check_input.c
-int		check_valid_args(int argc, char **argv);
-bool	check_values(char **arg);
-bool	check_is_num(char **arg);
+int			check_valid_args(int argc, char **argv);
+bool		check_values(char **arg);
+bool		check_is_num(char **arg);
+void		init_prgm_data(char **argv, t_philo *program);
 
 // libft_utils.c
-int		ft_atoi(const char *nptr);
-int		ft_isdigit(int c);
-void	*ft_calloc(size_t count, size_t size);
-void	ft_putendl_fd(char *s, int fd);
+int			ft_atoi(const char *nptr);
+int			ft_isdigit(int c);
+void		*ft_calloc(size_t count, size_t size);
+void		ft_putendl_fd(char *s, int fd);
 
 // init_philo.c
-t_philo	*create_program(char **argv);
+t_philo		*create_program(char **argv);
 
 // monitor.c
-t_philo	*init_monitor(t_philo *philo);
-void	link_philo_monitor(t_all *all);
+t_philo		*init_monitor(t_philo *philo);
+void		link_philo_monitor(t_all *all);
 
 // routine.c
-void	*philo_routine(void *arg);
-int		start_philo_life(t_philo *philo);
-int		join_threads(t_philo *philo, t_philo *monitor);
-void	kill_philos(t_philo *philosophers);
-bool	is_dead(t_philo *philo);
+void		*philo_routine(void *arg);
+int			start_philo_life(t_philo *philo);
+int			join_threads(t_philo *philo, t_philo *monitor);
+void		kill_philos(t_philo *philosophers);
+bool		is_dead(t_philo *philo);
 
 // philo_states.c
-void	pick_forks(t_philo *philo);
-void	leave_forks(t_philo *philo);
-void	philo_eat(t_philo *philo);
-void	philo_sleep(t_philo *philo);
-void	philo_think(t_philo *philo);
+void		pick_forks(t_philo *philo);
+void		leave_forks(t_philo *philo);
+void		philo_eat(t_philo *philo);
+void		philo_sleep(t_philo *philo);
+void		philo_think(t_philo *philo);
 
 // philo_death.c
-void	*check_philo_death(void *philo);
-void	clean_everything(t_all *all);
-bool	still_eating(t_philo *monitor);
+void		*check_philo_death(void *philo);
+void		clean_everything(t_all *all);
+bool		still_eating(t_philo *monitor);
+void		*print_and_kill(t_philo *monitor, t_philo *philos, int i);
 
 // utils.c
 long long	ft_get_time_ms(void);
@@ -113,7 +115,7 @@ void		ft_print_dead(int id, long long start);
 int			ft_strlen(char *str);
 
 // error_check.c
-void	error_monitor(void);
-int		error_msg(int value);
+void		error_monitor(void);
+int			error_msg(int value);
 
 #endif

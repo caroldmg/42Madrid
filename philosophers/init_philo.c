@@ -6,29 +6,17 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 12:32:26 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/06/24 19:41:06 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/06/25 12:39:43 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	init_prgm_data(char **argv, t_philo *program)
-{
-	program->num_philo = ft_atoi(argv[1]);
-	program->time_to_die = ft_atoi(argv[2]);
-	program->time_to_eat = ft_atoi(argv[3]);
-	program->time_to_sleep = ft_atoi(argv[4]);
-	if (argv[5] != NULL)
-		program->nb_meals_to_eat = ft_atoi(argv[5]);
-	else
-		program->nb_meals_to_eat = -1;
-}
-
 pthread_mutex_t	*init_fork_mutex(t_philo *data)
 {
 	int				i;
 	int				nb;
-	pthread_mutex_t *forks;
+	pthread_mutex_t	*forks;
 
 	i = 0;
 	nb = data->num_philo;
@@ -51,7 +39,7 @@ long long	*init_last_meal(int num_philo)
 	i = 0;
 	last_meal = ft_calloc(num_philo, sizeof(size_t));
 	if (!last_meal)
-		return (NULL); //gestion de error
+		return (NULL);
 	while (i < num_philo)
 	{
 		last_meal[i] = ft_get_time_ms();
@@ -86,7 +74,7 @@ void	init_philo(t_philo *data, t_philo *philosophers, pthread_mutex_t *forks, lo
 	free(data);
 }
 
-t_philo *get_philo_data(t_philo	*data)
+t_philo	*get_philo_data(t_philo	*data)
 {
 	pthread_mutex_t	*forks;
 	long long		*last_meal;
@@ -94,7 +82,7 @@ t_philo *get_philo_data(t_philo	*data)
 
 	philosophers = ft_calloc(data->num_philo, sizeof(t_philo));
 	if (!philosophers)
-		return (NULL); //gestionar error
+		return (NULL);
 	forks = init_fork_mutex(data);
 	last_meal = init_last_meal(data->num_philo);
 	init_philo(data, philosophers, forks, last_meal);
@@ -108,7 +96,7 @@ t_philo	*create_program(char **argv)
 
 	program = ft_calloc(1, sizeof(t_philo));
 	if (!program)
-		return (NULL); //error msg
+		return (NULL);
 	init_prgm_data(argv, program);
 	philosophers = get_philo_data(program);
 	if (!philosophers)

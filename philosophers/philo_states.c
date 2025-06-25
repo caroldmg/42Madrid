@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 12:20:33 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/06/24 19:52:12 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/06/25 12:46:23 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,7 @@ void	pick_forks(t_philo *philo)
 	if (philo->id % 2 == 0)
 	{
 		pthread_mutex_lock(&philo->fork_mutex[philo->id - 1]);
-		// if (philo->id == 1)
-		// 	pthread_mutex_lock(&philo->fork_mutex[philo->num_philo - 1]);
-		// else
-			pthread_mutex_lock(&philo->fork_mutex[philo->id - 2]);
+		pthread_mutex_lock(&philo->fork_mutex[philo->id - 2]);
 	}
 	else
 	{

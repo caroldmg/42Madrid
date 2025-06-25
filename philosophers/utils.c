@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 17:15:53 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/06/24 20:05:46 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/06/25 12:27:17 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@ void	ft_write_state(char *str, t_philo *philo)
 	pthread_mutex_unlock(philo->lock);
 }
 
-
-
 void	ft_usleep(long long miliseconds, t_philo *philo)
 {
 	long long	start;
@@ -54,7 +52,7 @@ void	ft_usleep(long long miliseconds, t_philo *philo)
 
 int	ft_strlen(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])

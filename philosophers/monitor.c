@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 19:42:28 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/06/24 20:06:23 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/06/25 12:28:07 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_philo	*init_monitor(t_philo *philo)
 {
 	t_philo	*monitor;
-	
+
 	monitor = ft_calloc(1, sizeof(t_philo));
 	if (!monitor)
 		return (NULL);
@@ -35,7 +35,7 @@ t_philo	*init_monitor(t_philo *philo)
 
 void	link_philo_monitor(t_all *all)
 {
-	int	i;
+	int		i;
 	t_philo	*monitor;
 	t_philo	*philo;
 
@@ -65,13 +65,13 @@ void	free_philo(t_philo *philo)
 
 void	clean_everything(t_all *all)
 {
-	int 	i;
+	int		i;
 	t_philo	*philo;
 	t_philo	*monitor;
 
 	i = 0;
 	monitor = all->monitor;
-	philo  = all->philosophers;
+	philo = all->philosophers;
 	while (i < monitor->num_philo)
 	{
 		free_philo(&philo[i]);
