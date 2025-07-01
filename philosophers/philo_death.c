@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 17:13:41 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/07/01 12:03:59 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/07/01 16:01:28 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,9 @@ bool	still_eating(t_philo *monitor)
 		pthread_mutex_unlock(monitor->lock);
 		i++;
 	}
+	printf("\n ---------- \n \n");
+	printf("Todos los filosofos han comido ya \
+			%d veces y están llenos 🍝 \n", monitor->nb_meals_to_eat);
 	return (false);
 }
 
@@ -72,7 +75,7 @@ void	ft_print_dead(int id, long long start)
 	long	curr_time;
 
 	curr_time = ft_get_time_ms() - start;
-	printf("%04ld \t %d died \n", curr_time, id);
+	printf("%04ld %d died \n", curr_time, id);
 }
 
 void	ft_finish_eating(long long start)

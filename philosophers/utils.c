@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 17:15:53 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/07/01 12:23:48 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/07/01 18:55:10 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,16 @@ long long	ft_get_time_ms(void)
 	return (miliseconds);
 }
 
-void	ft_write_state(char *str, t_philo *philo)
+void	ft_write_state(char *str, t_philo *philo, char *color)
 {
 	long	time;
-	char	*color[3];
 
 	if (is_dead(philo))
 		return ;
-	color[0] = RED;
-	color[1] = PURPLE;
-	color[2] = YELLOW;
 	time = ft_get_time_ms() - philo->start_time;
 	pthread_mutex_lock(philo->lock);
-	write(1, color[philo->id % 3], ft_strlen(color[philo->id % 3]));
-	printf("%04ld \t %d %s \n", time, philo->id, str);
+	write(1, color, ft_strlen(color));
+	printf("%04ld %d %s\n", time, philo->id, str);
 	write(1, RESET, ft_strlen(RESET));
 	pthread_mutex_unlock(philo->lock);
 }
@@ -62,5 +58,10 @@ int	ft_strlen(char *str)
 
 bool	is_dead(t_philo *philo)
 {
-	return (philo->dead_flag);
+	int	flag;
+	
+	pthread_mutex_lock(philo->lock);
+	flag = philo->dead_flag;
+	pthread_mutex_unlock(philo->lock);
+	return (flag);
 }

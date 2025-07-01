@@ -9,7 +9,7 @@ RESET := \033[0m
 
 CC = cc
 NAME := philo
-CFLAGS := -Wextra -Wall -Werror -g3 #-pthread 
+CFLAGS := -Wextra -Wall -Werror -pthread -g3 #-fsanitize=thread 
 
 OBJ_DIR = obj
 
@@ -40,7 +40,7 @@ $(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
 
 
 $(NAME): $(OBJS)
-	@$(CC) $(OBJS) -fsanitize=thread -o $(NAME)
+	@$(CC) $(OBJS) -o $(NAME)
 	@echo "$(GREEN)Compilación completada con éxito.$(RESET)"
 
 

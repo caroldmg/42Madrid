@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 19:42:28 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/06/25 12:28:07 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/07/01 18:51:21 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,12 @@ void	clean_everything(t_all *all)
 	i = 0;
 	monitor = all->monitor;
 	philo = all->philosophers;
-	while (i < monitor->num_philo)
-	{
-		free_philo(&philo[i]);
-		i++;
-	}
+	// while (i < monitor->num_philo)
+	// {
+	// 	// free_philo(&philo[i]);
+	// 	pthread_mutex_destroy(&philo->fork_mutex[philo->id - 1]);
+	// 	i++;
+	// }
 	free(philo->fork_mutex);
 	free(philo->last_meal);
 	free(philo->meals_eaten);

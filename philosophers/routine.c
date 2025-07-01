@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 17:55:33 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/07/01 12:36:09 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/07/01 18:57:25 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,12 @@ void	*philo_routine(void *arg)
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
-	if (philo->id % 2 != 0)
-		ft_usleep(10, philo);
+	// if (philo->id % 2 != 0)
+	// 	ft_usleep(10, philo);
+	// data race
+	pthread_mutex_lock(philo->lock);
+	philo->last_meal[philo->id - 1] = ft_get_time_ms();
+	pthread_mutex_unlock(philo->lock);
 	while (is_dead(philo) == false)
 	{
 		pick_forks(philo);
@@ -26,8 +30,6 @@ void	*philo_routine(void *arg)
 		leave_forks(philo);
 		philo_sleep(philo);
 		philo_think(philo);
-		if (philo->id % 2 != 0)
-			ft_usleep(10, philo);
 	}
 	return (NULL);
 }
@@ -41,7 +43,7 @@ void	*just_the_one(void *arg)
 	while (is_dead(philo) == false)
 	{
 		pthread_mutex_lock(philo->fork_mutex);
-		ft_write_state(TAKE_FORK_MSG, philo);
+		ft_write_state(TAKE_FORK_MSG, philo, RED);
 		pthread_mutex_unlock(philo->fork_mutex);
 		pthread_mutex_lock(philo->lock);
 		ft_usleep(philo->time_to_die, philo);
@@ -67,6 +69,7 @@ int	start_philo_life(t_philo *philo)
 	if (num_philo == 1)
 	{
 		philo[i].start_time = start;
+		philo->last_meal[philo->id - 1] = ft_get_time_ms();
 		pthread_create(&philo->philo_th, NULL, just_the_one, &philo[i]);
 		return (1);
 	}

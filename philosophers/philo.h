@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 20:12:24 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/07/01 12:32:28 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/07/01 15:53:59 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,10 @@
 
 // COLORS
 # define RED "\033[0;31m"
+# define GREEN "\033[0;32m"
 # define YELLOW "\033[0;33m"
 # define PURPLE "\033[0;35m"
+# define BLUE "\033[0;36m"
 # define RESET "\033[0m"
 
 // mensajes
@@ -109,7 +111,7 @@ void		*print_and_kill(t_philo *monitor, t_philo *philos, int i);
 
 // utils.c
 long long	ft_get_time_ms(void);
-void		ft_write_state(char *str, t_philo *philo);
+void		ft_write_state(char *str, t_philo *philo, char *color);
 void		ft_usleep(long long miliseconds, t_philo *philo);
 void		ft_print_dead(int id, long long start);
 int			ft_strlen(char *str);
