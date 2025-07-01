@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 17:15:53 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/06/25 12:27:17 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/07/01 12:23:48 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,9 @@ int	ft_strlen(char *str)
 	while (str[i])
 		i++;
 	return (i);
+}
+
+bool	is_dead(t_philo *philo)
+{
+	return (philo->dead_flag);
 }

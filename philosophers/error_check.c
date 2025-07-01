@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 17:13:36 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/06/23 22:02:44 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/07/01 12:35:00 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,22 @@ void	error_monitor(void)
 	write(2, RED, ft_strlen(RED));
 	ft_putendl_fd("Algo ha fallado en la inicialización del programa.", 2);
 	write(2, RESET, ft_strlen(RESET));
+}
+
+int	check_return_life(int ret_code, t_all *all)
+{
+	if (ret_code == 1)
+	{
+		pthread_join(all->philosophers->philo_th, NULL);
+		clean_everything(all);
+		return (NO_ERROR);
+	}
+	else if (ret_code == 2)
+		return (error_msg(UNKNOWN_ERROR));
+	else
+	{
+		join_threads(all);
+		clean_everything(all);
+		return (NO_ERROR);
+	}
 }

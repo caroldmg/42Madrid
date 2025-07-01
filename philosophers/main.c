@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 19:54:08 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/06/25 13:17:55 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/07/01 12:35:42 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,5 @@ int	main(int argc, char *argv[])
 	}
 	link_philo_monitor(all);
 	ret_code = start_philo_life(all->philosophers);
-	if (ret_code == 1)
-	{
-		pthread_join(all->philosophers->philo_th, NULL);
-		clean_everything(all);
-		return (NO_ERROR);
-	}
-	if (ret_code == 2)
-		return (error_msg(UNKNOWN_ERROR));
-	pthread_create(&all->monitor->philo_th, NULL, check_philo_death, all);
-	pthread_join(all->monitor->philo_th, NULL);
-	join_threads(all->philosophers, all->philosophers);
-	clean_everything(all);
-	return (0);
+	return (check_return_life(ret_code, all));
 }

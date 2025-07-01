@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 20:12:24 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/06/25 12:40:14 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/07/01 12:32:28 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void		link_philo_monitor(t_all *all);
 // routine.c
 void		*philo_routine(void *arg);
 int			start_philo_life(t_philo *philo);
-int			join_threads(t_philo *philo, t_philo *monitor);
+int			join_threads(t_all *all);
 void		kill_philos(t_philo *philosophers);
 bool		is_dead(t_philo *philo);
 
@@ -117,5 +117,6 @@ int			ft_strlen(char *str);
 // error_check.c
 void		error_monitor(void);
 int			error_msg(int value);
+int			check_return_life(int ret_code, t_all *all);
 
 #endif

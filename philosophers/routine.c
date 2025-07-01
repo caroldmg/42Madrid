@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 17:55:33 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/06/25 13:22:44 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/07/01 12:36:09 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ void	*philo_routine(void *arg)
 
 void	*just_the_one(void *arg)
 {
-	t_philo	*philo;
-	long	time;
+	t_philo		*philo;
+	long long	time;
 
 	philo = (t_philo *)arg;
 	while (is_dead(philo) == false)
@@ -46,8 +46,7 @@ void	*just_the_one(void *arg)
 		pthread_mutex_lock(philo->lock);
 		ft_usleep(philo->time_to_die, philo);
 		time = ft_get_time_ms() - philo->start_time;
-		printf("%04ld \t %d died \n", time, philo->id);
-		ft_print_dead(philo->id, philo->start_time);
+		printf("%04lld \t %d died \n", time, philo->id);
 		pthread_mutex_unlock(philo->lock);
 		return (NULL);
 	}
@@ -67,6 +66,7 @@ int	start_philo_life(t_philo *philo)
 	start = ft_get_time_ms();
 	if (num_philo == 1)
 	{
+		philo[i].start_time = start;
 		pthread_create(&philo->philo_th, NULL, just_the_one, &philo[i]);
 		return (1);
 	}
@@ -82,15 +82,21 @@ int	start_philo_life(t_philo *philo)
 	return (ret_code);
 }
 
-int	join_threads(t_philo *philo, t_philo *monitor)
+int	join_threads(t_all *all)
 {
-	int	i;
-	int	num;
-	int	ret_code;
+	int		i;
+	int		num;
+	int		ret_code;
+	t_philo	*monitor;
+	t_philo	*philo;
 
 	i = 0;
 	ret_code = 0;
+	monitor = all->monitor;
+	philo = all->philosophers;
 	num = monitor->num_philo;
+	pthread_create(&all->monitor->philo_th, NULL, check_philo_death, all);
+	pthread_join(all->monitor->philo_th, NULL);
 	while (i < num)
 	{
 		if (pthread_join(philo[i].philo_th, NULL) != NO_ERROR)
@@ -98,11 +104,6 @@ int	join_threads(t_philo *philo, t_philo *monitor)
 		i++;
 	}
 	return (ret_code);
-}
-
-bool	is_dead(t_philo *philo)
-{
-	return (philo->dead_flag);
 }
 
 void	kill_philos(t_philo *philosophers)

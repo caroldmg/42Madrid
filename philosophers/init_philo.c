@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 12:32:26 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/06/25 12:39:43 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/07/01 12:24:11 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ long long	*init_last_meal(int num_philo)
 	return (last_meal);
 }
 
-void	init_philo(t_philo *data, t_philo *philosophers, pthread_mutex_t *forks, long long *last_meal)
+void	init_philo(t_philo *data, t_philo *philosophers, \
+				pthread_mutex_t *forks, long long *last_meal)
 {
 	int	i;
 	int	*meals;
