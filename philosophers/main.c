@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 19:54:08 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/07/01 12:35:42 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/07/03 16:53:49 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,16 @@ int	main(int argc, char *argv[])
 		return (error_msg(ERROR_MALLOC));
 	if (check_valid_args(argc, argv) != NO_ERROR)
 		return (error_msg(BAD_ARGS));
-	all->philosophers = create_program(argv);
-	if (!all->philosophers)
+	all->philo = create_program(argv);
+	if (!all->philo)
 		return (error_msg(INIT_ERROR));
-	all->monitor = init_monitor(all->philosophers);
+	all->monitor = init_monitor(all->philo);
 	if (!all->monitor)
 	{
-		free(all->philosophers);
+		free(all->philo);
 		return (error_msg(INIT_ERROR));
 	}
 	link_philo_monitor(all);
-	ret_code = start_philo_life(all->philosophers);
+	ret_code = start_philo_life(all->philo);
 	return (check_return_life(ret_code, all));
 }

@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 17:13:41 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/07/01 16:01:28 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/07/03 15:50:30 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	*check_philo_death(void *all)
 
 	i = 0;
 	monitor = ((t_all *)all)->monitor;
-	philos = ((t_all *)all)->philosophers;
+	philos = ((t_all *)all)->philo;
 	while (i < monitor->num_philo && still_eating(monitor))
 	{
 		pthread_mutex_lock(monitor->lock);
@@ -65,6 +65,7 @@ void	*print_and_kill(t_philo *monitor, t_philo *philos, int i)
 {
 	pthread_mutex_lock(monitor->lock);
 	ft_print_dead(i + 1, monitor->start_time);
+	monitor->dead_flag = true;
 	kill_philos(philos);
 	pthread_mutex_unlock(monitor->lock);
 	return (NULL);

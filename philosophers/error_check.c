@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 17:13:36 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/07/01 12:35:00 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/07/03 15:49:22 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	check_return_life(int ret_code, t_all *all)
 {
 	if (ret_code == 1)
 	{
-		pthread_join(all->philosophers->philo_th, NULL);
+		pthread_join(all->philo->philo_th, NULL);
 		clean_everything(all);
 		return (NO_ERROR);
 	}

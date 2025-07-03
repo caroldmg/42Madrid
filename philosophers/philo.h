@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 20:12:24 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/07/01 15:53:59 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/07/03 16:53:38 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,15 @@ typedef struct s_philo
 	pthread_t		philo_th;
 	pthread_mutex_t	*fork_mutex;
 	pthread_mutex_t	*lock;
+	pthread_mutex_t	*death_mutex;
 	long			start_time;
 	bool			dead_flag;
 }	t_philo;
 
 typedef struct s_all
 {
-	t_philo	*philosophers;
+	int		i;
+	t_philo	*philo;
 	t_philo	*monitor;
 }	t_all;
 
@@ -92,6 +94,7 @@ void		link_philo_monitor(t_all *all);
 // routine.c
 void		*philo_routine(void *arg);
 int			start_philo_life(t_philo *philo);
+// int			start_philo_life(t_all *all);
 int			join_threads(t_all *all);
 void		kill_philos(t_philo *philosophers);
 bool		is_dead(t_philo *philo);

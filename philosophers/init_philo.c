@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 12:32:26 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/07/01 18:55:55 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/07/03 16:32:09 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ void	init_philo(t_philo *data, t_philo *philosophers, \
 		philosophers[i].dead_flag = false;
 		philosophers[i].num_philo = data->num_philo;
 		philosophers[i].fork_mutex = forks;
+		philosophers[i].death_mutex = ft_calloc(1, sizeof(pthread_mutex_t));
+		pthread_mutex_init(philosophers[i].death_mutex, NULL);
 		i++;
 	}
 	free(data);
