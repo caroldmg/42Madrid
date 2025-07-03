@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 17:13:41 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/07/03 17:05:25 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/07/03 17:08:01 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ bool	still_eating(t_philo *monitor)
 	}
 	printf("\n ---------- \n \n");
 	printf("Todos los filosofos han comido ya \
-			%d veces y están llenos 🍝 \n", monitor->nb_meals_to_eat);
+%d veces y están llenos 🍝 \n", monitor->nb_meals_to_eat);
 	return (false);
 }
 
