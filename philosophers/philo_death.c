@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 17:13:41 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/07/03 15:50:30 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/07/03 17:05:25 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,9 @@ void	*check_philo_death(void *all)
 			i = -1;
 		i++;
 	}
+	pthread_mutex_lock(monitor->lock);
 	kill_philos(philos);
+	pthread_mutex_unlock(monitor->lock);
 	return (NULL);
 }
 
