@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 17:55:33 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/07/04 13:03:11 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/07/04 13:12:30 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	*philo_routine(void *arg)
 	// pthread_mutex_unlock(all->monitor->lock);
 	philo = (t_philo *)arg;
 	if (philo->id % 2 != 0)
-		usleep(10);
+		usleep(15);
 	pthread_mutex_lock(philo->data_mutex);
 	philo->last_meal[philo->id - 1] = ft_get_time_ms();
 	pthread_mutex_unlock(philo->data_mutex);
