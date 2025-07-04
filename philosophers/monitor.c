@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 19:42:28 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/07/03 16:45:17 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/07/04 13:02:59 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ t_philo	*init_monitor(t_philo *philo)
 	monitor->meals_eaten = philo->meals_eaten;
 	monitor->last_meal = philo->last_meal;
 	monitor->num_philo = philo->num_philo;
-	monitor->fork_mutex = NULL;
+	// monitor->fork_mutex = NULL;
 	monitor->lock = ft_calloc(1, sizeof(pthread_mutex_t));
 	pthread_mutex_init(monitor->lock, NULL);
-	// monitor->death_mutex = ft_calloc(1, sizeof(pthread_mutex_t));
-	// pthread_mutex_init(monitor->death_mutex, NULL);
+	monitor->data_mutex = ft_calloc(1, sizeof(pthread_mutex_t));
+	pthread_mutex_init(monitor->data_mutex, NULL);
 	return (monitor);
 }
 
@@ -61,8 +61,8 @@ void	clean_everything(t_all *all)
 	i = 0;
 	monitor = all->monitor;
 	philo = all->philo;
-	pthread_mutex_destroy(philo->fork_mutex);
-	free(philo->fork_mutex);
+	// pthread_mutex_destroy(philo->fork_mutex);
+	// free(philo->fork_mutex);
 	free(philo->last_meal);
 	free(philo->meals_eaten);
 	pthread_mutex_destroy(philo->lock);

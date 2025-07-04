@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 20:12:24 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/07/03 16:53:38 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/07/04 12:25:33 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,19 @@
 # define INIT_ERROR -4
 
 // COLORS
-# define RED "\033[0;31m"
-# define GREEN "\033[0;32m"
-# define YELLOW "\033[0;33m"
-# define PURPLE "\033[0;35m"
-# define BLUE "\033[0;36m"
-# define RESET "\033[0m"
+// # define RED "\033[0;31m"
+// # define GREEN "\033[0;32m"
+// # define YELLOW "\033[0;33m"
+// # define PURPLE "\033[0;35m"
+// # define BLUE "\033[0;36m"
+// # define RESET "\033[0m"
+
+# define RED ""
+# define GREEN ""
+# define YELLOW ""
+# define PURPLE ""
+# define BLUE ""
+# define RESET ""
 
 // mensajes
 # define ARG_ER_MSG "Philo: argumentos no válidos. La estructura correcta es: \n \
@@ -58,9 +65,11 @@ typedef struct s_philo
 	long long		*last_meal;
 	int				num_philo;
 	pthread_t		philo_th;
-	pthread_mutex_t	*fork_mutex;
+	// pthread_mutex_t	*fork_mutex;
+	pthread_mutex_t	*r_fork;
+	pthread_mutex_t	*l_fork;
 	pthread_mutex_t	*lock;
-	pthread_mutex_t	*death_mutex;
+	pthread_mutex_t	*data_mutex;
 	long			start_time;
 	bool			dead_flag;
 }	t_philo;

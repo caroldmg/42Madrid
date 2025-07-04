@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 17:15:53 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/07/03 17:03:15 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/07/04 12:03:20 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,9 @@ bool	is_dead(t_philo *philo)
 	int	flag;
 
 	// pthread_mutex_lock(philo->lock);
-	pthread_mutex_lock(philo->death_mutex);
+	pthread_mutex_lock(philo->data_mutex);
 	flag = philo->dead_flag;
 	// pthread_mutex_unlock(philo->lock);
-	pthread_mutex_unlock(philo->death_mutex);
+	pthread_mutex_unlock(philo->data_mutex);
 	return (flag);
 }
