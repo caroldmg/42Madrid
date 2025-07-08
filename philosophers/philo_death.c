@@ -6,11 +6,36 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 17:13:41 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/07/08 12:14:44 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/07/08 14:07:35 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+void	*print_and_kill(t_philo *monitor, t_philo *philos, int i)
+{
+	ft_print_dead(i + 1, monitor->start_time);
+	monitor->dead_flag = true;
+	kill_philos(philos);
+	pthread_mutex_unlock(monitor->data_mutex);
+	return (NULL);
+}
+
+void	ft_print_dead(int id, long long start)
+{
+	long	curr_time;
+
+	curr_time = ft_get_time_ms() - start;
+	printf("%04ld %d died \n", curr_time, id);
+}
+
+void	ft_finish_eating(long long start)
+{
+	long	curr_time;
+
+	curr_time = ft_get_time_ms() - start;
+	printf("%04ld \t they have finished eating \n", curr_time);
+}
 
 void	*check_philo_death(void *all)
 {
@@ -49,18 +74,13 @@ bool	still_eating(t_philo *monitor)
 		return (true);
 	while (i < monitor->num_philo)
 	{
-		// pthread_mutex_lock(monitor->data_mutex);
 		pthread_mutex_lock(monitor->lock);
-
 		if (monitor->meals_eaten[i] < monitor->nb_meals_to_eat)
 		{
-			// pthread_mutex_unlock(monitor->data_mutex);
 			pthread_mutex_unlock(monitor->lock);
 			return (true);
 		}
-		// pthread_mutex_unlock(monitor->data_mutex);
 		pthread_mutex_unlock(monitor->lock);
-
 		i++;
 	}
 	pthread_mutex_lock(monitor->lock);
@@ -69,30 +89,4 @@ bool	still_eating(t_philo *monitor)
 %d veces y están llenos 🍝 \n", monitor->nb_meals_to_eat);
 	pthread_mutex_unlock(monitor->lock);
 	return (false);
-}
-
-void	*print_and_kill(t_philo *monitor, t_philo *philos, int i)
-{
-	// pthread_mutex_lock(monitor->lock);
-	ft_print_dead(i + 1, monitor->start_time);
-	monitor->dead_flag = true;
-	kill_philos(philos);
-	pthread_mutex_unlock(monitor->data_mutex);
-	return (NULL);
-}
-
-void	ft_print_dead(int id, long long start)
-{
-	long	curr_time;
-
-	curr_time = ft_get_time_ms() - start;
-	printf("%04ld %d died \n", curr_time, id);
-}
-
-void	ft_finish_eating(long long start)
-{
-	long	curr_time;
-
-	curr_time = ft_get_time_ms() - start;
-	printf("%04ld \t they have finished eating \n", curr_time);
 }

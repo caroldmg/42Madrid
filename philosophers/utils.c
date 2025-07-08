@@ -65,10 +65,8 @@ bool	is_dead(t_philo *philo)
 {
 	int	flag;
 
-	// pthread_mutex_lock(philo->lock);
 	pthread_mutex_lock(philo->data_mutex);
 	flag = philo->dead_flag;
-	// pthread_mutex_unlock(philo->lock);
 	pthread_mutex_unlock(philo->data_mutex);
 	return (flag);
 }

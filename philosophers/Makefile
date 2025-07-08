@@ -23,6 +23,7 @@ SRCS := main.c \
 		init_philo.c \
 		philo_states.c \
 		error_check.c \
+		forks.c \
 
 OBJ_NAMES = $(SRCS:.c=.o)
 OBJS = $(addprefix $(OBJ_DIR)/, $(OBJ_NAMES))
