@@ -36,11 +36,11 @@ $(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
 	@$(CC) $(CFLAGS)  -c $< -o $@
 
 %.o: %.c
-	@$(CC) $(CFLAGS) -fsanitize=thread -o $@ -c $<
+	@$(CC) $(CFLAGS) -o $@ -c $<
 
 
 $(NAME): $(OBJS)
-	@$(CC) $(OBJS) -fsanitize=thread -o $(NAME)
+	@$(CC) $(OBJS) -o $(NAME)
 	@echo "$(GREEN)Compilación completada con éxito.$(RESET)"
 
 

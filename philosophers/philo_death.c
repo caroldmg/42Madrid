@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 17:13:41 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/07/04 12:01:46 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/07/08 12:14:44 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,11 @@ void	*check_philo_death(void *all)
 	philos = ((t_all *)all)->philo;
 	while (i < monitor->num_philo && still_eating(monitor))
 	{
-		pthread_mutex_lock(monitor->data_mutex);
+		usleep(10000);
+		pthread_mutex_lock(monitor->lock);
 		time = ft_get_time_ms() - monitor->last_meal[i];
+		pthread_mutex_unlock(monitor->lock);
+		pthread_mutex_lock(monitor->data_mutex);
 		if (time >= monitor->time_to_die)
 			return (print_and_kill(monitor, philos, i));
 		if (i + 1 == monitor->num_philo)
@@ -33,9 +36,7 @@ void	*check_philo_death(void *all)
 		i++;
 		pthread_mutex_unlock(monitor->data_mutex);
 	}
-	pthread_mutex_lock(monitor->lock);
 	kill_philos(philos);
-	pthread_mutex_unlock(monitor->lock);
 	return (NULL);
 }
 
@@ -48,18 +49,25 @@ bool	still_eating(t_philo *monitor)
 		return (true);
 	while (i < monitor->num_philo)
 	{
-		pthread_mutex_lock(monitor->data_mutex);
+		// pthread_mutex_lock(monitor->data_mutex);
+		pthread_mutex_lock(monitor->lock);
+
 		if (monitor->meals_eaten[i] < monitor->nb_meals_to_eat)
 		{
-			pthread_mutex_unlock(monitor->data_mutex);
+			// pthread_mutex_unlock(monitor->data_mutex);
+			pthread_mutex_unlock(monitor->lock);
 			return (true);
 		}
-		pthread_mutex_unlock(monitor->data_mutex);
+		// pthread_mutex_unlock(monitor->data_mutex);
+		pthread_mutex_unlock(monitor->lock);
+
 		i++;
 	}
+	pthread_mutex_lock(monitor->lock);
 	printf("\n ---------- \n \n");
 	printf("Todos los filosofos han comido ya \
 %d veces y están llenos 🍝 \n", monitor->nb_meals_to_eat);
+	pthread_mutex_unlock(monitor->lock);
 	return (false);
 }
 

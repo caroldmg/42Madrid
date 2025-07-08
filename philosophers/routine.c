@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 17:55:33 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/07/04 13:12:30 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/07/08 12:14:04 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,17 @@
 
 void	*philo_routine(void *arg)
 {
-	// t_all *all;
 	t_philo	*philo;
-	
-	// all = (t_all *)arg;
-	// pthread_mutex_lock(all->monitor->lock);
-	// philo = &all->philo[all->i];
-	// pthread_mutex_unlock(all->monitor->lock);
+
 	philo = (t_philo *)arg;
 	if (philo->id % 2 != 0)
 		usleep(15);
-	pthread_mutex_lock(philo->data_mutex);
+	// pthread_mutex_lock(philo->data_mutex);
+	pthread_mutex_lock(philo->lock);
+
 	philo->last_meal[philo->id - 1] = ft_get_time_ms();
-	pthread_mutex_unlock(philo->data_mutex);
+	// pthread_mutex_unlock(philo->data_mutex);
+	pthread_mutex_unlock(philo->lock);
 	while (is_dead(philo) == false)
 	{
 		pick_forks(philo);
@@ -34,11 +32,6 @@ void	*philo_routine(void *arg)
 		leave_forks(philo);
 		philo_sleep(philo);
 		philo_think(philo);
-		// pthread_mutex_lock(philo->death_mutex);
-		// philo->dead_flag = all->monitor->dead_flag;
-		// pthread_mutex_unlock(philo->death_mutex);
-		// if (philo->id % 2 != 0)
-		// 	usleep(10);
 	}
 	return (NULL);
 }
@@ -125,6 +118,7 @@ void	kill_philos(t_philo *philosophers)
 
 	i = 0;
 	nb = philosophers->num_philo;
+	pthread_mutex_lock(philosophers->lock);
 	while (i < nb)
 	{
 		pthread_mutex_lock(philosophers[i].data_mutex);
@@ -132,5 +126,5 @@ void	kill_philos(t_philo *philosophers)
 		pthread_mutex_unlock(philosophers[i].data_mutex);
 		i++;
 	}
-	// pthread_mutex_unlock(philosophers->lock);
+	pthread_mutex_unlock(philosophers->lock);
 }

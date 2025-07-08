@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 12:20:33 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/07/04 13:01:14 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/07/08 12:43:48 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,20 +73,36 @@ void	pick_forks(t_philo *philo)
 
 void	leave_forks(t_philo *philo)
 {
-	unlock_fork(philo->r_fork);
-	unlock_fork(philo->l_fork);
+	
+	if (philo->id % 2 == 0)
+	{
+		unlock_fork(philo->r_fork);
+		ft_write_state(TAKE_FORK_MSG, philo, RED);
+		unlock_fork(philo->l_fork);
+		ft_write_state(TAKE_FORK_MSG, philo, RED);
+	}
+	else
+	{
+		unlock_fork(philo->l_fork);
+		ft_write_state(TAKE_FORK_MSG, philo, RED);
+		unlock_fork(philo->r_fork);
+		ft_write_state(TAKE_FORK_MSG, philo, RED);
+	}
 }
 
 void	philo_eat(t_philo *philo)
 {
 	ft_write_state(EAT_MSG, philo, GREEN);
-	pthread_mutex_lock(philo->data_mutex);
+	// pthread_mutex_lock(philo->data_mutex);
+		pthread_mutex_lock(philo->lock);
+
 	philo->last_meal[philo->id - 1] = ft_get_time_ms();
 	philo->meals_eaten[philo->id - 1]++;
-	pthread_mutex_unlock(philo->data_mutex);
+		pthread_mutex_unlock(philo->lock);
+
+	// pthread_mutex_unlock(philo->data_mutex);
 	ft_usleep(philo->time_to_eat, philo);
 }
-
 
 void	philo_sleep(t_philo *philo)
 {
