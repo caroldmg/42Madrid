@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 20:12:24 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/07/08 14:13:10 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/07/14 18:33:40 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,6 @@
 # define ERROR_THREAD -2
 # define UNKNOWN_ERROR -3
 # define INIT_ERROR -4
-
-// COLORS
-// # define RED "\033[0;31m"
-// # define GREEN "\033[0;32m"
-// # define YELLOW "\033[0;33m"
-// # define PURPLE "\033[0;35m"
-// # define BLUE "\033[0;36m"
-// # define RESET "\033[0m"
-
-# define RED ""
-# define GREEN ""
-# define YELLOW ""
-# define PURPLE ""
-# define BLUE ""
-# define RESET ""
 
 // mensajes
 # define ARG_ER_MSG "Philo: argumentos no válidos. La estructura correcta es: \n \
@@ -121,10 +106,11 @@ void			*check_philo_death(void *philo);
 void			clean_everything(t_all *all);
 bool			still_eating(t_philo *monitor);
 void			*print_and_kill(t_philo *monitor, t_philo *philos, int i);
+void			philo_mutex_destroy(t_philo *philo);
 
 // utils.c
 long long		ft_get_time_ms(void);
-void			ft_write_state(char *str, t_philo *philo, char *color);
+void			ft_write_state(char *str, t_philo *philo);
 void			ft_usleep(long long miliseconds, t_philo *philo);
 void			ft_print_dead(int id, long long start);
 int				ft_strlen(char *str);

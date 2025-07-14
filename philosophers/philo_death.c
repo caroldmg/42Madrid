@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 17:13:41 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/07/08 14:07:35 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/07/14 17:34:11 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 void	*print_and_kill(t_philo *monitor, t_philo *philos, int i)
 {
+	pthread_mutex_lock(monitor->lock);
 	ft_print_dead(i + 1, monitor->start_time);
+	pthread_mutex_unlock(monitor->lock);
 	monitor->dead_flag = true;
 	kill_philos(philos);
 	pthread_mutex_unlock(monitor->data_mutex);

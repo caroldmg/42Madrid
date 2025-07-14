@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 17:13:36 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/07/03 15:49:22 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/07/14 17:38:35 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,7 @@ int	error_msg(int value)
 
 void	error_monitor(void)
 {
-	write(2, RED, ft_strlen(RED));
 	ft_putendl_fd("Algo ha fallado en la inicialización del programa.", 2);
-	write(2, RESET, ft_strlen(RESET));
 }
 
 int	check_return_life(int ret_code, t_all *all)

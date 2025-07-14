@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 19:42:28 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/07/04 13:02:59 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/07/14 18:17:28 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,27 @@ void	clean_everything(t_all *all)
 	i = 0;
 	monitor = all->monitor;
 	philo = all->philo;
+	while (i < philo->num_philo)
+	{
+		philo_mutex_destroy(&philo[i]);
+		i++;
+	}
 	free(philo->last_meal);
 	free(philo->meals_eaten);
 	pthread_mutex_destroy(philo->lock);
 	free(philo->lock);
-	philo = NULL;
+	pthread_mutex_destroy(monitor->data_mutex);
+	free(monitor->data_mutex);
 	free(monitor);
+	free(philo);
 	free(all);
+}
+
+void	philo_mutex_destroy(t_philo *philo)
+{
+	pthread_mutex_destroy(philo->data_mutex);
+	pthread_mutex_destroy(philo->r_fork);
+	free(philo->data_mutex);
+	free(philo->r_fork);
+	// sirve esto o hay que liberar el izquierdo en algun momento??
 }
