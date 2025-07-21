@@ -10,7 +10,6 @@ RED := \033[0;31m
 YELLOW := \33[0;33m
 RESET := \033[0m
 
-
 SRCS := megaphone.cpp
 
 OBJS := $(SRCS:.cpp=.o)
@@ -28,15 +27,13 @@ $(NAME): $(OBJS)
 clean:
 	$(RM) $(OBJ)
 	@clear
-	@echo "$(BLUE)Limpito$(RESET)"
+	@echo "$(YELLOW)\t 🧹 Limpito 🧽$(RESET)"
 
-fclean:
-		$(RM) $(NAME)
-		clean
+fclean: clean
+	$(RM) $(NAME)
+	@clear
+	@echo "$(YELLOW)\t 🧹 Limpito! 🧽 $(RESET)"
 
 re: fclean all
 
 .PHONY: all, clean, fclean, re
-
-
-23.1428571429
