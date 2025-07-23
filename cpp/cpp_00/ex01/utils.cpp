@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 13:08:25 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/07/21 16:29:42 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/07/23 16:54:31 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void Contact:: printColumn(std::string str,  int len_str)
 	}
 	if (len_str >= 10)
 		std::cout << ".";
+
+	// TODO: creo que esto debería hacerse con setw https://cplusplus.com/reference/iomanip/setw/
 }
 
 bool	isValidNumber(std::string phone)

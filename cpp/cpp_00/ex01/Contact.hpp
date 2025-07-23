@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 16:14:55 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/07/21 16:30:06 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/07/23 11:58:48 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,11 @@ class Contact
 		long	phoneNumber;
 		std::string	darkSecret;
 	public:
-		Contact::Contact(std::string first, std::string last, std::string nick, long num, std::string secret);
+		Contact(std::string first, std::string last, std::string nick, long num, std::string secret);
+		Contact();
 		~Contact();
-		
+
+		Contact getContact();
 		void	printContact(int i);
 		void	printAllContacts();
 		void	printColumn(std::string str,  int len_str);

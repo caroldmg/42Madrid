@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 12:25:24 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/07/21 15:59:42 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/07/23 12:35:34 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,15 @@ Contact::Contact(std::string first, std::string last, std::string nick, long num
 	this->darkSecret = secret;
 }
 
-Contact::~Contact()
+Contact::Contact(void)
+{
+	this->firstName = "";
+	this->lastName = "";
+	this->nickname = "";
+	this->darkSecret = "";
+}
+
+Contact::~Contact(void)
 {
 	std::cout << "Contact destructor" << std::endl;
 }
@@ -38,4 +46,3 @@ void	Contact::printContact(int i)
 	printColumn(this->nickname, nickname.length());
 	std::cout << std::endl;
 }
-
