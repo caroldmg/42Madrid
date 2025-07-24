@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 12:44:39 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/07/23 12:55:09 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/07/24 12:57:55 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,31 @@ void	newContact(PhoneBook *phoneBook)
 	delete newContact;
 }
 
-check_input(std::string input)
+void	searchContact(PhoneBook *phoneBook)
+{
+	std::string str;
+	
+}
+
+void	check_input(PhoneBook *phoneBook)
 {
 	int 		i;
 	std::string index;
+	std::string	input;
 
-	
+	while (1)
+	{
+		std::cout << "Introduzca una acción:  (ADD, SEARCH, EXIT) " << std::endl;
+		if (!std::getline(std::cin, input))
+			break ;
+		if (input == "ADD")
+			newContact(phoneBook);
+		else if (input == "SEARCH")
+			searchContact();
+		else if (input == "EXIT")
+			break ;
+		else
+			std::cout << "acción no válida" << std::endl;
+	}
+	// llamar a esta funcion desde main, primero crear el phonebook, luego eliminarlo
 }

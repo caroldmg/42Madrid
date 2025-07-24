@@ -6,32 +6,18 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 13:08:25 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/07/23 16:54:31 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/07/24 13:03:29 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
-void Contact:: printColumn(std::string str,  int len_str)
+
+void	Contact::printColumn(std::string str)
 {
-	int spaces;
-	int j = 0;
-	int i = 0;
-
-	spaces = 10 - len_str;
-	while (i < spaces)
-	{
-		std::cout << " ";
-		i++;
-	}
-	while (j < 9 && j < len_str)
-	{
-		std::cout << str[j++];
-	}
-	if (len_str >= 10)
-		std::cout << ".";
-
-	// TODO: creo que esto debería hacerse con setw https://cplusplus.com/reference/iomanip/setw/
+	if (str.length() > 10)
+		str.substr(0, 9) + ".";
+	std::cout << std::setw(10) << str << "|";
 }
 
 bool	isValidNumber(std::string phone)
@@ -56,3 +42,9 @@ bool	isValidNumber(std::string phone)
 	return (true);
 }
 
+void	displayAllContacts(PhoneBook phoneBook)
+{
+	int	i = 0,
+
+	while (i < phoneBook.contactList.lenght()) //???? como hago esto???
+}

@@ -6,13 +6,14 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 16:14:55 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/07/23 11:58:48 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/07/24 12:23:58 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <string.h>
 #include <ctype.h>
+#include <iomanip>
 
 class Contact
 {
@@ -30,7 +31,7 @@ class Contact
 		Contact getContact();
 		void	printContact(int i);
 		void	printAllContacts();
-		void	printColumn(std::string str,  int len_str);
+		void	printColumn(std::string str);
 };
 
 // bool	isValidNumber(char *phone);

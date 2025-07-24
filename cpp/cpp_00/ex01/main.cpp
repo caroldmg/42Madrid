@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/15 16:14:28 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/07/24 12:52:19 by cde-migu         ###   ########.fr       */
+/*   Created: 2025/07/24 12:40:47 by cde-migu          #+#    #+#             */
+/*   Updated: 2025/07/24 12:45:12 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Contact.hpp"
+#include "PhoneBook.hpp"
 
-class PhoneBook
+int	main(void)
 {
-	private:
-		Contact contactList[8];
-	public:
-		int numContact;
-		
-		PhoneBook();
-		~PhoneBook();
+	PhoneBook *phoneBook = new PhoneBook();
 
-		void	AddContact(Contact newContact);
-		Contact GetContact(int index);
-};
+	checkInput(phoneBook);
 
-void	newContact(PhoneBook *phoneBook);
-void	checkInput(PhoneBook *phoneBook);
+	delete phoneBook;
+}

@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 12:25:24 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/07/23 12:35:34 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/07/24 12:23:41 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ Contact::~Contact(void)
 
 void	Contact::printContact(int i)
 {
-	printColumn(std::to_string(i + 1), 1);
+	printColumn(std::to_string(i + 1));
 	std::cout << "|";
-	printColumn(this->firstName, firstName.length());
+	printColumn(this->firstName);
 	std::cout << "|";
-	printColumn(this->lastName, lastName.length());
+	printColumn(this->lastName);
 	std::cout << "|";
-	printColumn(this->nickname, nickname.length());
+	printColumn(this->nickname);
 	std::cout << std::endl;
 }
