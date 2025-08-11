@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 13:08:25 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/07/24 13:03:29 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/08/06 15:22:12 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ bool	isValidNumber(std::string phone)
 	}
 	while (phone[i])
 	{
-		if (std::isdigit((int)phone[i]) == false)
+		if (std::isdigit(phone[i]) == false)
 		{
 			std::cout << "Wrong phone number: it should only have digits on it" << std::endl;
 			return (false);
@@ -42,9 +42,24 @@ bool	isValidNumber(std::string phone)
 	return (true);
 }
 
-void	displayAllContacts(PhoneBook phoneBook)
+void	checkInput(PhoneBook *phoneBook)
 {
-	int	i = 0,
+	std::string index;
+	std::string	input;
 
-	while (i < phoneBook.contactList.lenght()) //???? como hago esto???
+	while (1)
+	{
+		std::cout << "Enter an action:  (ADD, SEARCH, EXIT) " << std::endl;
+		if (!std::getline(std::cin, input))
+			break ;
+		if (input == "ADD")
+			phoneBook->newContact();
+		else if (input == "SEARCH")
+			phoneBook->searchContact();
+		else if (input == "EXIT")
+			break ;
+		else
+			std::cout << "acción no válida" << std::endl;
+	}
+	// llamar a esta funcion desde main, primero crear el phonebook, luego eliminarlo
 }

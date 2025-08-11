@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 12:25:24 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/07/24 12:23:41 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/08/11 12:38:14 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,23 @@ Contact::~Contact(void)
 	std::cout << "Contact destructor" << std::endl;
 }
 
-void	Contact::printContact(int i)
+void	Contact::printContactColumns(int i)
 {
-	printColumn(std::to_string(i + 1));
-	std::cout << "|";
+	std::stringstream index;
+
+	index << (i + 1);
+	printColumn(index.str());
 	printColumn(this->firstName);
-	std::cout << "|";
 	printColumn(this->lastName);
-	std::cout << "|";
 	printColumn(this->nickname);
 	std::cout << std::endl;
+}
+
+void	Contact:: printContactInfo(void)
+{
+	std::cout << "First name: " << this->firstName << std::endl;
+	std::cout << "Last name: " << this->lastName << std::endl;
+	std::cout << "Nickname: " << this->nickname << std::endl;
+	std::cout << "Phone number: " << this->phoneNumber << std::endl;
+	std::cout << "Dark secret: " << this->darkSecret << std::endl;
 }

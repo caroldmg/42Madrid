@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 16:14:28 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/07/24 12:52:19 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/08/06 13:04:45 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ class PhoneBook
 		~PhoneBook();
 
 		void	AddContact(Contact newContact);
+		void	displayAllContacts(void);
 		Contact GetContact(int index);
+		void	searchContact(void);
+		void	newContact(void);
 };
 
 void	newContact(PhoneBook *phoneBook);

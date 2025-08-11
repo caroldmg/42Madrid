@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 12:48:54 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/07/23 12:52:07 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/08/05 15:39:28 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,15 @@ void	PhoneBook:: AddContact(Contact newContact)
 Contact PhoneBook::GetContact(int index)
 {
 	return (contactList[index]);
+}
+
+void	PhoneBook::	displayAllContacts(void)
+{
+	int	i = 0;
+
+	while (i < numContact)
+	{
+		// iterar por cada uno de los contactos, imprimir toda la info 
+		// la funcion printcolums no sé si imprime toda la info?? 
+	}
 }
