@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 16:14:55 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/08/06 13:03:16 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/08/11 13:06:14 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,4 @@ class Contact
 		void	printContactInfo(void);
 };
 
-// bool	isValidNumber(char *phone);
 bool	isValidNumber(std::string phone);
