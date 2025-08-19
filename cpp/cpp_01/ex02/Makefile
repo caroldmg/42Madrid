@@ -10,8 +10,6 @@ YELLOW := \33[0;33m
 RESET := \033[0m
 
 SRCS := main.cpp \
-		Zombie.cpp \
-		zombieHorde.cpp
 
 OBJS := $(SRCS:.cpp=.o)
 
