@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 12:43:14 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/08/19 16:04:47 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/08/19 17:08:49 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,8 @@ class Zombie
 	public:
 		Zombie(std::string name);
 		~Zombie();
-
 		void	announce();
 };
 
-/* This function creates a zombie, names it, and returns it so you can use it outside
-of the function scope. */
 Zombie *newZombie(std::string name);
-/* This function creates a zombie, names it, and makes it announce itself. */
 void	randomChump(std::string name);

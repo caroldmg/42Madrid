@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 16:50:21 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/08/19 16:50:55 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/08/19 16:52:08 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ int	main(void)
 	std::cout << ">> Ahora hacemos uso de las funciones creadas a parte" << std::endl;
 	std::cout << ">>> newZombie: " << std::endl;
 	Zombie *z3 = NULL;
-	z3 = z3->newZombie("Juan Carlozzzzzzzz");
+	z3 = newZombie("Juan Carlozzzzzzzz");
 	z3->announce();
 	std::cout << ">>> randomChump: " << std::endl;
-	z3->randomChump("Randomzzzzzzzzzz");
+	randomChump("Randomzzzzzzzzzz");
 	std::cout << ">> delete;" << std::endl;
 	delete z1;
 	delete z2;
