@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 14:47:25 by cde-migu          #+#    #+#             */
-/*   Updated: 2024/11/09 13:45:55 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/08/11 18:55:48 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include <stdio.h>
 # include <math.h>
 
-# define WIDTH	1000
-# define HEIGHT	1000
+# define WIDTH	800
+# define HEIGHT	800
 
 /*
  * COLORS

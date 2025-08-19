@@ -1,30 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.hpp                                         :+:      :+:    :+:   */
+/*   newZombie.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/11 12:43:14 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/08/19 16:04:47 by cde-migu         ###   ########.fr       */
+/*   Created: 2025/08/19 16:43:41 by cde-migu          #+#    #+#             */
+/*   Updated: 2025/08/19 16:46:28 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
+#include "Zombie.hpp"
 
-class Zombie
+Zombie *newZombie(std::string name)
 {
-	private:
-		std::string name;
-	public:
-		Zombie(std::string name);
-		~Zombie();
+	Zombie *newZombie = new Zombie(name);
 
-		void	announce();
-};
-
-/* This function creates a zombie, names it, and returns it so you can use it outside
-of the function scope. */
-Zombie *newZombie(std::string name);
-/* This function creates a zombie, names it, and makes it announce itself. */
-void	randomChump(std::string name);
+	return (newZombie);
+}

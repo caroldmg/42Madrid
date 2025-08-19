@@ -1,6 +1,6 @@
 
 CC := c++
-NAME := phonebook
+NAME := brainz
 CPPFLAGS := -Wall -Wextra -Werror -std=c++98
 RM := rm -f
 
@@ -11,6 +11,9 @@ YELLOW := \33[0;33m
 RESET := \033[0m
 
 SRCS := main.cpp \
+		newZombie.cpp \
+		randomChump.cpp \
+		Zombie.cpp \
 
 OBJS := $(SRCS:.cpp=.o)
 
