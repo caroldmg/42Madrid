@@ -1,4 +1,6 @@
-#include <iostream>
+#pragma once
+
+# include <iostream>
 
 class Weapon
 {
@@ -6,6 +8,7 @@ class Weapon
 		std::string type;
 	public:
 		Weapon();
+		Weapon(std::string type);
 		~Weapon();
 
 		std::string	getType();
