@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 13:08:25 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/08/06 15:22:12 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/09/01 19:03:17 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,14 @@
 void	Contact::printColumn(std::string str)
 {
 	if (str.length() > 10)
-		str.substr(0, 9) + ".";
-	std::cout << std::setw(10) << str << "|";
+	{
+		std::string newstr = str.substr(0, 9) + ".";
+		std::cout << std::setw(10) << newstr << "|";
+	}
+	else
+		std::cout << std::setw(10) << str << "|";
 }
+
 
 bool	isValidNumber(std::string phone)
 {

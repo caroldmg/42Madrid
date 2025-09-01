@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 12:56:07 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/07/23 12:37:38 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/09/01 16:43:56 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,6 @@ void	printUpper(int argc, char **argv)
 
 int	main(int argc, char **argv)
 {
-	int	i;
-	int	j;
-	int	len;
-
 	if (argc > 1)
 	{
 		printUpper(argc, argv);
