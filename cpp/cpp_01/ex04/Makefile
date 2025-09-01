@@ -1,5 +1,5 @@
 NAME = replacer
-SRC = main.cpp Replacer.cpp Iofile.cpp
+SRC = main.cpp Replace.cpp
 OBJ = $(SRC:.cpp=.o)
 HEADERS =
 CC = c++

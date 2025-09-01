@@ -4,7 +4,7 @@ Replace::Replace(std::string filename)
 {
 	const std::string out = filename + ".replace";
 	this->filename = filename;
-	infile.open(filename, std::ifstream::in);
+	infile.open(filename.c_str(), std::ifstream::in);
 	if (!infile.is_open())
 	{
 		std::cout << "No se puede abrir el archivo de lectura" << std::endl;
@@ -31,8 +31,9 @@ Replace::~Replace()
 void	Replace::findOccurrence(std::string *line, std::string s1, std::string s2)
 {
 	std::string newLine = *line;
+	size_t i = 0;
 
-	for (int i = newLine.find(s1);
+	for (i = newLine.find(s1, i);
 		i != std::string::npos;
 		i = newLine.find(s1, i + s2.length()))
 	{
