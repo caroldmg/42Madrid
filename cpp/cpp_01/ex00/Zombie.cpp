@@ -6,7 +6,7 @@
 /*   By: cde-migu <cde-migu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 12:59:00 by cde-migu          #+#    #+#             */
-/*   Updated: 2025/08/19 17:03:26 by cde-migu         ###   ########.fr       */
+/*   Updated: 2025/09/01 20:53:02 by cde-migu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@ void Zombie::announce()
 Zombie::Zombie(std::string name)
 {
 	this->name = name;
-	std::cout << name << "Zombie Constructor " << std::endl;
 }
 
 Zombie::~Zombie()
-{
-	std::cout << name << "Zombie destructor " << std::endl;
-}
+{}

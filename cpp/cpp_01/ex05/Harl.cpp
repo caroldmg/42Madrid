@@ -1,14 +1,10 @@
 #include "Harl.hpp"
 
 Harl::Harl()
-{
-	std::cout << "se ha creado un Harl" << std::endl;
-}
+{}
 
 Harl::~Harl()
-{
-	std::cout << "se ha eliminado un Harl" << std::endl;
-}
+{}
 
 void	Harl::debug()
 {

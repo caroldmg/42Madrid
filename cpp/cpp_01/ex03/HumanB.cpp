@@ -8,9 +8,7 @@ HumanB::HumanB(std::string name)
 }
 
 HumanB::~HumanB()
-{
-	std::cout << "Human B destructor " << this->name << std::endl;
-}
+{}
 
 void	HumanB::attack()
 {
